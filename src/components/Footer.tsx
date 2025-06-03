@@ -73,7 +73,7 @@ export function Footer() {
         <div className="text-center justify-center">
           <div className="flex flex-col md:flex-row justify-center items-center">
             <p className="text-gray-400 text-sm mb-2 md:mb-0">
-              © {currentYear} <span className="font-medium text-blue-400">koreanmemes</span>. All rights reserved1.
+              © {currentYear} <span className="font-medium text-blue-400">koreanmemes</span>. All rights reserved.
             </p>
             {/* <div className="flex items-center space-x-1 text-gray-400 text-sm">
               <span>Made with</span>
