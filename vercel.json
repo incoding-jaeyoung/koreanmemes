@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
