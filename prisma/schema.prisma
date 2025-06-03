@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts    Post[]
+  comments Comment[]
+
+  @@map("users")
+}
+
+model Post {
+  id             String     @id @default(cuid())
+  title          String
+  content        String?
+  koreanTitle    String?    // 원본 한국어 제목
+  koreanContent  String?    // 원본 한국어 내용
+  extractedComments Json?   // 외부 사이트에서 추출한 베스트 댓글들 (한글 원본)
+  translatedComments Json?  // 번역된 베스트 댓글들 (영문)
+  category       Category
+  imageUrl       String?
+  additionalImages Json?    // 추가 이미지들 (JSON 배열)
+  authorId       String?    // MVP 단계에서 임시로 옵셔널로 설정
+  likes          Int        @default(0)
+  views          Int        @default(0)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  author   User?     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments Comment[]
+
+  @@map("posts")
+}
+
+model Comment {
+  id          String   @id @default(cuid())
+  content     String
+  postId      String
+  authorId    String?  // 회원가입이 없으므로 optional
+  nickname    String?  // 익명 닉네임
+  password    String?  // 댓글 삭제/수정용 간단 비밀번호
+  ipAddress   String?  // 스팸 방지용 IP 추적
+  isBlocked   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author User? @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
+
+enum Category {
+  HUMOR     // K-유머/짤방
+  CULTURE   // K-문화
+  DRAMA     // K-드라마/예능
+  LIFESTYLE // K-라이프스타일
+  TECH      // K-IT/스타트업
+  GENERAL   // 일반
+}
