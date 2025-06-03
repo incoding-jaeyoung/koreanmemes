@@ -145,10 +145,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <AuthProvider>
-          <Header />
+        <Header />
           <main className="container mx-auto px-4 py-8 flex-1">
-            {children}
-          </main>
+          {children}
+        </main>
           <Footer />
         </AuthProvider>
       </body>
