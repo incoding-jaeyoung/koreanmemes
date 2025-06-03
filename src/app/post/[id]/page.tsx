@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { 
   ArrowLeft, 
@@ -35,7 +35,7 @@ interface Post {
   updatedAt: string
 }
 
-export default function PostDetailPage() {
+function PostDetailContent() {
   const params = useParams()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -199,12 +199,11 @@ export default function PostDetailPage() {
         throw new Error(errorData.error || 'Failed to delete post')
       }
 
-      alert('게시글이 성공적으로 삭제되었습니다.')
+      // 삭제 성공 시 홈으로 리디렉션
       router.push('/')
-      
     } catch (error) {
       console.error('Delete error:', error)
-      alert(`삭제에 실패했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`)
+      alert('게시글 삭제 중 오류가 발생했습니다.')
     } finally {
       setIsDeleting(false)
     }
@@ -212,17 +211,15 @@ export default function PostDetailPage() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString('ko-KR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
     })
   }
 
   const getCategoryInfo = (categoryId: string) => {
-    return categories.find(cat => cat.id === categoryId) || { name: categoryId, emoji: '💬' }
+    return categories.find(cat => cat.id === categoryId) || categories[categories.length - 1]
   }
 
   if (loading) {
@@ -459,5 +456,27 @@ export default function PostDetailPage() {
       {/* 댓글 섹션 */}
       <CommentSection postId={post.id} />
     </div>
+  )
+}
+
+export default function PostDetailPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 rounded w-3/4 mb-6"></div>
+            <div className="h-64 bg-gray-200 rounded mb-6"></div>
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-200 rounded w-full"></div>
+              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }>
+      <PostDetailContent />
+    </Suspense>
   )
 } 

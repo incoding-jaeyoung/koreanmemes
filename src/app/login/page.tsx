@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/auth'
@@ -15,7 +15,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -65,6 +65,81 @@ export default function LoginPage() {
   }
 
   return (
+    <>
+      {/* 메시지 표시 */}
+      {message && (
+        <div className={`mb-6 p-4 rounded-lg flex items-center gap-2 ${
+          messageType === 'success' 
+            ? 'bg-green-50 text-green-700 border border-green-200' 
+            : 'bg-red-50 text-red-700 border border-red-200'
+        }`}>
+          {messageType === 'success' ? (
+            <CheckCircle className="h-5 w-5 flex-shrink-0" />
+          ) : (
+            <AlertCircle className="h-5 w-5 flex-shrink-0" />
+          )}
+          <span className="text-sm">{message}</span>
+        </div>
+      )}
+
+      {/* 로그인 폼 */}
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+            <Mail className="h-4 w-4" />
+            이메일
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder=""
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            required
+            disabled={isLoading}
+          />
+        </div>
+
+        <div>
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+            <Lock className="h-4 w-4" />
+            비밀번호
+          </label>
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder=""
+              className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+              required
+              disabled={isLoading}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              disabled={isLoading}
+            >
+              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          {isLoading ? '로그인 중...' : '로그인'}
+        </button>
+      </form>
+    </>
+  )
+}
+
+export default function LoginPage() {
+  return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* 돌아가기 버튼 */}
@@ -89,75 +164,9 @@ export default function LoginPage() {
             <p className="text-gray-600">한국을 세계로, 세계를 한국으로</p>
           </div>
 
-          {/* 메시지 표시 */}
-          {message && (
-            <div className={`mb-6 p-4 rounded-lg flex items-center gap-2 ${
-              messageType === 'success' 
-                ? 'bg-green-50 text-green-700 border border-green-200' 
-                : 'bg-red-50 text-red-700 border border-red-200'
-            }`}>
-              {messageType === 'success' ? (
-                <CheckCircle className="h-5 w-5 flex-shrink-0" />
-              ) : (
-                <AlertCircle className="h-5 w-5 flex-shrink-0" />
-              )}
-              <span className="text-sm">{message}</span>
-            </div>
-          )}
-
-          {/* 로그인 폼 */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-                <Mail className="h-4 w-4" />
-                이메일
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder=""
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                required
-                disabled={isLoading}
-              />
-            </div>
-
-            <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-                <Lock className="h-4 w-4" />
-                비밀번호
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder=""
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  required
-                  disabled={isLoading}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                  disabled={isLoading}
-                >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                </button>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {isLoading ? '로그인 중...' : '로그인'}
-            </button>
-          </form>
-
+          <Suspense fallback={<div className="animate-pulse bg-gray-100 h-32 rounded-lg"></div>}>
+            <LoginForm />
+          </Suspense>
         </div>
 
         {/* 하단 정보 */}

@@ -747,7 +747,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function PostDetailPage() {
+function PostDetailContent() {
     _s();
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -794,7 +794,7 @@ function PostDetailPage() {
     ];
     // 비밀 액세스 키 확인
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "PostDetailPage.useEffect": ()=>{
+        "PostDetailContent.useEffect": ()=>{
             const accessKey = searchParams.get('access');
             const secretKey = 'korean-memes-secret-2024';
             if (accessKey === secretKey) {
@@ -803,14 +803,14 @@ function PostDetailPage() {
                 setHasSecretAccess(false);
             }
         }
-    }["PostDetailPage.useEffect"], [
+    }["PostDetailContent.useEffect"], [
         searchParams
     ]);
     // 수정/삭제 권한 확인 - 로딩 중이 아닐 때만 권한 허용
     const hasEditPermission = !isLoading && (isAuthenticated || hasSecretAccess);
     // 클라이언트 사이드 메타데이터 업데이트
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "PostDetailPage.useEffect": ()=>{
+        "PostDetailContent.useEffect": ()=>{
             if (!post) return;
             const categoryInfo = getCategoryInfo(post.category);
             const description = post.content ? `${post.content.substring(0, 160)}...` : `Korean ${categoryInfo.name.toLowerCase()} content: ${post.title}. ${post.koreanTitle ? `Original: ${post.koreanTitle}` : ''}`;
@@ -818,7 +818,7 @@ function PostDetailPage() {
             document.title = `${post.title} - ${categoryInfo.name} | Korean Memes Hub`;
             // 메타 태그 업데이트
             const updateMeta = {
-                "PostDetailPage.useEffect.updateMeta": (name, content)=>{
+                "PostDetailContent.useEffect.updateMeta": (name, content)=>{
                     let meta = document.querySelector(`meta[name="${name}"]`) || document.querySelector(`meta[property="${name}"]`);
                     if (!meta) {
                         meta = document.createElement('meta');
@@ -831,7 +831,7 @@ function PostDetailPage() {
                     }
                     meta.setAttribute('content', content);
                 }
-            }["PostDetailPage.useEffect.updateMeta"];
+            }["PostDetailContent.useEffect.updateMeta"];
             // 기본 메타 태그
             updateMeta('description', description);
             updateMeta('keywords', [
@@ -861,14 +861,14 @@ function PostDetailPage() {
             }
             canonical.setAttribute('href', `http://localhost:3000/post/${post.id}`);
         }
-    }["PostDetailPage.useEffect"], [
+    }["PostDetailContent.useEffect"], [
         post
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "PostDetailPage.useEffect": ()=>{
+        "PostDetailContent.useEffect": ()=>{
             if (!postId) return;
             const fetchPost = {
-                "PostDetailPage.useEffect.fetchPost": async ()=>{
+                "PostDetailContent.useEffect.fetchPost": async ()=>{
                     try {
                         setLoading(true);
                         const response = await fetch(`/api/posts/${postId}`);
@@ -884,18 +884,18 @@ function PostDetailPage() {
                         setLoading(false);
                     }
                 }
-            }["PostDetailPage.useEffect.fetchPost"];
+            }["PostDetailContent.useEffect.fetchPost"];
             fetchPost();
         }
-    }["PostDetailPage.useEffect"], [
+    }["PostDetailContent.useEffect"], [
         postId
     ]);
     // 조회수 증가 (한 번만 실행)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "PostDetailPage.useEffect": ()=>{
+        "PostDetailContent.useEffect": ()=>{
             if (!postId || viewIncremented) return;
             const incrementView = {
-                "PostDetailPage.useEffect.incrementView": async ()=>{
+                "PostDetailContent.useEffect.incrementView": async ()=>{
                     try {
                         const response = await fetch(`/api/posts/${postId}/view`, {
                             method: 'POST'
@@ -904,24 +904,24 @@ function PostDetailPage() {
                             const data = await response.json();
                             // 로컬 상태의 조회수 업데이트
                             setPost({
-                                "PostDetailPage.useEffect.incrementView": (prev)=>prev ? {
+                                "PostDetailContent.useEffect.incrementView": (prev)=>prev ? {
                                         ...prev,
                                         views: data.views
                                     } : null
-                            }["PostDetailPage.useEffect.incrementView"]);
+                            }["PostDetailContent.useEffect.incrementView"]);
                             setViewIncremented(true);
                         }
                     } catch (error) {
                         console.error('Failed to increment view:', error);
                     }
                 }
-            }["PostDetailPage.useEffect.incrementView"];
+            }["PostDetailContent.useEffect.incrementView"];
             // post가 로드된 후에만 조회수 증가
             if (post && !loading) {
                 incrementView();
             }
         }
-    }["PostDetailPage.useEffect"], [
+    }["PostDetailContent.useEffect"], [
         postId,
         viewIncremented,
         post?.id,
@@ -940,30 +940,25 @@ function PostDetailPage() {
                 const errorData = await response.json();
                 throw new Error(errorData.error || 'Failed to delete post');
             }
-            alert('게시글이 성공적으로 삭제되었습니다.');
+            // 삭제 성공 시 홈으로 리디렉션
             router.push('/');
         } catch (error) {
             console.error('Delete error:', error);
-            alert(`삭제에 실패했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
+            alert('게시글 삭제 중 오류가 발생했습니다.');
         } finally{
             setIsDeleting(false);
         }
     };
     const formatDate = (dateString)=>{
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
+        return date.toLocaleDateString('ko-KR', {
             year: 'numeric',
             month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
+            day: 'numeric'
         });
     };
     const getCategoryInfo = (categoryId)=>{
-        return categories.find((cat)=>cat.id === categoryId) || {
-            name: categoryId,
-            emoji: '💬'
-        };
+        return categories.find((cat)=>cat.id === categoryId) || categories[categories.length - 1];
     };
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -975,7 +970,7 @@ function PostDetailPage() {
                         className: "h-8 w-8 animate-spin text-blue-600"
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 232,
+                        lineNumber: 229,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -983,18 +978,18 @@ function PostDetailPage() {
                         children: "Loading post..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 233,
+                        lineNumber: 230,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                lineNumber: 231,
+                lineNumber: 228,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/post/[id]/page.tsx",
-            lineNumber: 230,
+            lineNumber: 227,
             columnNumber: 7
         }, this);
     }
@@ -1008,7 +1003,7 @@ function PostDetailPage() {
                         className: "h-16 w-16 text-red-400 mx-auto mb-4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 243,
+                        lineNumber: 240,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1016,7 +1011,7 @@ function PostDetailPage() {
                         children: error || 'Post not found'
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 244,
+                        lineNumber: 241,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1024,7 +1019,7 @@ function PostDetailPage() {
                         children: "The post you're looking for doesn't exist or has been removed."
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 247,
+                        lineNumber: 244,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1035,25 +1030,25 @@ function PostDetailPage() {
                                 className: "h-4 w-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 254,
+                                lineNumber: 251,
                                 columnNumber: 13
                             }, this),
                             "Back to Home"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 250,
+                        lineNumber: 247,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                lineNumber: 242,
+                lineNumber: 239,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/post/[id]/page.tsx",
-            lineNumber: 241,
+            lineNumber: 238,
             columnNumber: 7
         }, this);
     }
@@ -1072,14 +1067,14 @@ function PostDetailPage() {
                                 className: "h-5 w-5"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 272,
+                                lineNumber: 269,
                                 columnNumber: 11
                             }, this),
                             "Back to Home"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 268,
+                        lineNumber: 265,
                         columnNumber: 9
                     }, this),
                     hasEditPermission && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1093,14 +1088,14 @@ function PostDetailPage() {
                                         className: "h-4 w-4"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 283,
+                                        lineNumber: 280,
                                         columnNumber: 15
                                     }, this),
                                     "수정"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 279,
+                                lineNumber: 276,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1112,32 +1107,32 @@ function PostDetailPage() {
                                         className: "h-4 w-4 animate-spin"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 292,
+                                        lineNumber: 289,
                                         columnNumber: 17
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
                                         className: "h-4 w-4"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 294,
+                                        lineNumber: 291,
                                         columnNumber: 17
                                     }, this),
                                     isDeleting ? '삭제 중...' : '삭제'
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 286,
+                                lineNumber: 283,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 278,
+                        lineNumber: 275,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                lineNumber: 267,
+                lineNumber: 264,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("article", {
@@ -1158,7 +1153,7 @@ function PostDetailPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 307,
+                                        lineNumber: 304,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1168,20 +1163,20 @@ function PostDetailPage() {
                                                 className: "h-4 w-4 mr-1"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 311,
+                                                lineNumber: 308,
                                                 columnNumber: 15
                                             }, this),
                                             formatDate(post.createdAt)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 310,
+                                        lineNumber: 307,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 306,
+                                lineNumber: 303,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1189,7 +1184,7 @@ function PostDetailPage() {
                                 children: post.title
                             }, void 0, false, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 316,
+                                lineNumber: 313,
                                 columnNumber: 11
                             }, this),
                             post.koreanTitle && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1200,7 +1195,7 @@ function PostDetailPage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 321,
+                                lineNumber: 318,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1213,7 +1208,7 @@ function PostDetailPage() {
                                                 className: "h-4 w-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 328,
+                                                lineNumber: 325,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1223,13 +1218,13 @@ function PostDetailPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 329,
+                                                lineNumber: 326,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 327,
+                                        lineNumber: 324,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1239,7 +1234,7 @@ function PostDetailPage() {
                                                 className: "h-4 w-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 332,
+                                                lineNumber: 329,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1249,13 +1244,13 @@ function PostDetailPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 333,
+                                                lineNumber: 330,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 331,
+                                        lineNumber: 328,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1265,7 +1260,7 @@ function PostDetailPage() {
                                                 className: "h-4 w-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 336,
+                                                lineNumber: 333,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1275,25 +1270,25 @@ function PostDetailPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 337,
+                                                lineNumber: 334,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 335,
+                                        lineNumber: 332,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 326,
+                                lineNumber: 323,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 305,
+                        lineNumber: 302,
                         columnNumber: 9
                     }, this),
                     (post.imageUrl || post.additionalImages && post.additionalImages.length > 0) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1309,12 +1304,12 @@ function PostDetailPage() {
                                         className: "w-full h-auto object-cover rounded-lg"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 351,
+                                        lineNumber: 348,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                    lineNumber: 350,
+                                    lineNumber: 347,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1327,23 +1322,23 @@ function PostDetailPage() {
                                                 className: "w-full h-auto object-cover rounded-lg"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 360,
                                                 columnNumber: 23
                                             }, this)
                                         }, index, false, {
                                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 359,
                                             columnNumber: 21
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                    lineNumber: 360,
+                                    lineNumber: 357,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                            lineNumber: 347,
+                            lineNumber: 344,
                             columnNumber: 15
                         }, this) : /* 단일 이미지인 경우 */ post.imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: post.imageUrl,
@@ -1351,12 +1346,12 @@ function PostDetailPage() {
                             className: "w-full h-full object-cover"
                         }, void 0, false, {
                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                            lineNumber: 375,
+                            lineNumber: 372,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 344,
+                        lineNumber: 341,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1369,12 +1364,12 @@ function PostDetailPage() {
                                     children: post.content
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                    lineNumber: 388,
+                                    lineNumber: 385,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 387,
+                                lineNumber: 384,
                                 columnNumber: 11
                             }, this),
                             post.koreanContent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1385,7 +1380,7 @@ function PostDetailPage() {
                                         children: "🇰🇷 Korean Original"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 395,
+                                        lineNumber: 392,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1393,13 +1388,13 @@ function PostDetailPage() {
                                         children: post.koreanContent
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 398,
+                                        lineNumber: 395,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 394,
+                                lineNumber: 391,
                                 columnNumber: 13
                             }, this),
                             post.translatedComments && post.translatedComments.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1410,7 +1405,7 @@ function PostDetailPage() {
                                         children: "💬 Best Comments from Korean Community"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 407,
+                                        lineNumber: 404,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1427,12 +1422,12 @@ function PostDetailPage() {
                                                                 children: index + 1
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                                lineNumber: 415,
+                                                                lineNumber: 412,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                            lineNumber: 414,
+                                                            lineNumber: 411,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1442,28 +1437,28 @@ function PostDetailPage() {
                                                                 children: translatedComment
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                                lineNumber: 420,
+                                                                lineNumber: 417,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                            lineNumber: 419,
+                                                            lineNumber: 416,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                    lineNumber: 413,
+                                                    lineNumber: 410,
                                                     columnNumber: 21
                                                 }, this)
                                             }, index, false, {
                                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                lineNumber: 412,
+                                                lineNumber: 409,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 410,
+                                        lineNumber: 407,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1471,19 +1466,19 @@ function PostDetailPage() {
                                         children: "* Comments from Korean community sites, automatically translated to English"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                                        lineNumber: 428,
+                                        lineNumber: 425,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                                lineNumber: 406,
+                                lineNumber: 403,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 386,
+                        lineNumber: 383,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1501,7 +1496,7 @@ function PostDetailPage() {
                                                     className: "h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                    lineNumber: 440,
+                                                    lineNumber: 437,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Like (",
@@ -1510,7 +1505,7 @@ function PostDetailPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                                            lineNumber: 439,
+                                            lineNumber: 436,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1520,20 +1515,20 @@ function PostDetailPage() {
                                                     className: "h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                                    lineNumber: 444,
+                                                    lineNumber: 441,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Share"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                                            lineNumber: 443,
+                                            lineNumber: 440,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                    lineNumber: 438,
+                                    lineNumber: 435,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1542,41 +1537,41 @@ function PostDetailPage() {
                                     children: "More Posts"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/post/[id]/page.tsx",
-                                    lineNumber: 449,
+                                    lineNumber: 446,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/post/[id]/page.tsx",
-                            lineNumber: 437,
+                            lineNumber: 434,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/post/[id]/page.tsx",
-                        lineNumber: 436,
+                        lineNumber: 433,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                lineNumber: 303,
+                lineNumber: 300,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CommentSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CommentSection"], {
                 postId: post.id
             }, void 0, false, {
                 fileName: "[project]/src/app/post/[id]/page.tsx",
-                lineNumber: 460,
+                lineNumber: 457,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/post/[id]/page.tsx",
-        lineNumber: 265,
+        lineNumber: 262,
         columnNumber: 5
     }, this);
 }
-_s(PostDetailPage, "krvsBw7g6SBh7HorPow3s9nFbWk=", false, function() {
+_s(PostDetailContent, "krvsBw7g6SBh7HorPow3s9nFbWk=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
@@ -1584,9 +1579,91 @@ _s(PostDetailPage, "krvsBw7g6SBh7HorPow3s9nFbWk=", false, function() {
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
     ];
 });
-_c = PostDetailPage;
-var _c;
-__turbopack_context__.k.register(_c, "PostDetailPage");
+_c = PostDetailContent;
+function PostDetailPage() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
+        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "container mx-auto px-4 py-8",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "max-w-4xl mx-auto",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "animate-pulse",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "h-8 bg-gray-200 rounded w-3/4 mb-6"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/post/[id]/page.tsx",
+                            lineNumber: 468,
+                            columnNumber: 13
+                        }, void 0),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "h-64 bg-gray-200 rounded mb-6"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/post/[id]/page.tsx",
+                            lineNumber: 469,
+                            columnNumber: 13
+                        }, void 0),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-3",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "h-4 bg-gray-200 rounded w-full"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/post/[id]/page.tsx",
+                                    lineNumber: 471,
+                                    columnNumber: 15
+                                }, void 0),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "h-4 bg-gray-200 rounded w-5/6"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/post/[id]/page.tsx",
+                                    lineNumber: 472,
+                                    columnNumber: 15
+                                }, void 0),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "h-4 bg-gray-200 rounded w-4/5"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/post/[id]/page.tsx",
+                                    lineNumber: 473,
+                                    columnNumber: 15
+                                }, void 0)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/post/[id]/page.tsx",
+                            lineNumber: 470,
+                            columnNumber: 13
+                        }, void 0)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/post/[id]/page.tsx",
+                    lineNumber: 467,
+                    columnNumber: 11
+                }, void 0)
+            }, void 0, false, {
+                fileName: "[project]/src/app/post/[id]/page.tsx",
+                lineNumber: 466,
+                columnNumber: 9
+            }, void 0)
+        }, void 0, false, {
+            fileName: "[project]/src/app/post/[id]/page.tsx",
+            lineNumber: 465,
+            columnNumber: 7
+        }, void 0),
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PostDetailContent, {}, void 0, false, {
+            fileName: "[project]/src/app/post/[id]/page.tsx",
+            lineNumber: 479,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/app/post/[id]/page.tsx",
+        lineNumber: 464,
+        columnNumber: 5
+    }, this);
+}
+_c1 = PostDetailPage;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "PostDetailContent");
+__turbopack_context__.k.register(_c1, "PostDetailPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }

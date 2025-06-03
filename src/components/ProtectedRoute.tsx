@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/auth'
 import { Shield, Lock } from 'lucide-react'
@@ -11,7 +11,7 @@ interface ProtectedRouteProps {
   redirectTo?: string
 }
 
-export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: ProtectedRouteProps) {
+function ProtectedContent({ children, fallback, redirectTo = '/login' }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading } = useAuth()
   const [hasSecretAccess, setHasSecretAccess] = useState(false)
   const [isChecking, setIsChecking] = useState(true)
@@ -37,9 +37,9 @@ export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: Pr
   // 로딩 중
   if (isLoading || isChecking) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="w-12 h-12 mx-auto mb-4 border-b-2 border-blue-600 rounded-full animate-spin"></div>
           <p className="text-gray-600">권한을 확인하는 중...</p>
         </div>
       </div>
@@ -53,12 +53,12 @@ export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: Pr
     }
 
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full mx-4">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="w-full max-w-md p-8 mx-4 bg-white rounded-lg shadow-lg">
           <div className="text-center">
-            <Shield className="h-16 w-16 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">접근 권한이 필요합니다</h2>
-            <p className="text-gray-600 mb-6">
+            <Shield className="w-16 h-16 mx-auto mb-4 text-red-500" />
+            <h2 className="mb-4 text-2xl font-bold text-gray-900">접근 권한이 필요합니다</h2>
+            <p className="mb-6 text-gray-600">
               이 페이지에 접근하려면 관리자 로그인이 필요합니다.
             </p>
             <div className="space-y-3">
@@ -67,13 +67,13 @@ export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: Pr
                   const currentPath = window.location.pathname + window.location.search
                   router.push(`${redirectTo}?returnTo=${encodeURIComponent(currentPath)}`)
                 }}
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+                className="w-full px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
               >
                 로그인하기
               </button>
               <button
                 onClick={() => router.push('/')}
-                className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors"
+                className="w-full px-4 py-2 text-gray-700 transition-colors bg-gray-100 rounded-lg hover:bg-gray-200"
               >
                 홈으로 돌아가기
               </button>
@@ -88,9 +88,9 @@ export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: Pr
   return (
     <>
       {hasSecretAccess && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+        <div className="p-4 mb-4 border-l-4 border-yellow-400 bg-yellow-50">
           <div className="flex items-center">
-            <Lock className="h-5 w-5 text-yellow-400 mr-2" />
+            <Lock className="w-5 h-5 mr-2 text-yellow-400" />
             <p className="text-sm text-yellow-700">
               <strong>비밀 액세스로 접근했습니다.</strong> 관리자 권한으로 모든 기능을 사용할 수 있습니다.
             </p>
@@ -99,5 +99,22 @@ export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: Pr
       )}
       {children}
     </>
+  )
+}
+
+export function ProtectedRoute({ children, fallback, redirectTo = '/login' }: ProtectedRouteProps) {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto mb-4 border-b-2 border-blue-600 rounded-full animate-spin"></div>
+          <p className="text-gray-600">권한을 확인하는 중...</p>
+        </div>
+      </div>
+    }>
+      <ProtectedContent fallback={fallback} redirectTo={redirectTo}>
+        {children}
+      </ProtectedContent>
+    </Suspense>
   )
 } 
