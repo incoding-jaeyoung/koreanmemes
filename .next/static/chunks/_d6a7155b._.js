@@ -539,7 +539,7 @@ function Footer() {
                                 lineNumber: 76,
                                 columnNumber: 31
                             }, this),
-                            ". All rights reserved."
+                            ". All rights reserved1."
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Footer.tsx",
