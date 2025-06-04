@@ -235,3 +235,4 @@ model Post {
 
 ## Updated
 - API keys refreshed for translation services
+- Environment variables configured for all scopes (Production/Preview/Development)
