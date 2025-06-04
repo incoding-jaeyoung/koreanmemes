@@ -7,9 +7,18 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
+    // 디버깅 정보 추가
+    console.log('=== Translation API Debug Info ===')
+    console.log('OPENAI_API_KEY exists:', !!process.env.OPENAI_API_KEY)
+    console.log('OPENAI_API_KEY length:', process.env.OPENAI_API_KEY?.length || 0)
+    console.log('Request URL:', request.url)
+    console.log('Request method:', request.method)
+
     const { text } = await request.json()
+    console.log('Input text:', text)
 
     if (!text || !text.trim()) {
+      console.log('No text provided')
       return NextResponse.json({ 
         success: false, 
         error: 'No text provided' 
@@ -19,11 +28,14 @@ export async function POST(request: NextRequest) {
     // 한글이 포함되어 있는지 확인
     const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
     if (!koreanRegex.test(text)) {
+      console.log('No Korean text detected')
       return NextResponse.json({ 
         success: false, 
         error: 'No Korean text detected' 
       })
     }
+
+    console.log('Korean text detected, starting translation...')
 
     // GPT로 번역
     const response = await openai.chat.completions.create({
@@ -61,9 +73,12 @@ English: "The Truth About Romance in K-Dramas"`
       temperature: 0.3,
     })
 
+    console.log('OpenAI response received')
     const translatedText = response.choices[0]?.message?.content?.trim()
+    console.log('Translated text:', translatedText)
     
     if (!translatedText) {
+      console.log('Translation failed - no content received')
       return NextResponse.json({ 
         success: false, 
         error: 'Translation failed' 
@@ -72,6 +87,7 @@ English: "The Truth About Romance in K-Dramas"`
 
     // 따옴표 제거 (GPT가 가끔 따옴표로 감싸서 반환)
     const cleanedText = translatedText.replace(/^["']|["']$/g, '')
+    console.log('Final translated text:', cleanedText)
 
     return NextResponse.json({ 
       success: true, 
@@ -80,6 +96,10 @@ English: "The Truth About Romance in K-Dramas"`
 
   } catch (error) {
     console.error('Translation API error:', error)
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    })
     return NextResponse.json({ 
       success: false, 
       error: error instanceof Error ? error.message : 'Translation failed' 
