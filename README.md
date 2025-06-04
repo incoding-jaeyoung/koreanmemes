@@ -232,3 +232,6 @@ model Post {
 **개발자**: damanegi  
 **최종 업데이트**: 2025-06-03  
 **프로젝트 상태**: 활발한 개발 중 🚧
+
+## Updated
+- API keys refreshed for translation services
