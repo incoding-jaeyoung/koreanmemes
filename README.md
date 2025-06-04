@@ -239,3 +239,4 @@ model Post {
 - Cloudinary environment variables added to Vercel
 - Supabase PostgreSQL database connected
 - Prisma schema fixed to use PostgreSQL for Supabase
+- Supabase DATABASE_URL connection string updated in Vercel
