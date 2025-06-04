@@ -86,6 +86,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -140,6 +143,11 @@ exports.Prisma.NullableJsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -149,11 +157,6 @@ exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
 };
 exports.Category = exports.$Enums.Category = {
   HUMOR: 'HUMOR',
@@ -206,7 +209,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "postinstall": false,
   "inlineDatasources": {
     "db": {
@@ -216,8 +219,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  username  String   @unique\n  password  String\n  avatar    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  posts    Post[]\n  comments Comment[]\n\n  @@map(\"users\")\n}\n\nmodel Post {\n  id                 String   @id @default(cuid())\n  title              String\n  content            String?\n  koreanTitle        String? // 원본 한국어 제목\n  koreanContent      String? // 원본 한국어 내용\n  extractedComments  Json? // 외부 사이트에서 추출한 베스트 댓글들 (한글 원본)\n  translatedComments Json? // 번역된 베스트 댓글들 (영문)\n  category           Category\n  imageUrl           String?\n  additionalImages   Json? // 추가 이미지들 (JSON 배열)\n  authorId           String? // MVP 단계에서 임시로 옵셔널로 설정\n  likes              Int      @default(0)\n  views              Int      @default(0)\n  createdAt          DateTime @default(now())\n  updatedAt          DateTime @updatedAt\n\n  author   User?     @relation(fields: [authorId], references: [id], onDelete: Cascade)\n  comments Comment[]\n\n  @@map(\"posts\")\n}\n\nmodel Comment {\n  id        String   @id @default(cuid())\n  content   String\n  postId    String\n  authorId  String? // 회원가입이 없으므로 optional\n  nickname  String? // 익명 닉네임\n  password  String? // 댓글 삭제/수정용 간단 비밀번호\n  ipAddress String? // 스팸 방지용 IP 추적\n  isBlocked Boolean  @default(false)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)\n  author User? @relation(fields: [authorId], references: [id], onDelete: Cascade)\n\n  @@map(\"comments\")\n}\n\nenum Category {\n  HUMOR // K-유머/짤방\n  CULTURE // K-문화\n  DRAMA // K-드라마/예능\n  LIFESTYLE // K-라이프스타일\n  TECH // K-IT/스타트업\n  GENERAL // 일반\n}\n",
-  "inlineSchemaHash": "4c185b233623f1ba2a49ebe2514d914433721fb40348c22e78f180d91d04460c",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  username  String   @unique\n  password  String\n  avatar    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  posts    Post[]\n  comments Comment[]\n\n  @@map(\"users\")\n}\n\nmodel Post {\n  id                 String   @id @default(cuid())\n  title              String\n  content            String?\n  koreanTitle        String? // 원본 한국어 제목\n  koreanContent      String? // 원본 한국어 내용\n  extractedComments  Json? // 외부 사이트에서 추출한 베스트 댓글들 (한글 원본)\n  translatedComments Json? // 번역된 베스트 댓글들 (영문)\n  category           Category\n  imageUrl           String?\n  additionalImages   Json? // 추가 이미지들 (JSON 배열)\n  authorId           String? // MVP 단계에서 임시로 옵셔널로 설정\n  likes              Int      @default(0)\n  views              Int      @default(0)\n  createdAt          DateTime @default(now())\n  updatedAt          DateTime @updatedAt\n\n  author   User?     @relation(fields: [authorId], references: [id], onDelete: Cascade)\n  comments Comment[]\n\n  @@map(\"posts\")\n}\n\nmodel Comment {\n  id        String   @id @default(cuid())\n  content   String\n  postId    String\n  authorId  String? // 회원가입이 없으므로 optional\n  nickname  String? // 익명 닉네임\n  password  String? // 댓글 삭제/수정용 간단 비밀번호\n  ipAddress String? // 스팸 방지용 IP 추적\n  isBlocked Boolean  @default(false)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)\n  author User? @relation(fields: [authorId], references: [id], onDelete: Cascade)\n\n  @@map(\"comments\")\n}\n\nenum Category {\n  HUMOR // K-유머/짤방\n  CULTURE // K-문화\n  DRAMA // K-드라마/예능\n  LIFESTYLE // K-라이프스타일\n  TECH // K-IT/스타트업\n  GENERAL // 일반\n}\n",
+  "inlineSchemaHash": "c597b78b132f252f84c2c90db5f3f8488dcfc04537340bb72a8ea4985b2aea64",
   "copyEngine": true
 }
 config.dirname = '/'
