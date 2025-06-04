@@ -238,3 +238,4 @@ model Post {
 - Environment variables configured for all scopes (Production/Preview/Development)
 - Cloudinary environment variables added to Vercel
 - Supabase PostgreSQL database connected
+- Prisma schema fixed to use PostgreSQL for Supabase
