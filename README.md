@@ -237,3 +237,4 @@ model Post {
 - API keys refreshed for translation services
 - Environment variables configured for all scopes (Production/Preview/Development)
 - Cloudinary environment variables added to Vercel
+- Supabase PostgreSQL database connected
