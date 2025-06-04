@@ -9,6 +9,15 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json()
 
+    // 디버그 로그 (프로덕션에서는 비밀번호 로깅 금지)
+    console.log('Login attempt:', { 
+      receivedEmail: email,
+      expectedEmail: ADMIN_EMAIL,
+      emailMatch: email === ADMIN_EMAIL,
+      passwordProvided: !!password,
+      passwordMatch: password === ADMIN_PASSWORD
+    })
+
     // 간단한 관리자 계정 확인
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       // JWT 토큰 생성
