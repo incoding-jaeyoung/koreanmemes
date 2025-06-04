@@ -5,6 +5,12 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
+    // 환경변수 디버깅 추가
+    console.log('=== POST Environment Variables Debug ===')
+    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
+    console.log('DATABASE_URL value:', process.env.DATABASE_URL)
+    console.log('Prisma client status:', typeof prisma)
+
     const body = await request.json()
     
     const { title, koreanTitle, content, koreanContent, category, imageUrl, additionalImages, extractedComments, translatedComments } = body
@@ -89,78 +95,52 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    // 환경변수 디버깅 추가
+    console.log('=== Environment Variables Debug ===')
+    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
+    console.log('DATABASE_URL value:', process.env.DATABASE_URL)
+    console.log('NODE_ENV:', process.env.NODE_ENV)
+    console.log('All env keys:', Object.keys(process.env).filter(key => 
+      key.includes('DATABASE') || 
+      key.includes('ADMIN') || 
+      key.includes('JWT') || 
+      key.includes('CLOUDINARY') || 
+      key.includes('OPENAI')
+    ))
+
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category')
+    const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')
-    const offset = parseInt(searchParams.get('offset') || '0')
+    const skip = (page - 1) * limit
 
-    // 카테고리 필터 처리
-    const whereCondition = category && Object.values(Category).includes(category as Category) 
+    // Category enum에 포함된 값인지 확인
+    const whereClause = category && category !== 'ALL' && Object.values(Category).includes(category as Category)
       ? { category: category as Category } 
-      : undefined
+      : {}
 
-    // 총 게시글 수 조회 (페이지네이션용)
-    const totalCount = await prisma.post.count({
-      where: whereCondition
-    })
+    const [posts, totalCount] = await Promise.all([
+      prisma.post.findMany({
+        where: whereClause,
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      prisma.post.count({ where: whereClause })
+    ])
 
-    // 게시글 목록 조회
-    const posts = await prisma.post.findMany({
-      where: whereCondition,
-      orderBy: { createdAt: 'desc' },
-      take: limit,
-      skip: offset,
-      select: {
-        id: true,
-        title: true,
-        koreanTitle: true,
-        content: true,
-        category: true,
-        imageUrl: true,
-        additionalImages: true,
-        extractedComments: true,
-        translatedComments: true,
-        likes: true,
-        views: true,
-        createdAt: true,
-        updatedAt: true,
-        _count: {
-          select: {
-            comments: {
-              where: {
-                isBlocked: false // 차단되지 않은 댓글만 카운트
-              }
-            }
-          }
-        }
+    const totalPages = Math.ceil(totalCount / limit)
+
+    return NextResponse.json({
+      posts,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        totalCount,
+        hasNext: page < totalPages,
+        hasPrev: page > 1
       }
     })
-
-    // additionalImages, extractedComments, translatedComments 처리
-    const formattedPosts = posts.map(post => ({
-      ...post,
-      commentCount: post._count.comments, // 댓글 개수 추가
-      additionalImages: Array.isArray(post.additionalImages) 
-        ? post.additionalImages as string[]
-        : [],
-      extractedComments: Array.isArray(post.extractedComments) 
-        ? post.extractedComments as string[]
-        : [],
-      translatedComments: Array.isArray(post.translatedComments) 
-        ? post.translatedComments as string[]
-        : [],
-      _count: undefined // _count 제거 (commentCount로 대체)
-    }))
-
-    return NextResponse.json({ 
-      posts: formattedPosts,
-      totalCount,
-      currentPage: Math.floor(offset / limit) + 1,
-      totalPages: Math.ceil(totalCount / limit),
-      hasNextPage: offset + limit < totalCount,
-      hasPrevPage: offset > 0
-    })
-
   } catch (error) {
     console.error('Posts fetch error:', error)
     return NextResponse.json(
