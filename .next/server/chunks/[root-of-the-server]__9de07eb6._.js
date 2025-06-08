@@ -8174,6 +8174,9 @@ const path = __turbopack_context__.r("[externals]/path [external] (path, cjs)");
 /**
  * Enums
  */ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
 });
 exports.Prisma.UserScalarFieldEnum = {
@@ -8222,6 +8225,10 @@ exports.Prisma.NullableJsonNullValueInput = {
     DbNull: Prisma.DbNull,
     JsonNull: Prisma.JsonNull
 };
+exports.Prisma.QueryMode = {
+    default: 'default',
+    insensitive: 'insensitive'
+};
 exports.Prisma.NullsOrder = {
     first: 'first',
     last: 'last'
@@ -8230,10 +8237,6 @@ exports.Prisma.JsonNullValueFilter = {
     DbNull: Prisma.DbNull,
     JsonNull: Prisma.JsonNull,
     AnyNull: Prisma.AnyNull
-};
-exports.Prisma.QueryMode = {
-    default: 'default',
-    insensitive: 'insensitive'
 };
 exports.Category = exports.$Enums.Category = {
     HUMOR: 'HUMOR',
@@ -8284,8 +8287,8 @@ exports.Prisma.ModelName = {
     "datasourceNames": [
         "db"
     ],
-    "activeProvider": "sqlite",
-    "postinstall": true,
+    "activeProvider": "postgresql",
+    "postinstall": false,
     "inlineDatasources": {
         "db": {
             "url": {
@@ -8294,8 +8297,8 @@ exports.Prisma.ModelName = {
             }
         }
     },
-    "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  username  String   @unique\n  password  String\n  avatar    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  posts    Post[]\n  comments Comment[]\n\n  @@map(\"users\")\n}\n\nmodel Post {\n  id                 String   @id @default(cuid())\n  title              String\n  content            String?\n  koreanTitle        String? // 원본 한국어 제목\n  koreanContent      String? // 원본 한국어 내용\n  extractedComments  Json? // 외부 사이트에서 추출한 베스트 댓글들 (한글 원본)\n  translatedComments Json? // 번역된 베스트 댓글들 (영문)\n  category           Category\n  imageUrl           String?\n  additionalImages   Json? // 추가 이미지들 (JSON 배열)\n  authorId           String? // MVP 단계에서 임시로 옵셔널로 설정\n  likes              Int      @default(0)\n  views              Int      @default(0)\n  createdAt          DateTime @default(now())\n  updatedAt          DateTime @updatedAt\n\n  author   User?     @relation(fields: [authorId], references: [id], onDelete: Cascade)\n  comments Comment[]\n\n  @@map(\"posts\")\n}\n\nmodel Comment {\n  id        String   @id @default(cuid())\n  content   String\n  postId    String\n  authorId  String? // 회원가입이 없으므로 optional\n  nickname  String? // 익명 닉네임\n  password  String? // 댓글 삭제/수정용 간단 비밀번호\n  ipAddress String? // 스팸 방지용 IP 추적\n  isBlocked Boolean  @default(false)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)\n  author User? @relation(fields: [authorId], references: [id], onDelete: Cascade)\n\n  @@map(\"comments\")\n}\n\nenum Category {\n  HUMOR // K-유머/짤방\n  CULTURE // K-문화\n  DRAMA // K-드라마/예능\n  LIFESTYLE // K-라이프스타일\n  TECH // K-IT/스타트업\n  GENERAL // 일반\n}\n",
-    "inlineSchemaHash": "4c185b233623f1ba2a49ebe2514d914433721fb40348c22e78f180d91d04460c",
+    "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  username  String   @unique\n  password  String\n  avatar    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  posts    Post[]\n  comments Comment[]\n\n  @@map(\"users\")\n}\n\nmodel Post {\n  id                 String   @id @default(cuid())\n  title              String\n  content            String?\n  koreanTitle        String? // 원본 한국어 제목\n  koreanContent      String? // 원본 한국어 내용\n  extractedComments  Json? // 외부 사이트에서 추출한 베스트 댓글들 (한글 원본)\n  translatedComments Json? // 번역된 베스트 댓글들 (영문)\n  category           Category\n  imageUrl           String?\n  additionalImages   Json? // 추가 이미지들 (JSON 배열)\n  authorId           String? // MVP 단계에서 임시로 옵셔널로 설정\n  likes              Int      @default(0)\n  views              Int      @default(0)\n  createdAt          DateTime @default(now())\n  updatedAt          DateTime @updatedAt\n\n  author   User?     @relation(fields: [authorId], references: [id], onDelete: Cascade)\n  comments Comment[]\n\n  @@map(\"posts\")\n}\n\nmodel Comment {\n  id        String   @id @default(cuid())\n  content   String\n  postId    String\n  authorId  String? // 회원가입이 없으므로 optional\n  nickname  String? // 익명 닉네임\n  password  String? // 댓글 삭제/수정용 간단 비밀번호\n  ipAddress String? // 스팸 방지용 IP 추적\n  isBlocked Boolean  @default(false)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)\n  author User? @relation(fields: [authorId], references: [id], onDelete: Cascade)\n\n  @@map(\"comments\")\n}\n\nenum Category {\n  HUMOR // K-유머/짤방\n  CULTURE // K-문화\n  DRAMA // K-드라마/예능\n  LIFESTYLE // K-라이프스타일\n  TECH // K-IT/스타트업\n  GENERAL // 일반\n}\n",
+    "inlineSchemaHash": "c597b78b132f252f84c2c90db5f3f8488dcfc04537340bb72a8ea4985b2aea64",
     "copyEngine": true
 };
 const fs = __turbopack_context__.r("[externals]/fs [external] (fs, cjs)");
@@ -8346,6 +8349,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$generated$2f$prisma$2
 const prisma = new __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$generated$2f$prisma$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["PrismaClient"]();
 async function POST(request) {
     try {
+        // 환경변수 디버깅 추가
+        console.log('=== POST Environment Variables Debug ===');
+        console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+        console.log('DATABASE_URL value:', process.env.DATABASE_URL);
+        console.log('Prisma client status:', typeof prisma);
         const body = await request.json();
         const { title, koreanTitle, content, koreanContent, category, imageUrl, additionalImages, extractedComments, translatedComments } = body;
         // 디버깅 로그 추가
@@ -8416,67 +8424,44 @@ async function POST(request) {
 }
 async function GET(request) {
     try {
+        // 환경변수 디버깅 추가
+        console.log('=== Environment Variables Debug ===');
+        console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+        console.log('DATABASE_URL value:', process.env.DATABASE_URL);
+        console.log('NODE_ENV:', ("TURBOPACK compile-time value", "development"));
+        console.log('All env keys:', Object.keys(process.env).filter((key)=>key.includes('DATABASE') || key.includes('ADMIN') || key.includes('JWT') || key.includes('CLOUDINARY') || key.includes('OPENAI')));
         const { searchParams } = new URL(request.url);
         const category = searchParams.get('category');
+        const page = parseInt(searchParams.get('page') || '1');
         const limit = parseInt(searchParams.get('limit') || '10');
-        const offset = parseInt(searchParams.get('offset') || '0');
-        // 카테고리 필터 처리
-        const whereCondition = category && Object.values(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$generated$2f$prisma$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Category"]).includes(category) ? {
+        const skip = (page - 1) * limit;
+        // Category enum에 포함된 값인지 확인
+        const whereClause = category && category !== 'ALL' && Object.values(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$generated$2f$prisma$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Category"]).includes(category) ? {
             category: category
-        } : undefined;
-        // 총 게시글 수 조회 (페이지네이션용)
-        const totalCount = await prisma.post.count({
-            where: whereCondition
-        });
-        // 게시글 목록 조회
-        const posts = await prisma.post.findMany({
-            where: whereCondition,
-            orderBy: {
-                createdAt: 'desc'
-            },
-            take: limit,
-            skip: offset,
-            select: {
-                id: true,
-                title: true,
-                koreanTitle: true,
-                content: true,
-                category: true,
-                imageUrl: true,
-                additionalImages: true,
-                extractedComments: true,
-                translatedComments: true,
-                likes: true,
-                views: true,
-                createdAt: true,
-                updatedAt: true,
-                _count: {
-                    select: {
-                        comments: {
-                            where: {
-                                isBlocked: false // 차단되지 않은 댓글만 카운트
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        // additionalImages, extractedComments, translatedComments 처리
-        const formattedPosts = posts.map((post)=>({
-                ...post,
-                commentCount: post._count.comments,
-                additionalImages: Array.isArray(post.additionalImages) ? post.additionalImages : [],
-                extractedComments: Array.isArray(post.extractedComments) ? post.extractedComments : [],
-                translatedComments: Array.isArray(post.translatedComments) ? post.translatedComments : [],
-                _count: undefined // _count 제거 (commentCount로 대체)
-            }));
+        } : {};
+        const [posts, totalCount] = await Promise.all([
+            prisma.post.findMany({
+                where: whereClause,
+                orderBy: {
+                    createdAt: 'desc'
+                },
+                skip,
+                take: limit
+            }),
+            prisma.post.count({
+                where: whereClause
+            })
+        ]);
+        const totalPages = Math.ceil(totalCount / limit);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            posts: formattedPosts,
-            totalCount,
-            currentPage: Math.floor(offset / limit) + 1,
-            totalPages: Math.ceil(totalCount / limit),
-            hasNextPage: offset + limit < totalCount,
-            hasPrevPage: offset > 0
+            posts,
+            pagination: {
+                currentPage: page,
+                totalPages,
+                totalCount,
+                hasNext: page < totalPages,
+                hasPrev: page > 1
+            }
         });
     } catch (error) {
         console.error('Posts fetch error:', error);
