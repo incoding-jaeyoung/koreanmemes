@@ -283,16 +283,16 @@ export async function translateImageText(imageBuffer: Buffer): Promise<Buffer> {
       
       console.log(`Text ratio: ${(textRatio * 100).toFixed(1)}%, Text-heavy image: ${isTextHeavyImage}`)
 
-      // 폰트 크기 계산 - 텍스트 위주 이미지는 고정 크기 사용
+      // 폰트 크기 계산 - 텍스트 위주 이미지는 고정 크기 사용, 전체적으로 2배 더 크게
       let fontSize
       if (isTextHeavyImage) {
-        // 텍스트 위주 이미지: 20px로 고정하여 일관성 확보
-        fontSize = 20
+        // 텍스트 위주 이미지: 40px로 고정하여 일관성 확보 (기존 20px → 40px로 2배 증가)
+        fontSize = 40
       } else {
-        // 일반 이미지: 기존 방식
-        fontSize = Math.min(originalHeight * 0.8, originalWidth / translatedText.length * 1.5)
-        fontSize = Math.max(fontSize, 12) // 최소 크기
-        fontSize = Math.min(fontSize, originalHeight * 0.9) // 최대 크기
+        // 일반 이미지: 기존 방식에서 2배 더 크게
+        fontSize = Math.min(originalHeight * 1.6, originalWidth / translatedText.length * 3) // 0.8 → 1.6, 1.5 → 3으로 2배 증가
+        fontSize = Math.max(fontSize, 24) // 최소 크기 12 → 24로 2배 증가
+        fontSize = Math.min(fontSize, originalHeight * 1.8) // 최대 크기 0.9 → 1.8로 2배 증가
       }
       
       ctx.font = `bold ${fontSize}px Arial, sans-serif`

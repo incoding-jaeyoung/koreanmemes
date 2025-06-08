@@ -496,19 +496,20 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
         const text = selection.translatedText!
         const words = text.split(' ')
         
-        // 폰트 크기 자동 조정
-        const maxFontSize = Math.min(realHeight * 0.3, 32)
-        const minFontSize = 12
+        // 폰트 크기 자동 조정 - 실시간 미리보기와 동일한 로직 사용
+        const maxFontSize = Math.min(realHeight * 0.5, 60) // 실시간 미리보기와 동일
+        const minFontSize = 8 // 실시간 미리보기와 동일
         const maxTextWidth = realWidth * 0.9
         const maxTextHeight = realHeight * 0.9
         
         let bestFontSize = minFontSize
         
-        for (let testSize = maxFontSize; testSize >= minFontSize; testSize -= 2) {
+        // 실시간 미리보기와 동일한 폰트 크기 찾기 로직
+        for (let testSize = minFontSize; testSize <= maxFontSize; testSize += 2) {
           ctx.font = `bold ${testSize}px Arial, sans-serif`
           
-          // 텍스트 줄바꿈 시뮬레이션
-          const lines: string[] = []
+          // 텍스트 줄바꿈 테스트
+          const testLines: string[] = []
           let currentLine = ''
           
           for (const word of words) {
@@ -519,18 +520,18 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
               currentLine = testLine
             } else {
               if (currentLine) {
-                lines.push(currentLine)
+                testLines.push(currentLine)
                 currentLine = word
               } else {
-                lines.push(word)
+                testLines.push(word)
               }
             }
           }
-          if (currentLine) lines.push(currentLine)
+          if (currentLine) testLines.push(currentLine)
           
           // 총 높이 계산
           const lineHeight = testSize * 1.3
-          const totalHeight = lines.length * lineHeight
+          const totalHeight = testLines.length * lineHeight
           
           // 텍스트가 영역에 들어가는지 확인
           if (totalHeight <= maxTextHeight) {
@@ -678,11 +679,11 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
 
   return (
     <div className="space-y-4">
-      <div className="bg-white rounded-lg shadow-sm border">
+      <div className="bg-white border rounded-lg shadow-sm">
         <div className="p-4">
-          <div className="text-center space-y-4">
+          <div className="space-y-4 text-center">
             <h3 className="text-lg font-semibold">이미지 번역 편집기</h3>
-            <div className="text-sm text-gray-600 space-y-1">
+            <div className="space-y-1 text-sm text-gray-600">
               <p>마우스로 드래그하여 번역할 텍스트 영역을 선택하세요</p>
               <p className="text-xs">
                 💡 <strong>팁:</strong> 선택된 영역을 <span className="text-red-600">클릭</span>하거나 <span className="text-red-600">우클릭</span>하면 개별 삭제됩니다
@@ -697,16 +698,16 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onContextMenu={handleContextMenu}
-                  className="cursor-crosshair block w-full border border-gray-300 rounded-lg"
+                  className="block w-full border border-gray-300 rounded-lg cursor-crosshair"
                 />
               </div>
             </div>
             
-            <div className="flex gap-2 justify-center">
+            <div className="flex justify-center gap-2">
               <button
                 onClick={handleClearSelections}
                 disabled={selections.length === 0}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 선택 초기화
               </button>
@@ -714,7 +715,7 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
                 type="button"
                 onClick={handleComplete}
                 disabled={selections.length === 0 || isTranslating}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isTranslating ? '처리 중...' : '번역 완료'}
               </button>
@@ -725,7 +726,7 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
                   e.stopPropagation()
                   onCancel()
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 취소
               </button>
