@@ -106,7 +106,9 @@ function ActionModal({ isOpen, onClose, onConfirm, title, placeholder, buttonTex
 }
 
 export function CommentSection({ postId }: CommentSectionProps) {
-  console.log('CommentSection 렌더링됨, postId:', postId)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('CommentSection 렌더링됨, postId:', postId)
+  }
   
   const [comments, setComments] = useState<Comment[]>([])
   const [newComment, setNewComment] = useState('')
@@ -116,6 +118,7 @@ export function CommentSection({ postId }: CommentSectionProps) {
   const [error, setError] = useState('')
   const [fetchLoading, setFetchLoading] = useState(true)
   const [fetchError, setFetchError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   
   // 수정 관련 상태
   const [editingComment, setEditingComment] = useState<string | null>(null)
@@ -125,6 +128,12 @@ export function CommentSection({ postId }: CommentSectionProps) {
   // 삭제 관련 상태
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, commentId: '' })
 
+  // 성공 메시지 표시 및 자동 제거
+  const showSuccessMessage = (message: string) => {
+    setSuccessMessage(message)
+    setTimeout(() => setSuccessMessage(''), 3000)
+  }
+
   const fetchComments = async () => {
     try {
       setFetchLoading(true)
@@ -132,7 +141,9 @@ export function CommentSection({ postId }: CommentSectionProps) {
       const response = await fetch(`/api/posts/${postId}/comments`)
       if (response.ok) {
         const data = await response.json()
-        console.log('댓글 데이터:', data) // 디버깅용
+        if (process.env.NODE_ENV === 'development') {
+          console.log('댓글 데이터:', data) // 디버깅용
+        }
         setComments(Array.isArray(data) ? data : [])
       } else {
         setFetchError(`Failed to load comments: ${response.status}`)
@@ -179,10 +190,22 @@ export function CommentSection({ postId }: CommentSectionProps) {
       })
 
       if (response.ok) {
+        const newCommentData = await response.json()
+        
+        // 새 댓글을 즉시 상단에 추가 (최신 순이므로)
+        setComments(prevComments => [newCommentData, ...prevComments])
+        
+        // 폼 초기화
         setNewComment('')
         setNickname('')
         setPassword('')
-        await fetchComments()
+        
+        if (process.env.NODE_ENV === 'development') {
+          console.log('댓글이 성공적으로 추가되었습니다:', newCommentData.id)
+        }
+        
+        // 성공 메시지 표시
+        showSuccessMessage('댓글이 성공적으로 등록되었습니다! 🎉')
       } else {
         const errorData = await response.json()
         setError(errorData.error || 'Failed to submit comment.')
@@ -217,10 +240,27 @@ export function CommentSection({ postId }: CommentSectionProps) {
       })
 
       if (response.ok) {
+        const updatedComment = await response.json()
+        
+        // 수정된 댓글을 로컬 state에서 업데이트
+        setComments(prevComments => 
+          prevComments.map(comment => 
+            comment.id === commentId 
+              ? { ...comment, ...updatedComment }
+              : comment
+          )
+        )
+        
         setEditingComment(null)
         setEditContent('')
         setEditPassword('')
-        await fetchComments()
+        
+        if (process.env.NODE_ENV === 'development') {
+          console.log('댓글이 성공적으로 수정되었습니다:', commentId)
+        }
+        
+        // 성공 메시지 표시
+        showSuccessMessage('댓글이 성공적으로 수정되었습니다! ✏️')
       } else {
         const errorData = await response.json()
         setError(errorData.error || 'Failed to update comment.')
@@ -250,8 +290,19 @@ export function CommentSection({ postId }: CommentSectionProps) {
       })
 
       if (response.ok) {
+        // 삭제된 댓글을 로컬 state에서 제거
+        setComments(prevComments => 
+          prevComments.filter(comment => comment.id !== deleteModal.commentId)
+        )
+        
         setDeleteModal({ isOpen: false, commentId: '' })
-        await fetchComments()
+        
+        if (process.env.NODE_ENV === 'development') {
+          console.log('댓글이 성공적으로 삭제되었습니다:', deleteModal.commentId)
+        }
+        
+        // 성공 메시지 표시
+        showSuccessMessage('댓글이 성공적으로 삭제되었습니다! 🗑️')
       } else {
         const errorData = await response.json()
         setError(errorData.error || 'Failed to delete comment.')
@@ -272,6 +323,13 @@ export function CommentSection({ postId }: CommentSectionProps) {
           Comments {fetchLoading ? 'Loading...' : fetchError ? 'Load Failed' : `${comments.length}`}
         </h3>
       </div>
+
+      {/* 성공 메시지 토스트 */}
+      {successMessage && (
+        <div className="mb-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded-lg text-sm animate-pulse">
+          {successMessage}
+        </div>
+      )}
 
       {/* 댓글 작성 폼 */}
       <form onSubmit={handleSubmit} className="mb-8 bg-gray-50 rounded-lg p-4">

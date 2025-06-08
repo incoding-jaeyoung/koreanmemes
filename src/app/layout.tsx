@@ -4,6 +4,9 @@ import './globals.css'
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth";
+import { Analytics } from "@vercel/analytics/next"
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -141,11 +144,12 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <AuthProvider>
         <Header />
-          <main className="container mx-auto px-4 py-8 flex-1">
+          <main className="container flex-1 px-4 py-8 mx-auto">
           {children}
         </main>
           <Footer />
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   )

@@ -8,6 +8,7 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "CommentSection": (()=>CommentSection)
 });
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/message-circle.js [app-client] (ecmascript) <export default as MessageCircle>");
@@ -166,7 +167,9 @@ _s(ActionModal, "Y/4oil5yuJ8nKfSTE84bnqMxt48=");
 _c = ActionModal;
 function CommentSection({ postId }) {
     _s1();
-    console.log('CommentSection 렌더링됨, postId:', postId);
+    if ("TURBOPACK compile-time truthy", 1) {
+        console.log('CommentSection 렌더링됨, postId:', postId);
+    }
     const [comments, setComments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [newComment, setNewComment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [nickname, setNickname] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
@@ -175,6 +178,7 @@ function CommentSection({ postId }) {
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [fetchLoading, setFetchLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [fetchError, setFetchError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [successMessage, setSuccessMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     // 수정 관련 상태
     const [editingComment, setEditingComment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [editContent, setEditContent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
@@ -184,6 +188,11 @@ function CommentSection({ postId }) {
         isOpen: false,
         commentId: ''
     });
+    // 성공 메시지 표시 및 자동 제거
+    const showSuccessMessage = (message)=>{
+        setSuccessMessage(message);
+        setTimeout(()=>setSuccessMessage(''), 3000);
+    };
     const fetchComments = async ()=>{
         try {
             setFetchLoading(true);
@@ -191,8 +200,10 @@ function CommentSection({ postId }) {
             const response = await fetch(`/api/posts/${postId}/comments`);
             if (response.ok) {
                 const data = await response.json();
-                console.log('댓글 데이터:', data) // 디버깅용
-                ;
+                if ("TURBOPACK compile-time truthy", 1) {
+                    console.log('댓글 데이터:', data) // 디버깅용
+                    ;
+                }
                 setComments(Array.isArray(data) ? data : []);
             } else {
                 setFetchError(`Failed to load comments: ${response.status}`);
@@ -238,10 +249,21 @@ function CommentSection({ postId }) {
                 })
             });
             if (response.ok) {
+                const newCommentData = await response.json();
+                // 새 댓글을 즉시 상단에 추가 (최신 순이므로)
+                setComments((prevComments)=>[
+                        newCommentData,
+                        ...prevComments
+                    ]);
+                // 폼 초기화
                 setNewComment('');
                 setNickname('');
                 setPassword('');
-                await fetchComments();
+                if ("TURBOPACK compile-time truthy", 1) {
+                    console.log('댓글이 성공적으로 추가되었습니다:', newCommentData.id);
+                }
+                // 성공 메시지 표시
+                showSuccessMessage('댓글이 성공적으로 등록되었습니다! 🎉');
             } else {
                 const errorData = await response.json();
                 setError(errorData.error || 'Failed to submit comment.');
@@ -273,10 +295,20 @@ function CommentSection({ postId }) {
                 })
             });
             if (response.ok) {
+                const updatedComment = await response.json();
+                // 수정된 댓글을 로컬 state에서 업데이트
+                setComments((prevComments)=>prevComments.map((comment)=>comment.id === commentId ? {
+                            ...comment,
+                            ...updatedComment
+                        } : comment));
                 setEditingComment(null);
                 setEditContent('');
                 setEditPassword('');
-                await fetchComments();
+                if ("TURBOPACK compile-time truthy", 1) {
+                    console.log('댓글이 성공적으로 수정되었습니다:', commentId);
+                }
+                // 성공 메시지 표시
+                showSuccessMessage('댓글이 성공적으로 수정되었습니다! ✏️');
             } else {
                 const errorData = await response.json();
                 setError(errorData.error || 'Failed to update comment.');
@@ -306,11 +338,17 @@ function CommentSection({ postId }) {
                 })
             });
             if (response.ok) {
+                // 삭제된 댓글을 로컬 state에서 제거
+                setComments((prevComments)=>prevComments.filter((comment)=>comment.id !== deleteModal.commentId));
                 setDeleteModal({
                     isOpen: false,
                     commentId: ''
                 });
-                await fetchComments();
+                if ("TURBOPACK compile-time truthy", 1) {
+                    console.log('댓글이 성공적으로 삭제되었습니다:', deleteModal.commentId);
+                }
+                // 성공 메시지 표시
+                showSuccessMessage('댓글이 성공적으로 삭제되었습니다! 🗑️');
             } else {
                 const errorData = await response.json();
                 setError(errorData.error || 'Failed to delete comment.');
@@ -331,7 +369,7 @@ function CommentSection({ postId }) {
                         className: "h-5 w-5 text-blue-600"
                     }, void 0, false, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 270,
+                        lineNumber: 321,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -342,14 +380,22 @@ function CommentSection({ postId }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 271,
+                        lineNumber: 322,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/CommentSection.tsx",
-                lineNumber: 269,
+                lineNumber: 320,
                 columnNumber: 7
+            }, this),
+            successMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "mb-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded-lg text-sm animate-pulse",
+                children: successMessage
+            }, void 0, false, {
+                fileName: "[project]/src/components/CommentSection.tsx",
+                lineNumber: 329,
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                 onSubmit: handleSubmit,
@@ -367,7 +413,7 @@ function CommentSection({ postId }) {
                                 maxLength: 50
                             }, void 0, false, {
                                 fileName: "[project]/src/components/CommentSection.tsx",
-                                lineNumber: 279,
+                                lineNumber: 337,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -384,7 +430,7 @@ function CommentSection({ postId }) {
                                         required: true
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/CommentSection.tsx",
-                                        lineNumber: 288,
+                                        lineNumber: 346,
                                         columnNumber: 13
                                     }, this),
                                     password.length > 0 && password.length < 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -394,12 +440,12 @@ function CommentSection({ postId }) {
                                             children: "⚠️"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 300,
+                                            lineNumber: 358,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/CommentSection.tsx",
-                                        lineNumber: 299,
+                                        lineNumber: 357,
                                         columnNumber: 15
                                     }, this),
                                     password.length >= 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -409,24 +455,24 @@ function CommentSection({ postId }) {
                                             children: "✅"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 305,
+                                            lineNumber: 363,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/CommentSection.tsx",
-                                        lineNumber: 304,
+                                        lineNumber: 362,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/CommentSection.tsx",
-                                lineNumber: 287,
+                                lineNumber: 345,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 278,
+                        lineNumber: 336,
                         columnNumber: 9
                     }, this),
                     password.length > 0 && password.length < 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -434,7 +480,7 @@ function CommentSection({ postId }) {
                         children: "Password must be at least 4 characters long"
                     }, void 0, false, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 313,
+                        lineNumber: 371,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -450,7 +496,7 @@ function CommentSection({ postId }) {
                                 required: true
                             }, void 0, false, {
                                 fileName: "[project]/src/components/CommentSection.tsx",
-                                lineNumber: 319,
+                                lineNumber: 377,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -461,13 +507,13 @@ function CommentSection({ postId }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/CommentSection.tsx",
-                                lineNumber: 328,
+                                lineNumber: 386,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 318,
+                        lineNumber: 376,
                         columnNumber: 9
                     }, this),
                     error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -475,7 +521,7 @@ function CommentSection({ postId }) {
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 334,
+                        lineNumber: 392,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -487,14 +533,14 @@ function CommentSection({ postId }) {
                                 className: "h-4 w-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/CommentSection.tsx",
-                                lineNumber: 344,
+                                lineNumber: 402,
                                 columnNumber: 11
                             }, this),
                             loading ? 'Submitting...' : 'Post Comment'
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 339,
+                        lineNumber: 397,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -502,13 +548,13 @@ function CommentSection({ postId }) {
                         children: "* Password is required for comment editing and deletion"
                     }, void 0, false, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 349,
+                        lineNumber: 407,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/CommentSection.tsx",
-                lineNumber: 277,
+                lineNumber: 335,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -518,7 +564,7 @@ function CommentSection({ postId }) {
                     children: "Loading comments... 🔄"
                 }, void 0, false, {
                     fileName: "[project]/src/components/CommentSection.tsx",
-                    lineNumber: 357,
+                    lineNumber: 415,
                     columnNumber: 11
                 }, this) : fetchError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-center py-8",
@@ -528,7 +574,7 @@ function CommentSection({ postId }) {
                             children: fetchError
                         }, void 0, false, {
                             fileName: "[project]/src/components/CommentSection.tsx",
-                            lineNumber: 362,
+                            lineNumber: 420,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -537,20 +583,20 @@ function CommentSection({ postId }) {
                             children: "Try Again"
                         }, void 0, false, {
                             fileName: "[project]/src/components/CommentSection.tsx",
-                            lineNumber: 363,
+                            lineNumber: 421,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/CommentSection.tsx",
-                    lineNumber: 361,
+                    lineNumber: 419,
                     columnNumber: 11
                 }, this) : comments.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-center py-8 text-gray-500",
                     children: "Be the first to comment! 💬"
                 }, void 0, false, {
                     fileName: "[project]/src/components/CommentSection.tsx",
-                    lineNumber: 371,
+                    lineNumber: 429,
                     columnNumber: 11
                 }, this) : comments.map((comment)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "bg-white border rounded-lg p-4",
@@ -566,7 +612,7 @@ function CommentSection({ postId }) {
                                     maxLength: 1000
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 380,
+                                    lineNumber: 438,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -577,7 +623,7 @@ function CommentSection({ postId }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 387,
+                                    lineNumber: 445,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -589,7 +635,7 @@ function CommentSection({ postId }) {
                                     maxLength: 50
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 390,
+                                    lineNumber: 448,
                                     columnNumber: 19
                                 }, this),
                                 editPassword.length > 0 && editPassword.length < 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -597,7 +643,7 @@ function CommentSection({ postId }) {
                                     children: "Password must be at least 4 characters long"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 399,
+                                    lineNumber: 457,
                                     columnNumber: 21
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -612,14 +658,14 @@ function CommentSection({ postId }) {
                                                     className: "h-3 w-3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 409,
+                                                    lineNumber: 467,
                                                     columnNumber: 23
                                                 }, this),
                                                 "Save Changes"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 404,
+                                            lineNumber: 462,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -630,26 +676,26 @@ function CommentSection({ postId }) {
                                                     className: "h-3 w-3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 416,
+                                                    lineNumber: 474,
                                                     columnNumber: 23
                                                 }, this),
                                                 "Cancel"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 412,
+                                            lineNumber: 470,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 403,
+                                    lineNumber: 461,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/CommentSection.tsx",
-                            lineNumber: 379,
+                            lineNumber: 437,
                             columnNumber: 17
                         }, this) : // 일반 표시 모드
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -664,7 +710,7 @@ function CommentSection({ postId }) {
                                                     className: "h-4 w-4 text-gray-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 426,
+                                                    lineNumber: 484,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -672,7 +718,7 @@ function CommentSection({ postId }) {
                                                     children: comment.nickname === '익명' ? 'Anonymous' : comment.nickname || 'Anonymous'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 427,
+                                                    lineNumber: 485,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -684,19 +730,19 @@ function CommentSection({ postId }) {
                                                             children: "(edited)"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                                            lineNumber: 433,
+                                                            lineNumber: 491,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 430,
+                                                    lineNumber: 488,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 425,
+                                            lineNumber: 483,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -710,12 +756,12 @@ function CommentSection({ postId }) {
                                                         className: "h-3 w-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/CommentSection.tsx",
-                                                        lineNumber: 443,
+                                                        lineNumber: 501,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 438,
+                                                    lineNumber: 496,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -729,24 +775,24 @@ function CommentSection({ postId }) {
                                                         className: "h-3 w-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/CommentSection.tsx",
-                                                        lineNumber: 450,
+                                                        lineNumber: 508,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                                    lineNumber: 445,
+                                                    lineNumber: 503,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 437,
+                                            lineNumber: 495,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 424,
+                                    lineNumber: 482,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -754,7 +800,7 @@ function CommentSection({ postId }) {
                                     children: comment.content
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 454,
+                                    lineNumber: 512,
                                     columnNumber: 19
                                 }, this),
                                 comment.translatedContent && isKoreanText(comment.content) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -765,7 +811,7 @@ function CommentSection({ postId }) {
                                             children: "Translation"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 461,
+                                            lineNumber: 519,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -773,13 +819,13 @@ function CommentSection({ postId }) {
                                             children: comment.translatedContent
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 462,
+                                            lineNumber: 520,
                                             columnNumber: 23
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 460,
+                                    lineNumber: 518,
                                     columnNumber: 21
                                 }, this),
                                 comment.translatedContent && !isKoreanText(comment.content) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -790,7 +836,7 @@ function CommentSection({ postId }) {
                                             children: "Translation"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 471,
+                                            lineNumber: 529,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -798,25 +844,25 @@ function CommentSection({ postId }) {
                                             children: comment.translatedContent
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CommentSection.tsx",
-                                            lineNumber: 472,
+                                            lineNumber: 530,
                                             columnNumber: 23
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/CommentSection.tsx",
-                                    lineNumber: 470,
+                                    lineNumber: 528,
                                     columnNumber: 21
                                 }, this)
                             ]
                         }, void 0, true)
                     }, comment.id, false, {
                         fileName: "[project]/src/components/CommentSection.tsx",
-                        lineNumber: 376,
+                        lineNumber: 434,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/CommentSection.tsx",
-                lineNumber: 355,
+                lineNumber: 413,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ActionModal, {
@@ -832,17 +878,17 @@ function CommentSection({ postId }) {
                 buttonColor: "bg-red-600 hover:bg-red-700"
             }, void 0, false, {
                 fileName: "[project]/src/components/CommentSection.tsx",
-                lineNumber: 485,
+                lineNumber: 543,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/CommentSection.tsx",
-        lineNumber: 267,
+        lineNumber: 318,
         columnNumber: 5
     }, this);
 }
-_s1(CommentSection, "d1u1UO1miWNw6swrHw++W1bzpQU=");
+_s1(CommentSection, "iX06gePwtmqzrp5sr/ik8BYPK7g=");
 _c1 = CommentSection;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "ActionModal");

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 60, "column": 0}, "map": {"version":3,"sources":["file:///Users/damanegi/Desktop/dev/KoreanMemes/src/app/api/auth/logout/route.ts"],"sourcesContent":["import { NextResponse } from 'next/server'\n\nexport async function POST() {\n  const response = NextResponse.json({\n    success: true,\n    message: '로그아웃되었습니다.'\n  })\n\n  // 인증 쿠키 삭제\n  response.cookies.set('auth-token', '', {\n    httpOnly: true,\n    secure: process.env.NODE_ENV === 'production',\n    sameSite: 'lax',\n    maxAge: 0 // 즉시 만료\n  })\n\n  return response\n} "],"names":[],"mappings":";;;AAAA;;AAEO,eAAe;IACpB,MAAM,WAAW,gIAAA,CAAA,eAAY,CAAC,IAAI,CAAC;QACjC,SAAS;QACT,SAAS;IACX;IAEA,WAAW;IACX,SAAS,OAAO,CAAC,GAAG,CAAC,cAAc,IAAI;QACrC,UAAU;QACV,QAAQ,oDAAyB;QACjC,UAAU;QACV,QAAQ,EAAE,QAAQ;IACpB;IAEA,OAAO;AACT","debugId":null}}]
+}

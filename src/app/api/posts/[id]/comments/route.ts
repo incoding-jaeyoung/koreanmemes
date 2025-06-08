@@ -134,14 +134,22 @@ export async function GET(
           try {
             if (isKoreanText(comment.content)) {
               // 한글 댓글 -> 영문 번역
-              console.log('한글 댓글 번역 중:', comment.content)
+              if (process.env.NODE_ENV === 'development') {
+                console.log('한글 댓글 번역 중:', comment.content)
+              }
               translatedContent = await translateToEnglish(comment.content)
-              console.log('영문 번역 완료:', translatedContent)
+              if (process.env.NODE_ENV === 'development') {
+                console.log('영문 번역 완료:', translatedContent)
+              }
             } else if (isEnglishText(comment.content)) {
               // 영문 댓글 -> 한글 번역
-              console.log('영문 댓글 번역 중:', comment.content)
+              if (process.env.NODE_ENV === 'development') {
+                console.log('영문 댓글 번역 중:', comment.content)
+              }
               translatedContent = await translateToKorean(comment.content)
-              console.log('한글 번역 완료:', translatedContent)
+              if (process.env.NODE_ENV === 'development') {
+                console.log('한글 번역 완료:', translatedContent)
+              }
             }
             
             // TODO: 나중에 DB에 저장 기능 추가
@@ -164,7 +172,9 @@ export async function GET(
       })
     )
 
-    console.log('Comments found:', commentsWithTranslation.length)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Comments found:', commentsWithTranslation.length)
+    }
     return NextResponse.json(commentsWithTranslation)
   } catch (error) {
     console.error('댓글 조회 에러:', error)
@@ -216,13 +226,21 @@ export async function POST(
     try {
       if (process.env.OPENAI_API_KEY) {
         if (isKoreanText(content.trim())) {
-          console.log('Korean comment detected, translating to English...')
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Korean comment detected, translating to English...')
+          }
           translatedContent = await translateToEnglish(content.trim())
-          console.log('English translation result:', translatedContent)
+          if (process.env.NODE_ENV === 'development') {
+            console.log('English translation result:', translatedContent)
+          }
         } else if (isEnglishText(content.trim())) {
-          console.log('English comment detected, translating to Korean...')
+          if (process.env.NODE_ENV === 'development') {
+            console.log('English comment detected, translating to Korean...')
+          }
           translatedContent = await translateToKorean(content.trim())
-          console.log('Korean translation result:', translatedContent)
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Korean translation result:', translatedContent)
+          }
         }
       }
     } catch (error) {
@@ -254,7 +272,9 @@ export async function POST(
       translatedContent
     }
 
-    console.log('Comment created:', response.id)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Comment created:', response.id)
+    }
     return NextResponse.json(response, { status: 201 })
   } catch (error) {
     console.error('댓글 작성 에러:', error)

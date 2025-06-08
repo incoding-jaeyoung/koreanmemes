@@ -8415,7 +8415,7 @@ const translateToEnglish = async (text)=>{
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are a translator. Translate the given Korean text to English naturally and accurately. Only respond with the English translation, no other text.'
+                        content: 'You are a translator. Translate the given Korean text to English naturally and accurately. Translation guidelines: "밈" should be translated as "meme". Only respond with the English translation, no other text.'
                     },
                     {
                         role: 'user',
@@ -8449,7 +8449,7 @@ const translateToKorean = async (text)=>{
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are a translator. Translate the given English text to Korean naturally and accurately. Only respond with the Korean translation, no other text.'
+                        content: 'You are a translator. Translate the given English text to Korean naturally and accurately. Translation guidelines: "meme" should be translated as "밈" (not "미미"). Only respond with the Korean translation, no other text.'
                     },
                     {
                         role: 'user',
@@ -8501,14 +8501,22 @@ async function GET(request, { params }) {
                 try {
                     if (isKoreanText(comment.content)) {
                         // 한글 댓글 -> 영문 번역
-                        console.log('한글 댓글 번역 중:', comment.content);
+                        if ("TURBOPACK compile-time truthy", 1) {
+                            console.log('한글 댓글 번역 중:', comment.content);
+                        }
                         translatedContent = await translateToEnglish(comment.content);
-                        console.log('영문 번역 완료:', translatedContent);
+                        if ("TURBOPACK compile-time truthy", 1) {
+                            console.log('영문 번역 완료:', translatedContent);
+                        }
                     } else if (isEnglishText(comment.content)) {
                         // 영문 댓글 -> 한글 번역
-                        console.log('영문 댓글 번역 중:', comment.content);
+                        if ("TURBOPACK compile-time truthy", 1) {
+                            console.log('영문 댓글 번역 중:', comment.content);
+                        }
                         translatedContent = await translateToKorean(comment.content);
-                        console.log('한글 번역 완료:', translatedContent);
+                        if ("TURBOPACK compile-time truthy", 1) {
+                            console.log('한글 번역 완료:', translatedContent);
+                        }
                     }
                 // TODO: 나중에 DB에 저장 기능 추가
                 // if (translatedContent) {
@@ -8527,7 +8535,9 @@ async function GET(request, { params }) {
                 translatedContent
             };
         }));
-        console.log('Comments found:', commentsWithTranslation.length);
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.log('Comments found:', commentsWithTranslation.length);
+        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(commentsWithTranslation);
     } catch (error) {
         console.error('댓글 조회 에러:', error);
@@ -8573,13 +8583,21 @@ async function POST(request, { params }) {
         try {
             if (process.env.OPENAI_API_KEY) {
                 if (isKoreanText(content.trim())) {
-                    console.log('Korean comment detected, translating to English...');
+                    if ("TURBOPACK compile-time truthy", 1) {
+                        console.log('Korean comment detected, translating to English...');
+                    }
                     translatedContent = await translateToEnglish(content.trim());
-                    console.log('English translation result:', translatedContent);
+                    if ("TURBOPACK compile-time truthy", 1) {
+                        console.log('English translation result:', translatedContent);
+                    }
                 } else if (isEnglishText(content.trim())) {
-                    console.log('English comment detected, translating to Korean...');
+                    if ("TURBOPACK compile-time truthy", 1) {
+                        console.log('English comment detected, translating to Korean...');
+                    }
                     translatedContent = await translateToKorean(content.trim());
-                    console.log('Korean translation result:', translatedContent);
+                    if ("TURBOPACK compile-time truthy", 1) {
+                        console.log('Korean translation result:', translatedContent);
+                    }
                 }
             }
         } catch (error) {
@@ -8608,7 +8626,9 @@ async function POST(request, { params }) {
             ...comment,
             translatedContent
         };
-        console.log('Comment created:', response.id);
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.log('Comment created:', response.id);
+        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(response, {
             status: 201
         });
