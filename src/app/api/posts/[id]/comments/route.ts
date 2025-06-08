@@ -36,7 +36,7 @@ const translateToEnglish = async (text: string): Promise<string | null> => {
         messages: [
           {
             role: 'system',
-            content: 'You are a translator. Translate the given Korean text to English naturally and accurately. Only respond with the English translation, no other text.'
+            content: 'You are a translator. Translate the given Korean text to English naturally and accurately. Translation guidelines: "밈" should be translated as "meme". Only respond with the English translation, no other text.'
           },
           {
             role: 'user',
@@ -72,7 +72,7 @@ const translateToKorean = async (text: string): Promise<string | null> => {
         messages: [
           {
             role: 'system',
-            content: 'You are a translator. Translate the given English text to Korean naturally and accurately. Only respond with the Korean translation, no other text.'
+            content: 'You are a translator. Translate the given English text to Korean naturally and accurately. Translation guidelines: "meme" should be translated as "밈" (not "미미"). Only respond with the Korean translation, no other text.'
           },
           {
             role: 'user',

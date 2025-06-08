@@ -87,18 +87,24 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    console.log('=== GET Environment Variables Debug ===')
-    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
-    console.log('DATABASE_URL value:', process.env.DATABASE_URL?.substring(0, 50) + '...')
-    console.log('NODE_ENV:', process.env.NODE_ENV)
+    // 환경변수 디버깅을 개발 환경에서만 출력
+    if (process.env.NODE_ENV === 'development') {
+      console.log('=== GET Environment Variables Debug ===')
+      console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
+      console.log('NODE_ENV:', process.env.NODE_ENV)
+    }
 
     // Prepared statement 충돌 방지를 위해 연결 초기화
     try {
       await prisma.$disconnect()
       await prisma.$connect()
-      console.log('✅ Prisma connection refreshed')
+      if (process.env.NODE_ENV === 'development') {
+        console.log('✅ Prisma connection refreshed')
+      }
     } catch (connError) {
-      console.log('⚠️ Connection refresh failed, continuing...', connError)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('⚠️ Connection refresh failed, continuing...', connError)
+      }
     }
 
     const { searchParams } = new URL(request.url)
@@ -110,16 +116,20 @@ export async function GET(request: NextRequest) {
     // offset이 제공되면 offset을 사용하고, 그렇지 않으면 page를 사용
     const skip = offset > 0 ? offset : (page - 1) * limit
     
-    console.log('=== Query Parameters ===')
-    console.log('category:', category)
-    console.log('skip:', skip, 'limit:', limit)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('=== Query Parameters ===')
+      console.log('category:', category)
+      console.log('skip:', skip, 'limit:', limit)
+    }
 
     // Category enum에 포함된 값인지 확인
     const whereClause = category && category !== 'ALL' && Object.values(Category).includes(category as Category)
       ? { category: category as Category } 
       : {}
 
-    console.log('whereClause:', whereClause)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('whereClause:', whereClause)
+    }
 
     const [posts, totalCount] = await Promise.all([
       prisma.post.findMany({
@@ -127,19 +137,61 @@ export async function GET(request: NextRequest) {
         orderBy: { createdAt: 'desc' },
         skip,
         take: limit,
+        select: {
+          id: true,
+          title: true,
+          koreanTitle: true,
+          content: true,
+          category: true,
+          imageUrl: true,
+          likes: true,
+          views: true,
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              comments: {
+                where: {
+                  isBlocked: false // 차단되지 않은 댓글만 카운트
+                }
+              }
+            }
+          }
+        }
       }),
       prisma.post.count({ where: whereClause })
     ])
 
-    console.log('=== Query Results ===')
-    console.log('posts found:', posts.length)
-    console.log('totalCount:', totalCount)
+    // 디버깅 로그 간소화
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Posts API: ${posts.length} posts, ${totalCount} total`)
+    }
+
+    // 댓글 수를 포함한 게시글 데이터 변환
+    const postsWithCommentCount = posts.map(post => ({
+      id: post.id,
+      title: post.title,
+      koreanTitle: post.koreanTitle,
+      content: post.content,
+      category: post.category,
+      imageUrl: post.imageUrl,
+      likes: post.likes,
+      views: post.views,
+      commentCount: post._count.comments, // 댓글 수 추가
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt
+    }))
 
     const currentPage = offset > 0 ? Math.floor(offset / limit) + 1 : page
     const totalPages = Math.ceil(totalCount / limit)
 
     return NextResponse.json({
-      posts,
+      posts: postsWithCommentCount,
+      totalCount,
+      currentPage,
+      totalPages,
+      hasNextPage: currentPage < totalPages,
+      hasPrevPage: currentPage > 1,
       pagination: {
         currentPage,
         totalPages,

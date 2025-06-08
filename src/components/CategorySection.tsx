@@ -109,16 +109,18 @@ export function CategorySection() {
     fetchPosts(selectedCategory, currentPage)
   }, [selectedCategory, currentPage])
 
-  // 디버깅용 - 페이징 정보 출력
+  // 디버깅용 - 페이징 정보 출력 (개발 환경에서만)
   useEffect(() => {
-    console.log('=== 페이징 디버깅 ===')
-    console.log('Posts length:', posts.length)
-    console.log('Total count:', paginationInfo.totalCount)
-    console.log('Total pages:', paginationInfo.totalPages)
-    console.log('Current page:', paginationInfo.currentPage)
-    console.log('postsPerPage:', postsPerPage)
-    console.log('Will show pagination?', paginationInfo.totalPages > 1)
-    console.log('===================')
+    if (process.env.NODE_ENV === 'development') {
+      console.log('=== 페이징 디버깅 ===')
+      console.log('Posts length:', posts.length)
+      console.log('Total count:', paginationInfo.totalCount)
+      console.log('Total pages:', paginationInfo.totalPages)
+      console.log('Current page:', paginationInfo.currentPage)
+      console.log('postsPerPage:', postsPerPage)
+      console.log('Will show pagination?', paginationInfo.totalPages > 1)
+      console.log('===================')
+    }
   }, [posts, paginationInfo, postsPerPage])
 
   const formatDate = (dateString: string) => {
@@ -235,10 +237,9 @@ export function CategorySection() {
                         <img 
                           src={post.imageUrl} 
                           alt={post.title}
+                          loading="lazy"
                           className="absolute inset-0 object-cover w-full transition-transform duration-300 hover:scale-105"
                           style={{transformOrigin: 'top', objectFit: 'cover', objectPosition: 'top' }}
-                          onLoad={() => console.log('Image loaded:', post.imageUrl)}
-                          onError={(e) => console.error('Image failed to load:', post.imageUrl, e)}
                         />
                       </div>
                     )}
@@ -266,10 +267,10 @@ export function CategorySection() {
                       
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                         <div className="flex items-center gap-4 text-xs text-gray-500">
-                          <div className="flex items-center gap-1">
+                          {/* <div className="flex items-center gap-1">
                             <Heart className="w-4 h-4" />
                             <span>{post.likes}</span>
-                          </div>
+                          </div> */}
                           <div className="flex items-center gap-1">
                             <Eye className="w-4 h-4" />
                             <span>{post.views}</span>
@@ -328,12 +329,6 @@ export function CategorySection() {
                 Next
                 <ChevronRight className="w-4 h-4" />
               </button>
-            </div>
-
-            {/* 페이지 정보 표시 */}
-            <div className="mt-4 text-sm text-center text-gray-500">
-              page {paginationInfo.currentPage} / {paginationInfo.totalPages} 
-              ({((currentPage - 1) * postsPerPage + 1)} - {Math.min(currentPage * postsPerPage, paginationInfo.totalCount)} of {paginationInfo.totalCount} posts)
             </div>
           </>
         )}

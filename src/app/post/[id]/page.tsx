@@ -325,10 +325,10 @@ function PostDetailContent() {
               <Eye className="w-4 h-4" />
               <span>{post.views} views</span>
             </div>
-            <div className="flex items-center gap-1">
+            {/* <div className="flex items-center gap-1">
               <Heart className="w-4 h-4" />
               <span>{post.likes} likes</span>
-            </div>
+            </div> */}
             <div className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
               <span>Updated {formatDate(post.updatedAt)}</span>
@@ -441,23 +441,14 @@ function PostDetailContent() {
         {/* Actions */}
         <div className="p-6 border-t border-gray-100 bg-gray-50">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button className="flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                <Heart className="w-4 h-4" />
-                Like ({post.likes})
-              </button>
-              <button className="flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                <Share2 className="w-4 h-4" />
-                Share
-              </button>
+            <div className="w-full flex justify-end">
+              <Link 
+                href="/"
+                className="flex items-center gap-2 px-6 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
+              >
+                More Posts
+              </Link>
             </div>
-            
-            <Link 
-              href="/"
-              className="flex items-center gap-2 px-6 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
-            >
-              More Posts
-            </Link>
           </div>
         </div>
       </article>

@@ -8453,17 +8453,23 @@ async function POST(request) {
 }
 async function GET(request) {
     try {
-        console.log('=== GET Environment Variables Debug ===');
-        console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
-        console.log('DATABASE_URL value:', process.env.DATABASE_URL?.substring(0, 50) + '...');
-        console.log('NODE_ENV:', ("TURBOPACK compile-time value", "development"));
+        // 환경변수 디버깅을 개발 환경에서만 출력
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.log('=== GET Environment Variables Debug ===');
+            console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+            console.log('NODE_ENV:', ("TURBOPACK compile-time value", "development"));
+        }
         // Prepared statement 충돌 방지를 위해 연결 초기화
         try {
             await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$disconnect();
             await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$connect();
-            console.log('✅ Prisma connection refreshed');
+            if ("TURBOPACK compile-time truthy", 1) {
+                console.log('✅ Prisma connection refreshed');
+            }
         } catch (connError) {
-            console.log('⚠️ Connection refresh failed, continuing...', connError);
+            if ("TURBOPACK compile-time truthy", 1) {
+                console.log('⚠️ Connection refresh failed, continuing...', connError);
+            }
         }
         const { searchParams } = new URL(request.url);
         const category = searchParams.get('category');
@@ -8472,14 +8478,18 @@ async function GET(request) {
         const limit = parseInt(searchParams.get('limit') || '10');
         // offset이 제공되면 offset을 사용하고, 그렇지 않으면 page를 사용
         const skip = offset > 0 ? offset : (page - 1) * limit;
-        console.log('=== Query Parameters ===');
-        console.log('category:', category);
-        console.log('skip:', skip, 'limit:', limit);
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.log('=== Query Parameters ===');
+            console.log('category:', category);
+            console.log('skip:', skip, 'limit:', limit);
+        }
         // Category enum에 포함된 값인지 확인
         const whereClause = category && category !== 'ALL' && Object.values(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$generated$2f$prisma$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Category"]).includes(category) ? {
             category: category
         } : {};
-        console.log('whereClause:', whereClause);
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.log('whereClause:', whereClause);
+        }
         const [posts, totalCount] = await Promise.all([
             __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].post.findMany({
                 where: whereClause,
@@ -8487,19 +8497,60 @@ async function GET(request) {
                     createdAt: 'desc'
                 },
                 skip,
-                take: limit
+                take: limit,
+                select: {
+                    id: true,
+                    title: true,
+                    koreanTitle: true,
+                    content: true,
+                    category: true,
+                    imageUrl: true,
+                    likes: true,
+                    views: true,
+                    createdAt: true,
+                    updatedAt: true,
+                    _count: {
+                        select: {
+                            comments: {
+                                where: {
+                                    isBlocked: false // 차단되지 않은 댓글만 카운트
+                                }
+                            }
+                        }
+                    }
+                }
             }),
             __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].post.count({
                 where: whereClause
             })
         ]);
-        console.log('=== Query Results ===');
-        console.log('posts found:', posts.length);
-        console.log('totalCount:', totalCount);
+        // 디버깅 로그 간소화
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.log(`Posts API: ${posts.length} posts, ${totalCount} total`);
+        }
+        // 댓글 수를 포함한 게시글 데이터 변환
+        const postsWithCommentCount = posts.map((post)=>({
+                id: post.id,
+                title: post.title,
+                koreanTitle: post.koreanTitle,
+                content: post.content,
+                category: post.category,
+                imageUrl: post.imageUrl,
+                likes: post.likes,
+                views: post.views,
+                commentCount: post._count.comments,
+                createdAt: post.createdAt,
+                updatedAt: post.updatedAt
+            }));
         const currentPage = offset > 0 ? Math.floor(offset / limit) + 1 : page;
         const totalPages = Math.ceil(totalCount / limit);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            posts,
+            posts: postsWithCommentCount,
+            totalCount,
+            currentPage,
+            totalPages,
+            hasNextPage: currentPage < totalPages,
+            hasPrevPage: currentPage > 1,
             pagination: {
                 currentPage,
                 totalPages,
