@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"components/ImageUpload.tsx -> ./ImageTranslator":{"id":6245,"files":["static/chunks/245.a57668d7099adea4.js"]},"components/MultipleImageUpload.tsx -> ./ImageTranslator":{"id":6245,"files":["static/chunks/245.a57668d7099adea4.js"]}}';
