@@ -1,0 +1,22 @@
+{
+  "/api/auth/login/route": "/api/auth/login",
+  "/api/auth/logout/route": "/api/auth/logout",
+  "/api/auth/me/route": "/api/auth/me",
+  "/api/extract-comments/route": "/api/extract-comments",
+  "/api/posts/[id]/comments/[commentId]/route": "/api/posts/[id]/comments/[commentId]",
+  "/api/posts/[id]/comments/route": "/api/posts/[id]/comments",
+  "/api/posts/[id]/route": "/api/posts/[id]",
+  "/api/posts/[id]/view/route": "/api/posts/[id]/view",
+  "/api/posts/route": "/api/posts",
+  "/api/translate/route": "/api/translate",
+  "/api/upload/route": "/api/upload",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/favicon.ico/route": "/favicon.ico",
+  "/_not-found/page": "/_not-found",
+  "/login/page": "/login",
+  "/edit/[id]/page": "/edit/[id]",
+  "/page": "/",
+  "/post/[id]/page": "/post/[id]",
+  "/write/page": "/write"
+}
