@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // 영문 텍스트 감지 함수
 const isEnglishText = (text: string): boolean => {
@@ -81,8 +79,14 @@ export async function GET(
     const commentsWithTranslation = await Promise.all(
       comments.map(async (comment) => {
         let translatedContent = null
-        if (isEnglishText(comment.content)) {
-          translatedContent = await translateToKorean(comment.content)
+        try {
+          // 환경 변수 확인
+          if (process.env.OPENAI_API_KEY && isEnglishText(comment.content)) {
+            translatedContent = await translateToKorean(comment.content)
+          }
+        } catch (error) {
+          console.warn('Translation failed for comment:', comment.id, error)
+          // 번역 실패해도 댓글은 정상 표시
         }
         return {
           ...comment,
@@ -132,10 +136,15 @@ export async function POST(
 
     // 영문 댓글인 경우 한글로 번역 시도
     let translatedContent = null
-    if (isEnglishText(content.trim())) {
-      console.log('English comment detected, translating to Korean...')
-      translatedContent = await translateToKorean(content.trim())
-      console.log('Translation result:', translatedContent)
+    try {
+      if (process.env.OPENAI_API_KEY && isEnglishText(content.trim())) {
+        console.log('English comment detected, translating to Korean...')
+        translatedContent = await translateToKorean(content.trim())
+        console.log('Translation result:', translatedContent)
+      }
+    } catch (error) {
+      console.warn('Translation failed during comment creation:', error)
+      // 번역 실패해도 댓글 작성은 계속 진행
     }
 
     // 댓글 생성 (일단 translatedContent는 DB에 저장하지 않음)

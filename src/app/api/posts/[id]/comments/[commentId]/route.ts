@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // 영문 텍스트 감지 함수
 const isEnglishText = (text: string): boolean => {
@@ -101,10 +99,15 @@ export async function PUT(
 
     // 영문 댓글인 경우 한글로 번역 시도
     let translatedContent = null
-    if (isEnglishText(content.trim())) {
-      console.log('English comment detected, translating to Korean...')
-      translatedContent = await translateToKorean(content.trim())
-      console.log('Translation result:', translatedContent)
+    try {
+      if (process.env.OPENAI_API_KEY && isEnglishText(content.trim())) {
+        console.log('English comment detected, translating to Korean...')
+        translatedContent = await translateToKorean(content.trim())
+        console.log('Translation result:', translatedContent)
+      }
+    } catch (error) {
+      console.warn('Translation failed during comment update:', error)
+      // 번역 실패해도 댓글 수정은 계속 진행
     }
 
     // 댓글 수정
