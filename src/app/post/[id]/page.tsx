@@ -224,9 +224,9 @@ function PostDetailContent() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex justify-center items-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+      <div className="max-w-4xl px-4 py-8 mx-auto">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
           <span className="ml-3 text-gray-600">Loading post...</span>
         </div>
       </div>
@@ -235,20 +235,20 @@ function PostDetailContent() {
 
   if (error || !post) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="text-center py-12">
-          <AlertCircle className="h-16 w-16 text-red-400 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-gray-900 mb-2">
+      <div className="max-w-4xl px-4 py-8 mx-auto">
+        <div className="py-12 text-center">
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-red-400" />
+          <h2 className="mb-2 text-xl font-bold text-gray-900">
             {error || 'Post not found'}
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="mb-6 text-gray-600">
             The post you&apos;re looking for doesn&apos;t exist or has been removed.
           </p>
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
         </div>
@@ -259,14 +259,14 @@ function PostDetailContent() {
   const categoryInfo = getCategoryInfo(post.category)
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl px-4 py-8 mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <Link 
           href="/"
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+          className="flex items-center gap-2 text-gray-600 transition-colors hover:text-gray-900"
         >
-          <ArrowLeft className="h-5 w-5" />
+          <ArrowLeft className="w-5 h-5" />
           Back to Home
         </Link>
         
@@ -275,20 +275,20 @@ function PostDetailContent() {
           <div className="flex items-center gap-3">
             <Link
               href={`/edit/${post.id}${hasSecretAccess ? '?access=korean-memes-secret-2024' : ''}`}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
-              <Edit3 className="h-4 w-4" />
+              <Edit3 className="w-4 h-4" />
               수정
             </Link>
             <button
               onClick={handleDelete}
               disabled={isDeleting}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-4 py-2 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isDeleting ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <Trash2 className="h-4 w-4" />
+                <Trash2 className="w-4 h-4" />
               )}
               {isDeleting ? '삭제 중...' : '삭제'}
             </button>
@@ -297,40 +297,40 @@ function PostDetailContent() {
       </div>
 
       {/* Post Content */}
-      <article className="bg-white rounded-lg shadow-sm border overflow-hidden">
+      <article className="overflow-hidden bg-white border rounded-lg shadow-sm">
         {/* Header */}
         <div className="p-6 border-b border-gray-100">
           <div className="flex items-center gap-3 mb-4">
-            <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+            <span className="px-3 py-1 text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
               {categoryInfo.emoji} {categoryInfo.name}
             </span>
             <div className="flex items-center text-sm text-gray-500">
-              <Calendar className="h-4 w-4 mr-1" />
+              <Calendar className="w-4 h-4 mr-1" />
               {formatDate(post.createdAt)}
             </div>
           </div>
 
-          <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
+          <h1 className="mb-4 text-xl font-bold leading-tight text-gray-900 md:text-2xl">
             {post.title}
           </h1>
           
           {post.koreanTitle && (
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="mb-4 text-sm text-gray-600">
               Original: {post.koreanTitle}
             </p>
           )}
 
           <div className="flex items-center gap-6 text-xs text-gray-500">
             <div className="flex items-center gap-1">
-              <Eye className="h-4 w-4" />
+              <Eye className="w-4 h-4" />
               <span>{post.views} views</span>
             </div>
             <div className="flex items-center gap-1">
-              <Heart className="h-4 w-4" />
+              <Heart className="w-4 h-4" />
               <span>{post.likes} likes</span>
             </div>
             <div className="flex items-center gap-1">
-              <Clock className="h-4 w-4" />
+              <Clock className="w-4 h-4" />
               <span>Updated {formatDate(post.updatedAt)}</span>
             </div>
           </div>
@@ -341,14 +341,14 @@ function PostDetailContent() {
           <div className="overflow-hidden">
             {/* 다중 이미지가 있는 경우 */}
             {post.additionalImages && post.additionalImages.length > 0 ? (
-              <div className="space-y-4 p-6">
+              <div className="p-6 space-y-4">
                 {/* 첫 번째 이미지 (대표 이미지) */}
                 {post.imageUrl && (
                   <div className="w-full">
                     <img 
                       src={post.imageUrl} 
                       alt={`${post.title} - 1`}
-                      className="w-full h-auto object-cover rounded-lg"
+                      className="object-cover w-full h-auto rounded-lg"
                     />
                   </div>
                 )}
@@ -360,7 +360,7 @@ function PostDetailContent() {
                       <img 
                         src={imageUrl} 
                         alt={`${post.title} - ${index + 2}`}
-                        className="w-full h-auto object-cover rounded-lg"
+                        className="object-cover w-full h-auto rounded-lg"
                       />
                     </div>
                   ))}
@@ -372,7 +372,7 @@ function PostDetailContent() {
                 <img 
                   src={post.imageUrl} 
                   alt={post.title}
-                  className="w-full h-full object-cover"
+                  className="object-cover w-full h-full"
                 />
               )
             )}
@@ -382,17 +382,17 @@ function PostDetailContent() {
         {/* Content */}
         <div className="p-6">
           <div className="prose max-w-none">
-            <div className="text-gray-800 leading-relaxed whitespace-pre-wrap text-lg">
+            <div className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap">
               {post.content}
             </div>
           </div>
           
           {post.koreanContent && (
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <div className="p-6 mt-8 rounded-lg bg-gray-50">
+              <h3 className="flex items-center gap-2 mb-3 text-lg font-bold text-gray-900">
                 🇰🇷 Korean Original
               </h3>
-              <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+              <div className="leading-relaxed text-gray-700 whitespace-pre-wrap">
                 {post.koreanContent}
               </div>
             </div>
@@ -400,29 +400,38 @@ function PostDetailContent() {
 
           {/* Best Comments from Korean Community */}
           {post.translatedComments && post.translatedComments.length > 0 && (
-            <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-              <h3 className="text-md font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="p-6 mt-8 border border-blue-200 rounded-lg bg-blue-50">
+              <h3 className="flex items-center gap-2 mb-4 font-bold text-gray-900 text-md">
                 💬 Best Comments from Korean Community
               </h3>
               <div className="flex flex-col gap-2">
                 {post.translatedComments.map((translatedComment, index) => (
-                  <div key={index} className="p-4 bg-white rounded-lg border border-blue-100 shadow-sm">
-                    <div className="flex items-center gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                  <div key={index} className="p-4 bg-white border border-blue-100 rounded-lg shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="flex items-center justify-center flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full">
                         <span className="text-xs font-medium text-blue-600">
                           {index + 1}
                         </span>
                       </div>
                       <div className="flex-1">
-                        <p className="text-gray-800 leading-relaxed text-sm">
+                        <p className="text-sm leading-relaxed text-gray-800">
                           {translatedComment}
                         </p>
+                        {/* 한글 원문 표시 */}
+                        {post.extractedComments && post.extractedComments[index] && (
+                          <div className="pt-3 mt-3 border-t border-gray-200">
+                            <div className="mb-1 text-xs text-gray-500">Korean Original</div>
+                            <p className="text-xs leading-relaxed text-gray-600">
+                              {post.extractedComments[index]}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-blue-600 mt-4 italic">
+              <p className="mt-4 text-xs italic text-blue-600">
                 * Comments from Korean community sites, automatically translated to English
               </p>
             </div>
@@ -433,19 +442,19 @@ function PostDetailContent() {
         <div className="p-6 border-t border-gray-100 bg-gray-50">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <button className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Heart className="h-4 w-4" />
+              <button className="flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                <Heart className="w-4 h-4" />
                 Like ({post.likes})
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Share2 className="h-4 w-4" />
+              <button className="flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                <Share2 className="w-4 h-4" />
                 Share
               </button>
             </div>
             
             <Link 
               href="/"
-              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-6 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
               More Posts
             </Link>
@@ -462,15 +471,15 @@ function PostDetailContent() {
 export default function PostDetailPage() {
   return (
     <Suspense fallback={
-      <div className="container mx-auto px-4 py-8">
+      <div className="container px-4 py-8 mx-auto">
         <div className="max-w-4xl mx-auto">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-3/4 mb-6"></div>
-            <div className="h-64 bg-gray-200 rounded mb-6"></div>
+            <div className="w-3/4 h-8 mb-6 bg-gray-200 rounded"></div>
+            <div className="h-64 mb-6 bg-gray-200 rounded"></div>
             <div className="space-y-3">
-              <div className="h-4 bg-gray-200 rounded w-full"></div>
-              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-              <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+              <div className="w-full h-4 bg-gray-200 rounded"></div>
+              <div className="w-5/6 h-4 bg-gray-200 rounded"></div>
+              <div className="w-4/5 h-4 bg-gray-200 rounded"></div>
             </div>
           </div>
         </div>

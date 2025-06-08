@@ -28,7 +28,6 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
   const [scale, setScale] = useState({ x: 1, y: 1 })
   const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(null)
   const [hoveredSelection, setHoveredSelection] = useState<string | null>(null)
-  const [lastTranslatedImageUrl, setLastTranslatedImageUrl] = useState<string>('')
 
   // 이미지 로드
   useEffect(() => {
@@ -243,10 +242,10 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
     }
   }, [image, selections, currentSelection, scale, hoveredSelection])
 
-  // 캔버스 업데이트
+  // selections가 변경될 때 캔버스 다시 그리기
   useEffect(() => {
     drawCanvas()
-  }, [drawCanvas])
+  }, [selections, hoveredSelection, drawCanvas])
 
   // 마우스 이벤트 핸들러들
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -425,13 +424,16 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
       
       if (result.success && result.translatedText) {
         // 번역 완료 - 선택 영역 업데이트
+        console.log('📝 번역 완료:', result.translatedText)
         setSelections(prev => prev.map(sel => 
           sel.id === selection.id 
             ? { ...sel, translatedText: result.translatedText, isTranslating: false }
             : sel
         ))
+        console.log('📝 selections 업데이트 완료')
       } else {
         // 번역 실패 - 선택 영역 제거
+        console.log('❌ 번역 실패')
         setSelections(prev => prev.filter(sel => sel.id !== selection.id))
       }
     } catch (error) {
@@ -440,125 +442,72 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
     }
   }
 
-  // 번역된 영역이 변경될 때마다 자동으로 번역된 이미지 생성
-  useEffect(() => {
-    const autoGenerateTranslatedImage = async () => {
-      // 번역된 영역이 있고, 모든 번역이 완료된 경우에만 실행
-      const translatedSelections = selections.filter(sel => sel.translatedText && !sel.isTranslating)
-      if (translatedSelections.length === 0) return
-      
-      // 번역 중인 영역이 있으면 대기
-      if (selections.some(sel => sel.isTranslating)) return
-
-      // 자동으로 번역된 이미지 생성
-      try {
-        const translatedImageUrl = await generateTranslatedImage()
-        if (translatedImageUrl && translatedImageUrl !== lastTranslatedImageUrl) {
-          setLastTranslatedImageUrl(translatedImageUrl)
-          // 상위 컴포넌트에 자동으로 전달
-          onTranslationComplete(translatedImageUrl)
-        }
-      } catch (error) {
-        console.error('Auto translation generation error:', error)
-      }
-    }
-
-    autoGenerateTranslatedImage()
-  }, [selections, onTranslationComplete, lastTranslatedImageUrl])
-
-  // 번역된 이미지 생성 함수 (handleComplete에서 분리)
+  // 완료된 이미지 생성
   const generateTranslatedImage = async (): Promise<string | null> => {
-    if (selections.length === 0) return null
-    if (selections.some(sel => sel.isTranslating)) return null
-
     try {
+      console.log('🖼️ generateTranslatedImage 시작')
+      console.log('🖼️ 처리할 selections:', selections.length)
+      
+      if (!image) {
+        console.log('❌ generateTranslatedImage: 이미지가 없음')
+        return null
+      }
+
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
-      if (!ctx || !image) return null
+      if (!ctx) {
+        console.log('❌ generateTranslatedImage: 캔버스 컨텍스트를 가져올 수 없음')
+        return null
+      }
 
+      // 원본 이미지 크기로 캔버스 설정
       canvas.width = image.width
       canvas.height = image.height
 
       // 원본 이미지 그리기
       ctx.drawImage(image, 0, 0)
+      console.log('✅ 원본 이미지를 캔버스에 그렸음:', canvas.width, 'x', canvas.height)
 
-      // 번역된 텍스트들 그리기
-      selections.forEach(selection => {
-        if (selection.translatedText) {
-          // 화면 좌표를 원본 이미지 좌표로 변환
-          const realX = selection.startX * scale.x
-          const realY = selection.startY * scale.y
-          const realWidth = selection.width * scale.x
-          const realHeight = selection.height * scale.y
+      // 번역된 텍스트를 이미지에 오버레이
+      selections.filter(sel => sel.translatedText).forEach((selection, index) => {
+        console.log(`📝 선택 영역 ${index + 1} 처리:`, {
+          id: selection.id,
+          translatedText: selection.translatedText,
+          position: { x: selection.startX, y: selection.startY },
+          size: { width: selection.width, height: selection.height }
+        })
+        
+        // 화면 좌표를 원본 이미지 좌표로 변환
+        const realX = selection.startX * scale.x
+        const realY = selection.startY * scale.y
+        const realWidth = selection.width * scale.x
+        const realHeight = selection.height * scale.y
+
+        console.log(`📐 실제 좌표 변환:`, {
+          scale: scale,
+          real: { x: realX, y: realY, width: realWidth, height: realHeight }
+        })
+
+        // 선택 영역을 검은색으로 덮기
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+        ctx.fillRect(realX, realY, realWidth, realHeight)
+
+        // 번역된 텍스트 그리기
+        const text = selection.translatedText!
+        const words = text.split(' ')
+        
+        // 폰트 크기 자동 조정
+        const maxFontSize = Math.min(realHeight * 0.3, 32)
+        const minFontSize = 12
+        const maxTextWidth = realWidth * 0.9
+        const maxTextHeight = realHeight * 0.9
+        
+        let bestFontSize = minFontSize
+        
+        for (let testSize = maxFontSize; testSize >= minFontSize; testSize -= 2) {
+          ctx.font = `bold ${testSize}px Arial, sans-serif`
           
-          // 반투명 검은색 배경 (70% 투명도)
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
-          ctx.fillRect(realX, realY, realWidth, realHeight)
-          
-          // 경계선
-          ctx.strokeStyle = '#333333'
-          ctx.lineWidth = 1
-          ctx.strokeRect(realX, realY, realWidth, realHeight)
-          
-          // 폰트 사이즈를 영역에 맞게 동적 계산
-          const maxTextWidth = realWidth * 0.9
-          const maxTextHeight = realHeight * 0.9
-          
-          // 텍스트 줄바꿈 처리
-          const words = selection.translatedText.split(' ')
-          
-          // 폰트 사이즈를 찾기 위한 계산
-          const minFontSize = 8
-          const maxFontSize = Math.min(realHeight * 0.5, 60)
-          let bestFontSize = minFontSize
-          
-          // 최적 폰트 사이즈 찾기
-          for (let testSize = minFontSize; testSize <= maxFontSize; testSize += 2) {
-            ctx.font = `bold ${testSize}px Arial, sans-serif`
-            
-            // 텍스트 줄바꿈 테스트
-            const lines: string[] = []
-            let currentLine = ''
-            
-            for (const word of words) {
-              const testLine = currentLine ? `${currentLine} ${word}` : word
-              const testWidth = ctx.measureText(testLine).width
-              
-              if (testWidth <= maxTextWidth) {
-                currentLine = testLine
-              } else {
-                if (currentLine) {
-                  lines.push(currentLine)
-                  currentLine = word
-                } else {
-                  lines.push(word)
-                }
-              }
-            }
-            if (currentLine) lines.push(currentLine)
-            
-            // 총 높이 계산
-            const lineHeight = testSize * 1.3
-            const totalHeight = lines.length * lineHeight
-            
-            // 텍스트가 영역에 들어가는지 확인
-            if (totalHeight <= maxTextHeight) {
-              bestFontSize = testSize
-            } else {
-              break
-            }
-          }
-          
-          // 최종 폰트 사이즈 적용
-          const fontSize = Math.max(bestFontSize, minFontSize)
-          ctx.font = `bold ${fontSize}px Arial, sans-serif`
-          ctx.fillStyle = 'white'
-          ctx.textAlign = 'center'
-          ctx.textBaseline = 'top'
-          
-          const centerX = realX + realWidth / 2
-          
-          // 최종 텍스트 줄바꿈
+          // 텍스트 줄바꿈 시뮬레이션
           const lines: string[] = []
           let currentLine = ''
           
@@ -579,26 +528,84 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
           }
           if (currentLine) lines.push(currentLine)
           
-          const lineHeight = fontSize * 1.3
-          const totalTextHeight = lines.length * lineHeight
-          const startY = realY + (realHeight - totalTextHeight) / 2
+          // 총 높이 계산
+          const lineHeight = testSize * 1.3
+          const totalHeight = lines.length * lineHeight
           
-          lines.forEach((line, index) => {
-            const lineY = startY + index * lineHeight
-            ctx.fillText(line, centerX, lineY)
-          })
+          // 텍스트가 영역에 들어가는지 확인
+          if (totalHeight <= maxTextHeight) {
+            bestFontSize = testSize
+          } else {
+            break
+          }
         }
+        
+        // 최종 폰트 사이즈 적용
+        const fontSize = Math.max(bestFontSize, minFontSize)
+        ctx.font = `bold ${fontSize}px Arial, sans-serif`
+        ctx.fillStyle = 'white'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'top'
+        
+        console.log(`🎨 텍스트 렌더링 설정:`, {
+          fontSize: fontSize,
+          text: text,
+          maxTextWidth: maxTextWidth
+        })
+        
+        const centerX = realX + realWidth / 2
+        
+        // 최종 텍스트 줄바꿈
+        const lines: string[] = []
+        let currentLine = ''
+        
+        for (const word of words) {
+          const testLine = currentLine ? `${currentLine} ${word}` : word
+          const testWidth = ctx.measureText(testLine).width
+          
+          if (testWidth <= maxTextWidth) {
+            currentLine = testLine
+          } else {
+            if (currentLine) {
+              lines.push(currentLine)
+              currentLine = word
+            } else {
+              lines.push(word)
+            }
+          }
+        }
+        if (currentLine) lines.push(currentLine)
+        
+        const lineHeight = fontSize * 1.3
+        const totalTextHeight = lines.length * lineHeight
+        const startY = realY + (realHeight - totalTextHeight) / 2
+        
+        lines.forEach((line, index) => {
+          const lineY = startY + index * lineHeight
+          ctx.fillText(line, centerX, lineY)
+        })
+        
+        console.log(`✅ 텍스트 렌더링 완료:`, {
+          lines: lines.length,
+          totalTextHeight: totalTextHeight
+        })
       })
+
+      console.log('🖼️ 캔버스 처리 완료, Blob 생성 중...')
 
       // 캔버스를 Blob으로 변환
       const blob = await new Promise<Blob>((resolve) => {
         canvas.toBlob((blob) => resolve(blob!), 'image/jpeg', 0.85)
       })
 
+      console.log('📁 Blob 생성 완료:', blob.size, 'bytes')
+
       // Cloudinary 업로드
       const formData = new FormData()
       formData.append('image', blob, 'translated.jpg')
       formData.append('translateImage', 'false') // 이미 번역된 이미지
+
+      console.log('☁️ Cloudinary 업로드 시작...')
 
       const response = await fetch('/api/upload', {
         method: 'POST',
@@ -606,37 +613,58 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
       })
 
       const result = await response.json()
+      console.log('☁️ Cloudinary 업로드 응답:', result)
       
       if (result.success) {
+        console.log('✅ generateTranslatedImage 성공:', result.imageUrl)
         return result.imageUrl
+      } else {
+        console.log('❌ generateTranslatedImage 실패:', result)
+        return null
       }
-      return null
     } catch (error) {
-      console.error('Generate translated image error:', error)
+      console.error('❌ generateTranslatedImage 에러:', error)
       return null
     }
   }
 
   // 완료된 이미지 생성
   const handleComplete = async () => {
+    console.log('🔥 handleComplete 호출됨!')
+    console.log('🔥 selections 상태:', {
+      total: selections.length,
+      translated: selections.filter(s => s.translatedText).length,
+      translating: selections.filter(s => s.isTranslating).length
+    })
+    
     if (selections.length === 0) {
+      console.log('❌ handleComplete: 선택된 영역이 없음')
       return
     }
 
     if (selections.some(sel => sel.isTranslating)) {
+      console.log('❌ handleComplete: 아직 번역 중인 영역이 있음')
       return
     }
 
+    if (selections.filter(s => s.translatedText).length === 0) {
+      console.log('❌ handleComplete: 번역된 영역이 없음')
+      return
+    }
+
+    console.log('✅ handleComplete: 번역된 이미지 생성 시작')
     setIsTranslating(true)
 
     try {
       const translatedImageUrl = await generateTranslatedImage()
       if (translatedImageUrl) {
-        setLastTranslatedImageUrl(translatedImageUrl)
+        console.log('✅ handleComplete: 번역된 이미지 URL:', translatedImageUrl)
         onTranslationComplete(translatedImageUrl)
+      } else {
+        console.log('❌ handleComplete: 번역된 이미지 생성 실패')
       }
     } catch (error) {
-      console.error('Complete error:', error)
+      console.error('❌ handleComplete 에러:', error)
     } finally {
       setIsTranslating(false)
     }
@@ -683,6 +711,7 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
                 선택 초기화
               </button>
               <button
+                type="button"
                 onClick={handleComplete}
                 disabled={selections.length === 0 || isTranslating}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -690,7 +719,12 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
                 {isTranslating ? '처리 중...' : '번역 완료'}
               </button>
               <button
-                onClick={onCancel}
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  onCancel()
+                }}
                 className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 취소

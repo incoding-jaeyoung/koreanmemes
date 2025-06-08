@@ -9,6 +9,7 @@ interface Comment {
   nickname?: string
   createdAt: string
   updatedAt?: string
+  translatedContent?: string | null
 }
 
 interface CommentSectionProps {
@@ -25,6 +26,19 @@ interface ActionModalProps {
   buttonColor: string
 }
 
+// 한국어 텍스트 감지 함수
+function isKoreanText(text: string): boolean {
+  const koreanRegex = /[\u3131-\u3163\uac00-\ud7a3]/g
+  const koreanMatches = text.match(koreanRegex)
+  const koreanCharCount = koreanMatches ? koreanMatches.length : 0
+  const totalCharCount = text.replace(/\s/g, '').length // 공백 제외
+  
+  if (totalCharCount === 0) return false
+  
+  const koreanPercentage = koreanCharCount / totalCharCount
+  return koreanPercentage >= 0.6 // 60% 이상이 한국어이면 한국어 텍스트로 판단
+}
+
 function ActionModal({ isOpen, onClose, onConfirm, title, placeholder, buttonText, buttonColor }: ActionModalProps) {
   const [password, setPassword] = useState('')
 
@@ -32,7 +46,7 @@ function ActionModal({ isOpen, onClose, onConfirm, title, placeholder, buttonTex
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (password.trim()) {
+    if (password.trim() && password.length >= 4) {
       onConfirm(password.trim())
       setPassword('')
     }
@@ -62,6 +76,11 @@ function ActionModal({ isOpen, onClose, onConfirm, title, placeholder, buttonTex
               autoFocus
               autoComplete="current-password"
             />
+            {password.length > 0 && password.length < 4 && (
+              <div className="text-xs text-red-600 mt-1">
+                Password must be at least 4 characters long
+              </div>
+            )}
           </div>
           
           <div className="flex gap-3">
@@ -75,7 +94,7 @@ function ActionModal({ isOpen, onClose, onConfirm, title, placeholder, buttonTex
             <button
               type="submit"
               className={`flex-1 px-4 py-2 text-white rounded-lg transition-colors ${buttonColor}`}
-              disabled={!password.trim()}
+              disabled={password.length < 4}
             >
               {buttonText}
             </button>
@@ -265,16 +284,36 @@ export function CommentSection({ postId }: CommentSectionProps) {
             className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             maxLength={50}
           />
-          <input
-            type="password"
-            placeholder="Password (for edit/delete, optional)"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-            maxLength={50}
-            autoComplete="new-password"
-          />
+          <div className="relative">
+            <input
+              type="password"
+              placeholder="Password (4+ characters, required)*"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              maxLength={50}
+              autoComplete="new-password"
+              required
+            />
+            {password.length > 0 && password.length < 4 && (
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <span className="text-red-500 text-xs">⚠️</span>
+              </div>
+            )}
+            {password.length >= 4 && (
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <span className="text-green-500 text-xs">✅</span>
+              </div>
+            )}
+          </div>
         </div>
+        
+        {/* 비밀번호 길이 안내 */}
+        {password.length > 0 && password.length < 4 && (
+          <div className="mb-3 text-xs text-red-600 bg-red-50 p-2 rounded">
+            Password must be at least 4 characters long
+          </div>
+        )}
         
         <div className="mb-3">
           <textarea
@@ -284,6 +323,7 @@ export function CommentSection({ postId }: CommentSectionProps) {
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-sm"
             rows={3}
             maxLength={1000}
+            required
           />
           <div className="text-right text-sm text-gray-500 mt-1">
             {newComment.length}/1000
@@ -298,12 +338,17 @@ export function CommentSection({ postId }: CommentSectionProps) {
 
         <button
           type="submit"
-          disabled={!newComment.trim() || loading}
+          disabled={!newComment.trim() || password.length < 4 || loading}
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           <Send className="h-4 w-4" />
           {loading ? 'Submitting...' : 'Post Comment'}
         </button>
+        
+        {/* 필수 필드 안내 */}
+        <p className="text-xs text-gray-500 mt-2">
+          * Password is required for comment editing and deletion
+        </p>
       </form>
 
       {/* 댓글 목록 */}
@@ -344,16 +389,21 @@ export function CommentSection({ postId }: CommentSectionProps) {
                   </div>
                   <input
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Enter password (4+ characters)"
                     value={editPassword}
                     onChange={(e) => setEditPassword(e.target.value)}
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     maxLength={50}
                   />
+                  {editPassword.length > 0 && editPassword.length < 4 && (
+                    <div className="text-xs text-red-600 mt-1">
+                      Password must be at least 4 characters long
+                    </div>
+                  )}
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleEditSubmit(comment.id)}
-                      disabled={!editContent.trim() || !editPassword.trim() || loading}
+                      disabled={!editContent.trim() || editPassword.length < 4 || loading}
                       className="flex items-center gap-1 bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 disabled:opacity-50 transition-colors"
                     >
                       <Check className="h-3 w-3" />
@@ -375,7 +425,7 @@ export function CommentSection({ postId }: CommentSectionProps) {
                     <div className="flex items-center gap-2 mb-2">
                       <User className="h-4 w-4 text-gray-400" />
                       <span className="font-medium text-gray-900">
-                        {comment.nickname || 'Anonymous'}
+                        {comment.nickname === '익명' ? 'Anonymous' : (comment.nickname || 'Anonymous')}
                       </span>
                       <span className="text-sm text-gray-500">
                         {formatDate(comment.createdAt)}
@@ -404,6 +454,26 @@ export function CommentSection({ postId }: CommentSectionProps) {
                   <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
                     {comment.content}
                   </p>
+                  
+                  {/* 번역된 내용 표시 - 통일된 UI */}
+                  {comment.translatedContent && isKoreanText(comment.content) && (
+                    <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                      <div className="text-sm font-medium text-blue-700 mb-2">Translation</div>
+                      <p className="text-blue-800 text-sm leading-relaxed whitespace-pre-wrap italic">
+                        {comment.translatedContent}
+                      </p>
+                    </div>
+                  )}
+                  
+                  {/* 영문 댓글의 한글 번역 - 동일한 스타일 */}
+                  {comment.translatedContent && !isKoreanText(comment.content) && (
+                    <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                      <div className="text-sm font-medium text-blue-700 mb-2">Translation</div>
+                      <p className="text-blue-800 text-sm leading-relaxed whitespace-pre-wrap italic">
+                        {comment.translatedContent}
+                      </p>
+                    </div>
+                  )}
                 </>
               )}
             </div>
@@ -417,7 +487,7 @@ export function CommentSection({ postId }: CommentSectionProps) {
         onClose={() => setDeleteModal({ isOpen: false, commentId: '' })}
         onConfirm={handleDeleteConfirm}
         title="Delete Comment"
-        placeholder="Enter password"
+        placeholder="Enter password (4+ characters)"
         buttonText="Delete"
         buttonColor="bg-red-600 hover:bg-red-700"
       />

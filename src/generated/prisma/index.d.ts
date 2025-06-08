@@ -3542,6 +3542,7 @@ export namespace Prisma {
   export type CommentMinAggregateOutputType = {
     id: string | null
     content: string | null
+    translatedContent: string | null
     postId: string | null
     authorId: string | null
     nickname: string | null
@@ -3555,6 +3556,7 @@ export namespace Prisma {
   export type CommentMaxAggregateOutputType = {
     id: string | null
     content: string | null
+    translatedContent: string | null
     postId: string | null
     authorId: string | null
     nickname: string | null
@@ -3568,6 +3570,7 @@ export namespace Prisma {
   export type CommentCountAggregateOutputType = {
     id: number
     content: number
+    translatedContent: number
     postId: number
     authorId: number
     nickname: number
@@ -3583,6 +3586,7 @@ export namespace Prisma {
   export type CommentMinAggregateInputType = {
     id?: true
     content?: true
+    translatedContent?: true
     postId?: true
     authorId?: true
     nickname?: true
@@ -3596,6 +3600,7 @@ export namespace Prisma {
   export type CommentMaxAggregateInputType = {
     id?: true
     content?: true
+    translatedContent?: true
     postId?: true
     authorId?: true
     nickname?: true
@@ -3609,6 +3614,7 @@ export namespace Prisma {
   export type CommentCountAggregateInputType = {
     id?: true
     content?: true
+    translatedContent?: true
     postId?: true
     authorId?: true
     nickname?: true
@@ -3695,6 +3701,7 @@ export namespace Prisma {
   export type CommentGroupByOutputType = {
     id: string
     content: string
+    translatedContent: string | null
     postId: string
     authorId: string | null
     nickname: string | null
@@ -3725,6 +3732,7 @@ export namespace Prisma {
   export type CommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
+    translatedContent?: boolean
     postId?: boolean
     authorId?: boolean
     nickname?: boolean
@@ -3740,6 +3748,7 @@ export namespace Prisma {
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
+    translatedContent?: boolean
     postId?: boolean
     authorId?: boolean
     nickname?: boolean
@@ -3755,6 +3764,7 @@ export namespace Prisma {
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
+    translatedContent?: boolean
     postId?: boolean
     authorId?: boolean
     nickname?: boolean
@@ -3770,6 +3780,7 @@ export namespace Prisma {
   export type CommentSelectScalar = {
     id?: boolean
     content?: boolean
+    translatedContent?: boolean
     postId?: boolean
     authorId?: boolean
     nickname?: boolean
@@ -3780,7 +3791,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "postId" | "authorId" | "nickname" | "password" | "ipAddress" | "isBlocked" | "createdAt" | "updatedAt", ExtArgs["result"]["comment"]>
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "translatedContent" | "postId" | "authorId" | "nickname" | "password" | "ipAddress" | "isBlocked" | "createdAt" | "updatedAt", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     post?: boolean | PostDefaultArgs<ExtArgs>
     author?: boolean | Comment$authorArgs<ExtArgs>
@@ -3803,6 +3814,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       content: string
+      translatedContent: string | null
       postId: string
       authorId: string | null
       nickname: string | null
@@ -4238,6 +4250,7 @@ export namespace Prisma {
   interface CommentFieldRefs {
     readonly id: FieldRef<"Comment", 'String'>
     readonly content: FieldRef<"Comment", 'String'>
+    readonly translatedContent: FieldRef<"Comment", 'String'>
     readonly postId: FieldRef<"Comment", 'String'>
     readonly authorId: FieldRef<"Comment", 'String'>
     readonly nickname: FieldRef<"Comment", 'String'>
@@ -4730,6 +4743,7 @@ export namespace Prisma {
   export const CommentScalarFieldEnum: {
     id: 'id',
     content: 'content',
+    translatedContent: 'translatedContent',
     postId: 'postId',
     authorId: 'authorId',
     nickname: 'nickname',
@@ -5067,6 +5081,7 @@ export namespace Prisma {
     NOT?: CommentWhereInput | CommentWhereInput[]
     id?: StringFilter<"Comment"> | string
     content?: StringFilter<"Comment"> | string
+    translatedContent?: StringNullableFilter<"Comment"> | string | null
     postId?: StringFilter<"Comment"> | string
     authorId?: StringNullableFilter<"Comment"> | string | null
     nickname?: StringNullableFilter<"Comment"> | string | null
@@ -5082,6 +5097,7 @@ export namespace Prisma {
   export type CommentOrderByWithRelationInput = {
     id?: SortOrder
     content?: SortOrder
+    translatedContent?: SortOrderInput | SortOrder
     postId?: SortOrder
     authorId?: SortOrderInput | SortOrder
     nickname?: SortOrderInput | SortOrder
@@ -5100,6 +5116,7 @@ export namespace Prisma {
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
     content?: StringFilter<"Comment"> | string
+    translatedContent?: StringNullableFilter<"Comment"> | string | null
     postId?: StringFilter<"Comment"> | string
     authorId?: StringNullableFilter<"Comment"> | string | null
     nickname?: StringNullableFilter<"Comment"> | string | null
@@ -5115,6 +5132,7 @@ export namespace Prisma {
   export type CommentOrderByWithAggregationInput = {
     id?: SortOrder
     content?: SortOrder
+    translatedContent?: SortOrderInput | SortOrder
     postId?: SortOrder
     authorId?: SortOrderInput | SortOrder
     nickname?: SortOrderInput | SortOrder
@@ -5134,6 +5152,7 @@ export namespace Prisma {
     NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Comment"> | string
     content?: StringWithAggregatesFilter<"Comment"> | string
+    translatedContent?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     postId?: StringWithAggregatesFilter<"Comment"> | string
     authorId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     nickname?: StringNullableWithAggregatesFilter<"Comment"> | string | null
@@ -5354,6 +5373,7 @@ export namespace Prisma {
   export type CommentCreateInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     nickname?: string | null
     password?: string | null
     ipAddress?: string | null
@@ -5367,6 +5387,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     postId: string
     authorId?: string | null
     nickname?: string | null
@@ -5380,6 +5401,7 @@ export namespace Prisma {
   export type CommentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5393,6 +5415,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     postId?: StringFieldUpdateOperationsInput | string
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5406,6 +5429,7 @@ export namespace Prisma {
   export type CommentCreateManyInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     postId: string
     authorId?: string | null
     nickname?: string | null
@@ -5419,6 +5443,7 @@ export namespace Prisma {
   export type CommentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5430,6 +5455,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     postId?: StringFieldUpdateOperationsInput | string
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5755,6 +5781,7 @@ export namespace Prisma {
   export type CommentCountOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
+    translatedContent?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
     nickname?: SortOrder
@@ -5768,6 +5795,7 @@ export namespace Prisma {
   export type CommentMaxOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
+    translatedContent?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
     nickname?: SortOrder
@@ -5781,6 +5809,7 @@ export namespace Prisma {
   export type CommentMinOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
+    translatedContent?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
     nickname?: SortOrder
@@ -6237,6 +6266,7 @@ export namespace Prisma {
   export type CommentCreateWithoutAuthorInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     nickname?: string | null
     password?: string | null
     ipAddress?: string | null
@@ -6249,6 +6279,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateWithoutAuthorInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     postId: string
     nickname?: string | null
     password?: string | null
@@ -6327,6 +6358,7 @@ export namespace Prisma {
     NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
     id?: StringFilter<"Comment"> | string
     content?: StringFilter<"Comment"> | string
+    translatedContent?: StringNullableFilter<"Comment"> | string | null
     postId?: StringFilter<"Comment"> | string
     authorId?: StringNullableFilter<"Comment"> | string | null
     nickname?: StringNullableFilter<"Comment"> | string | null
@@ -6367,6 +6399,7 @@ export namespace Prisma {
   export type CommentCreateWithoutPostInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     nickname?: string | null
     password?: string | null
     ipAddress?: string | null
@@ -6379,6 +6412,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateWithoutPostInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     authorId?: string | null
     nickname?: string | null
     password?: string | null
@@ -6615,6 +6649,7 @@ export namespace Prisma {
   export type CommentCreateManyAuthorInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     postId: string
     nickname?: string | null
     password?: string | null
@@ -6680,6 +6715,7 @@ export namespace Prisma {
   export type CommentUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6692,6 +6728,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     postId?: StringFieldUpdateOperationsInput | string
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6704,6 +6741,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     postId?: StringFieldUpdateOperationsInput | string
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6716,6 +6754,7 @@ export namespace Prisma {
   export type CommentCreateManyPostInput = {
     id?: string
     content: string
+    translatedContent?: string | null
     authorId?: string | null
     nickname?: string | null
     password?: string | null
@@ -6728,6 +6767,7 @@ export namespace Prisma {
   export type CommentUpdateWithoutPostInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6740,6 +6780,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateWithoutPostInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6752,6 +6793,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyWithoutPostInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    translatedContent?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     nickname?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null

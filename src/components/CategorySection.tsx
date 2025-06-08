@@ -174,7 +174,7 @@ export function CategorySection() {
     <>
       {/* Category Filter */}
       <section className="mb-8">
-        <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex flex-wrap justify-center gap-3">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -186,7 +186,7 @@ export function CategorySection() {
               }`}
             >
               <span>{category.emoji}</span>
-              <span className="font-medium text-sm">{category.name}</span>
+              <span className="text-sm font-medium">{category.name}</span>
             </button>
           ))}
         </div>
@@ -195,8 +195,8 @@ export function CategorySection() {
       {/* Posts Section */}
       <section>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <TrendingUp className="h-6 w-6 text-blue-600" />
+          <h2 className="flex items-center gap-2 text-xl font-bold text-gray-900">
+            <TrendingUp className="w-6 h-6 text-blue-600" />
             {selectedCategory === 'ALL' ? 'Latest Posts' : categories.find(c => c.id === selectedCategory)?.name}
           </h2>
           <div className="text-sm text-gray-500">
@@ -205,37 +205,37 @@ export function CategorySection() {
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
             <span className="ml-2 text-gray-600">Loading posts...</span>
           </div>
         ) : posts.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
-              <MessageCircle className="h-16 w-16 mx-auto" />
+          <div className="py-12 text-center">
+            <div className="mb-4 text-gray-400">
+              <MessageCircle className="w-16 h-16 mx-auto" />
             </div>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">No posts yet</h3>
-            <p className="text-gray-600 mb-6">Be the first to share Korean culture with the world!</p>
+            <h3 className="mb-2 text-xl font-medium text-gray-900">No posts yet</h3>
+            <p className="mb-6 text-gray-600">Be the first to share Korean culture with the world!</p>
             <Link 
               href="/write"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
               Write First Post
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
                 <Link key={post.id} href={`/post/${post.id}`} className="block">
-                  <article className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow cursor-pointer">
+                  <article className="transition-shadow bg-white border rounded-lg shadow-sm cursor-pointer hover:shadow-md">
                     {post.imageUrl && (
-                      <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100 flex items-center justify-center relative">
+                      <div className="relative flex items-center justify-center overflow-hidden bg-gray-100 rounded-t-lg aspect-video">
                         <img 
                           src={post.imageUrl} 
                           alt={post.title}
-                          className="absolute inset-0 w-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="absolute inset-0 object-cover w-full transition-transform duration-300 hover:scale-105"
                           style={{transformOrigin: 'top', objectFit: 'cover', objectPosition: 'top' }}
                           onLoad={() => console.log('Image loaded:', post.imageUrl)}
                           onError={(e) => console.error('Image failed to load:', post.imageUrl, e)}
@@ -245,42 +245,42 @@ export function CategorySection() {
                     
                     <div className="p-5">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                        <span className="px-2 py-1 text-xs text-blue-700 bg-blue-100 rounded-full">
                           {categories.find(c => c.id === post.category)?.name || post.category}
                         </span>
                       </div>
                       
-                      <h3 className="font-bold text-gray-900 mb-2 text-lg leading-tight line-clamp-2 hover:text-blue-600 transition-colors">
+                      <h3 className="mb-2 text-lg font-bold leading-tight text-gray-900 transition-colors line-clamp-2 hover:text-blue-600">
                         {post.title}
                       </h3>
                       
                       {post.koreanTitle && (
-                        <p className="text-sm text-gray-600 mb-2">
+                        <p className="mb-2 text-sm text-gray-600">
                           Original: {post.koreanTitle}
                         </p>
                       )}
                       
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                      <p className="mb-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
                         {truncateContent(post.content)}
                       </p>
                       
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                         <div className="flex items-center gap-4 text-xs text-gray-500">
                           <div className="flex items-center gap-1">
-                            <Heart className="h-4 w-4" />
+                            <Heart className="w-4 h-4" />
                             <span>{post.likes}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Eye className="h-4 w-4" />
+                            <Eye className="w-4 h-4" />
                             <span>{post.views}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <MessageCircle className="h-4 w-4 text-blue-600" />
+                            <MessageCircle className="w-4 h-4 text-blue-600" />
                             <span className="font-medium">{post.commentCount || 0}</span>
                           </div>
                         </div>
                         
-                        <div className="text-gray-500 text-xs">
+                        <div className="text-xs text-gray-500">
                           Updated {formatDate(post.updatedAt)}
                         </div>
                       </div>
@@ -290,50 +290,48 @@ export function CategorySection() {
               ))}
             </div>
 
-            {/* Pagination - 임시로 항상 표시 */}
-            {paginationInfo.totalCount > 0 && (
-              <div className="flex items-center justify-center gap-2 mt-8">
-                {/* 이전 페이지 버튼 */}
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={!paginationInfo.hasPrevPage}
-                  className="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                  Prev
-                </button>
+            {/* Pagination - 항상 표시 (페이지가 1개일 때도) */}
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {/* 이전 페이지 버튼 */}
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={!paginationInfo.hasPrevPage}
+                className="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Prev
+              </button>
 
-                {/* 페이지 번호들 */}
-                <div className="flex items-center gap-1">
-                  {getPageNumbers().map((pageNum) => (
-                    <button
-                      key={pageNum}
-                      onClick={() => handlePageChange(pageNum)}
-                      className={`px-4 py-2 text-sm rounded-lg transition-colors font-medium ${
-                        pageNum === currentPage
-                          ? 'bg-blue-600 text-white shadow-sm'
-                          : 'text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
-                      }`}
-                    >
-                      {pageNum}
-                    </button>
-                  ))}
-                </div>
-
-                {/* 다음 페이지 버튼 */}
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={!paginationInfo.hasNextPage}
-                  className="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  Next
-                  <ChevronRight className="h-4 w-4" />
-                </button>
+              {/* 페이지 번호들 */}
+              <div className="flex items-center gap-1">
+                {getPageNumbers().map((pageNum) => (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    className={`px-4 py-2 text-sm rounded-lg transition-colors font-medium ${
+                      pageNum === currentPage
+                        ? 'bg-blue-600 text-white shadow-sm'
+                        : 'text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                ))}
               </div>
-            )}
+
+              {/* 다음 페이지 버튼 */}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={!paginationInfo.hasNextPage}
+                className="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
 
             {/* 페이지 정보 표시 */}
-            <div className="text-center text-sm text-gray-500 mt-4">
+            <div className="mt-4 text-sm text-center text-gray-500">
               page {paginationInfo.currentPage} / {paginationInfo.totalPages} 
               ({((currentPage - 1) * postsPerPage + 1)} - {Math.min(currentPage * postsPerPage, paginationInfo.totalCount)} of {paginationInfo.totalCount} posts)
             </div>

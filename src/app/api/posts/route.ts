@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     // 환경변수 디버깅 추가
     console.log('=== POST Environment Variables Debug ===')
     console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
-    console.log('DATABASE_URL value:', process.env.DATABASE_URL)
+    console.log('DATABASE_URL value:', process.env.DATABASE_URL?.substring(0, 50) + '...')
     console.log('Prisma client status:', typeof prisma)
 
     const body = await request.json()
@@ -16,16 +16,9 @@ export async function POST(request: NextRequest) {
 
     // 디버깅 로그 추가
     console.log('=== API POST 디버깅 정보 ===')
-    console.log('Received body:', JSON.stringify(body, null, 2))
-    console.log('additionalImages type:', typeof additionalImages)
-    console.log('additionalImages value:', additionalImages)
-    console.log('additionalImages length:', additionalImages?.length)
-    console.log('extractedComments type:', typeof extractedComments)
-    console.log('extractedComments value:', extractedComments)
-    console.log('extractedComments length:', extractedComments?.length)
-    console.log('translatedComments type:', typeof translatedComments)
-    console.log('translatedComments value:', translatedComments)
-    console.log('translatedComments length:', translatedComments?.length)
+    console.log('Received body keys:', Object.keys(body))
+    console.log('Title:', title)
+    console.log('Category:', category)
 
     // 필수 필드 검증
     if (!title || !category) {
@@ -94,29 +87,39 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    // 환경변수 디버깅 추가
-    console.log('=== Environment Variables Debug ===')
+    console.log('=== GET Environment Variables Debug ===')
     console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
-    console.log('DATABASE_URL value:', process.env.DATABASE_URL)
+    console.log('DATABASE_URL value:', process.env.DATABASE_URL?.substring(0, 50) + '...')
     console.log('NODE_ENV:', process.env.NODE_ENV)
-    console.log('All env keys:', Object.keys(process.env).filter(key => 
-      key.includes('DATABASE') || 
-      key.includes('ADMIN') || 
-      key.includes('JWT') || 
-      key.includes('CLOUDINARY') || 
-      key.includes('OPENAI')
-    ))
+
+    // Prepared statement 충돌 방지를 위해 연결 초기화
+    try {
+      await prisma.$disconnect()
+      await prisma.$connect()
+      console.log('✅ Prisma connection refreshed')
+    } catch (connError) {
+      console.log('⚠️ Connection refresh failed, continuing...', connError)
+    }
 
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category')
     const page = parseInt(searchParams.get('page') || '1')
+    const offset = parseInt(searchParams.get('offset') || '0')
     const limit = parseInt(searchParams.get('limit') || '10')
-    const skip = (page - 1) * limit
+    
+    // offset이 제공되면 offset을 사용하고, 그렇지 않으면 page를 사용
+    const skip = offset > 0 ? offset : (page - 1) * limit
+    
+    console.log('=== Query Parameters ===')
+    console.log('category:', category)
+    console.log('skip:', skip, 'limit:', limit)
 
     // Category enum에 포함된 값인지 확인
     const whereClause = category && category !== 'ALL' && Object.values(Category).includes(category as Category)
       ? { category: category as Category } 
       : {}
+
+    console.log('whereClause:', whereClause)
 
     const [posts, totalCount] = await Promise.all([
       prisma.post.findMany({
@@ -128,22 +131,31 @@ export async function GET(request: NextRequest) {
       prisma.post.count({ where: whereClause })
     ])
 
+    console.log('=== Query Results ===')
+    console.log('posts found:', posts.length)
+    console.log('totalCount:', totalCount)
+
+    const currentPage = offset > 0 ? Math.floor(offset / limit) + 1 : page
     const totalPages = Math.ceil(totalCount / limit)
 
     return NextResponse.json({
       posts,
       pagination: {
-        currentPage: page,
+        currentPage,
         totalPages,
         totalCount,
-        hasNext: page < totalPages,
-        hasPrev: page > 1
+        hasNext: currentPage < totalPages,
+        hasPrev: currentPage > 1
       }
     })
   } catch (error) {
     console.error('Posts fetch error:', error)
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace')
     return NextResponse.json(
-      { error: 'Failed to fetch posts' },
+      { 
+        error: 'Failed to fetch posts',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     )
   }
