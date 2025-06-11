@@ -131,6 +131,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          suppressHydrationWarning
         />
         
         {/* Google Search Console 인증 - 실제 인증 코드로 교체 필요 */}
@@ -189,6 +190,7 @@ export default function RootLayout({
               "browserRequirements": "Requires JavaScript. Requires HTML5."
             })
           }}
+          suppressHydrationWarning
         />
         
         {/* Google Analytics - Korean Memes Hub 전용 추적 코드 */}

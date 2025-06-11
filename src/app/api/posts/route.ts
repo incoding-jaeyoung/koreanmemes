@@ -36,6 +36,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // 이미지가 없을 때 기본 이미지 설정
+    const defaultImageUrl = '/image.png'
+    const finalImageUrl = imageUrl || defaultImageUrl
+
     // 게시글 생성
     const post = await prisma.post.create({
       data: {
@@ -50,7 +54,7 @@ export async function POST(request: NextRequest) {
           ? JSON.parse(JSON.stringify(translatedComments))
           : undefined,
         category: category as Category,
-        imageUrl: imageUrl || null,
+        imageUrl: finalImageUrl,
         additionalImages: additionalImages && Array.isArray(additionalImages) && additionalImages.length > 0 
           ? JSON.parse(JSON.stringify(additionalImages))
           : undefined,

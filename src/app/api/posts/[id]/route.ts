@@ -122,6 +122,18 @@ export async function PUT(
       )
     }
 
+    // 이미지 URL 처리 - 수정 시에는 기존 이미지가 없고 새로운 이미지도 없을 때만 기본 이미지 사용
+    const defaultImageUrl = '/image.png'
+    let finalImageUrl = imageUrl
+    
+    // 이미지가 명시적으로 null이거나 빈 문자열로 설정되고, 기존 포스트에도 이미지가 없었다면 기본 이미지 사용
+    if (!imageUrl && !existingPost.imageUrl) {
+      finalImageUrl = defaultImageUrl
+    } else if (!imageUrl && existingPost.imageUrl) {
+      // 이미지가 제공되지 않았지만 기존 이미지가 있다면 기존 이미지 유지
+      finalImageUrl = existingPost.imageUrl
+    }
+
     // 게시글 수정
     const updatedPost = await prisma.post.update({
       where: { id: postId },
@@ -137,7 +149,7 @@ export async function PUT(
           ? JSON.parse(JSON.stringify(translatedComments))
           : undefined,
         category: category as Category,
-        imageUrl: imageUrl || null,
+        imageUrl: finalImageUrl,
         additionalImages: additionalImages && Array.isArray(additionalImages) && additionalImages.length > 0 
           ? JSON.parse(JSON.stringify(additionalImages))
           : undefined,
