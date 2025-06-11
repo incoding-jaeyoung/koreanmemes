@@ -459,16 +459,19 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                 // 번역된 텍스트 그리기
                 const text = selection.translatedText;
                 const words = text.split(' ');
-                // 폰트 크기 자동 조정
-                const maxFontSize = Math.min(realHeight * 0.3, 32);
-                const minFontSize = 12;
+                // 폰트 크기 자동 조정 - 실시간 미리보기와 동일한 로직 사용
+                const maxFontSize = Math.min(realHeight * 0.5, 60) // 실시간 미리보기와 동일
+                ;
+                const minFontSize = 8 // 실시간 미리보기와 동일
+                ;
                 const maxTextWidth = realWidth * 0.9;
                 const maxTextHeight = realHeight * 0.9;
                 let bestFontSize = minFontSize;
-                for(let testSize = maxFontSize; testSize >= minFontSize; testSize -= 2){
+                // 실시간 미리보기와 동일한 폰트 크기 찾기 로직
+                for(let testSize = minFontSize; testSize <= maxFontSize; testSize += 2){
                     ctx.font = `bold ${testSize}px Arial, sans-serif`;
-                    // 텍스트 줄바꿈 시뮬레이션
-                    const lines = [];
+                    // 텍스트 줄바꿈 테스트
+                    const testLines = [];
                     let currentLine = '';
                     for (const word of words){
                         const testLine = currentLine ? `${currentLine} ${word}` : word;
@@ -477,17 +480,17 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                             currentLine = testLine;
                         } else {
                             if (currentLine) {
-                                lines.push(currentLine);
+                                testLines.push(currentLine);
                                 currentLine = word;
                             } else {
-                                lines.push(word);
+                                testLines.push(word);
                             }
                         }
                     }
-                    if (currentLine) lines.push(currentLine);
+                    if (currentLine) testLines.push(currentLine);
                     // 총 높이 계산
                     const lineHeight = testSize * 1.3;
-                    const totalHeight = lines.length * lineHeight;
+                    const totalHeight = testLines.length * lineHeight;
                     // 텍스트가 영역에 들어가는지 확인
                     if (totalHeight <= maxTextHeight) {
                         bestFontSize = testSize;
@@ -611,28 +614,28 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "space-y-4",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-white rounded-lg shadow-sm border",
+            className: "bg-white border rounded-lg shadow-sm",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "p-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "text-center space-y-4",
+                    className: "space-y-4 text-center",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             className: "text-lg font-semibold",
                             children: "이미지 번역 편집기"
                         }, void 0, false, {
                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                            lineNumber: 684,
+                            lineNumber: 685,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-sm text-gray-600 space-y-1",
+                            className: "space-y-1 text-sm text-gray-600",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: "마우스로 드래그하여 번역할 텍스트 영역을 선택하세요"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                                    lineNumber: 686,
+                                    lineNumber: 687,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -643,7 +646,7 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                                             children: "팁:"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                                            lineNumber: 688,
+                                            lineNumber: 689,
                                             columnNumber: 20
                                         }, this),
                                         " 선택된 영역을 ",
@@ -652,7 +655,7 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                                             children: "클릭"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                                            lineNumber: 688,
+                                            lineNumber: 689,
                                             columnNumber: 48
                                         }, this),
                                         "하거나 ",
@@ -661,20 +664,20 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                                             children: "우클릭"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                                            lineNumber: 688,
+                                            lineNumber: 689,
                                             columnNumber: 92
                                         }, this),
                                         "하면 개별 삭제됩니다"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                                    lineNumber: 687,
+                                    lineNumber: 688,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                            lineNumber: 685,
+                            lineNumber: 686,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -687,44 +690,44 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                                     onMouseMove: handleMouseMove,
                                     onMouseUp: handleMouseUp,
                                     onContextMenu: handleContextMenu,
-                                    className: "cursor-crosshair block w-full border border-gray-300 rounded-lg"
+                                    className: "block w-full border border-gray-300 rounded-lg cursor-crosshair"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                                    lineNumber: 694,
+                                    lineNumber: 695,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ImageTranslator.tsx",
-                                lineNumber: 693,
+                                lineNumber: 694,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                            lineNumber: 692,
+                            lineNumber: 693,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex gap-2 justify-center",
+                            className: "flex justify-center gap-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: handleClearSelections,
                                     disabled: selections.length === 0,
-                                    className: "px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+                                    className: "px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed",
                                     children: "선택 초기화"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                                    lineNumber: 706,
+                                    lineNumber: 707,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     type: "button",
                                     onClick: handleComplete,
                                     disabled: selections.length === 0 || isTranslating,
-                                    className: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+                                    className: "px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed",
                                     children: isTranslating ? '처리 중...' : '번역 완료'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                                    lineNumber: 713,
+                                    lineNumber: 714,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -734,17 +737,17 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                                         e.stopPropagation();
                                         onCancel();
                                     },
-                                    className: "px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors",
+                                    className: "px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50",
                                     children: "취소"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                                    lineNumber: 721,
+                                    lineNumber: 722,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                            lineNumber: 705,
+                            lineNumber: 706,
                             columnNumber: 13
                         }, this),
                         selections.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -757,28 +760,28 @@ function ImageTranslator({ imageFile, onTranslationComplete, onCancel }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ImageTranslator.tsx",
-                            lineNumber: 735,
+                            lineNumber: 736,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/ImageTranslator.tsx",
-                    lineNumber: 683,
+                    lineNumber: 684,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ImageTranslator.tsx",
-                lineNumber: 682,
+                lineNumber: 683,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ImageTranslator.tsx",
-            lineNumber: 681,
+            lineNumber: 682,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ImageTranslator.tsx",
-        lineNumber: 680,
+        lineNumber: 681,
         columnNumber: 5
     }, this);
 }

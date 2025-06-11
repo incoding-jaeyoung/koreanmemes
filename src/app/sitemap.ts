@@ -1,59 +1,62 @@
 import { MetadataRoute } from 'next'
-import { PrismaClient } from '@/generated/prisma'
 
-const prisma = new PrismaClient()
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://memes-teal-eight.vercel.app'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'http://localhost:3000'
-
-  // 정적 페이지들
-  const staticPages = [
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 1,
     },
     {
-      url: `${baseUrl}/write`,
+      url: `${baseUrl}/login`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/posts`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
       priority: 0.8,
     },
-  ]
-
-  // 동적 게시물 페이지들
-  try {
-    const posts = await prisma.post.findMany({
-      select: {
-        id: true,
-        updatedAt: true,
-        category: true,
-      },
-      orderBy: {
-        updatedAt: 'desc',
-      },
-    })
-
-    const postPages = posts.map((post) => ({
-      url: `${baseUrl}/post/${post.id}`,
-      lastModified: post.updatedAt,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-
-    // 카테고리 페이지들
-    const categories = ['HUMOR', 'CULTURE', 'DRAMA', 'LIFESTYLE', 'TECH', 'GENERAL']
-    const categoryPages = categories.map((category) => ({
-      url: `${baseUrl}/category/${category.toLowerCase()}`,
+    {
+      url: `${baseUrl}/categories/k-humor`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/categories/k-culture`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/categories/k-drama`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/categories/k-lifestyle`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/categories/k-tech`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/categories/general`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
       priority: 0.6,
-    }))
-
-    return [...staticPages, ...postPages, ...categoryPages]
-  } catch (error) {
-    console.error('Error generating sitemap:', error)
-    return staticPages
-  }
+    },
+  ]
 } 

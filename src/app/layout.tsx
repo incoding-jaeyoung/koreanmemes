@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://memes-teal-eight.vercel.app'),
   title: {
     default: 'Korean Memes & Culture Hub - Share & Discover K-Culture',
     template: '%s | Korean Memes Hub'
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: ['ko_KR'],
-    url: 'http://localhost:3000',
+    url: 'https://memes-teal-eight.vercel.app',
     siteName: 'Korean Memes Hub',
     title: 'Korean Memes & Culture Hub - Share & Discover K-Culture',
     description: 'Discover and share the best Korean memes, culture, and humor. Connect Korean culture with the world through translated content.',
@@ -82,10 +82,10 @@ export const metadata: Metadata = {
     yahoo: 'your-yahoo-verification-code',
   },
   alternates: {
-    canonical: 'http://localhost:3000',
+    canonical: 'https://memes-teal-eight.vercel.app',
     languages: {
-      'en-US': 'http://localhost:3000',
-      'ko-KR': 'http://localhost:3000/ko',
+      'en-US': 'https://memes-teal-eight.vercel.app',
+      'ko-KR': 'https://memes-teal-eight.vercel.app/ko',
     },
   },
   category: 'entertainment',
@@ -96,13 +96,13 @@ const jsonLd = {
   '@type': 'WebSite',
   name: 'Korean Memes Hub',
   description: 'Korean culture and memes sharing platform',
-  url: 'http://localhost:3000',
+  url: 'https://memes-teal-eight.vercel.app',
   potentialAction: {
     '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: 'http://localhost:3000/search?q={search_term_string}',
-    },
+          target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://memes-teal-eight.vercel.app/search?q={search_term_string}',
+      },
     'query-input': 'required name=search_term_string',
   },
   sameAs: [
@@ -115,7 +115,7 @@ const jsonLd = {
     name: 'Korean Memes Hub',
     logo: {
       '@type': 'ImageObject',
-      url: 'http://localhost:3000/logo.png',
+      url: 'https://memes-teal-eight.vercel.app/logo.png',
     },
   },
 }
