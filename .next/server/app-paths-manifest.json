@@ -5,6 +5,8 @@
   "/api/posts/[id]/route": "app/api/posts/[id]/route.js",
   "/api/posts/[id]/view/route": "app/api/posts/[id]/view/route.js",
   "/api/posts/route": "app/api/posts/route.js",
+  "/api/translate/route": "app/api/translate/route.js",
+  "/edit/[id]/page": "app/edit/[id]/page.js",
   "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
   "/page": "app/page.js",
   "/post/[id]/page": "app/post/[id]/page.js",
