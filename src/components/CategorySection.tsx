@@ -261,9 +261,9 @@ export function CategorySection() {
                         </p>
                       )}
                       
-                      <p className="mb-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
+                      {/* <p className="mb-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
                         {truncateContent(post.content)}
-                      </p>
+                      </p> */}
                       
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                         <div className="flex items-center gap-4 text-xs text-gray-500">
