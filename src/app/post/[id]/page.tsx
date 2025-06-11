@@ -109,7 +109,7 @@ function PostDetailContent() {
     updateMeta('og:title', post.title)
     updateMeta('og:description', description)
     updateMeta('og:image', post.imageUrl || '/og-post-default.jpg')
-    updateMeta('og:url', `http://localhost:3000/post/${post.id}`)
+    updateMeta('og:url', `https://www.koreanmemes.net/post/${post.id}`)
     updateMeta('og:type', 'article')
     
     // Twitter 카드
@@ -125,7 +125,7 @@ function PostDetailContent() {
       canonical.setAttribute('rel', 'canonical')
       document.head.appendChild(canonical)
     }
-    canonical.setAttribute('href', `http://localhost:3000/post/${post.id}`)
+    canonical.setAttribute('href', `https://www.koreanmemes.net/post/${post.id}`)
 
   }, [post])
 

@@ -456,7 +456,7 @@ export default function WritePage() {
       <SEOHead
         title="Share Korean Culture - Write New Post"
         description="Share Korean memes, culture, humor, and insights with the global community. Create posts with Korean original content and English translations."
-        canonical="http://localhost:3000/write"
+        canonical="https://www.koreanmemes.net/write"
         keywords={[
           'write Korean content',
           'share Korean memes',

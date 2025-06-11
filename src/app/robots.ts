@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         '/static/',
       ],
     },
-    sitemap: 'https://memes-teal-eight.vercel.app/sitemap.xml',
+    sitemap: 'https://www.koreanmemes.net/sitemap.xml',
   }
 } 

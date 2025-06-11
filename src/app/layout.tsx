@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://memes-teal-eight.vercel.app'),
+  metadataBase: new URL('https://www.koreanmemes.net'),
   title: {
     default: 'Korean Memes & Culture Hub - Share & Discover K-Culture',
     template: '%s | Korean Memes Hub'
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: ['ko_KR'],
-    url: 'https://memes-teal-eight.vercel.app',
+    url: 'https://www.koreanmemes.net',
     siteName: 'Korean Memes Hub',
     title: 'Korean Memes & Culture Hub - Share & Discover K-Culture',
     description: 'Discover and share the best Korean memes, culture, and humor. Connect Korean culture with the world through translated content.',
@@ -82,10 +82,10 @@ export const metadata: Metadata = {
     yahoo: 'your-yahoo-verification-code',
   },
   alternates: {
-    canonical: 'https://memes-teal-eight.vercel.app',
+    canonical: 'https://www.koreanmemes.net',
     languages: {
-      'en-US': 'https://memes-teal-eight.vercel.app',
-      'ko-KR': 'https://memes-teal-eight.vercel.app/ko',
+      'en-US': 'https://www.koreanmemes.net',
+      'ko-KR': 'https://www.koreanmemes.net/ko',
     },
   },
   category: 'entertainment',
@@ -96,12 +96,12 @@ const jsonLd = {
   '@type': 'WebSite',
   name: 'Korean Memes Hub',
   description: 'Korean culture and memes sharing platform',
-  url: 'https://memes-teal-eight.vercel.app',
+  url: 'https://www.koreanmemes.net',
   potentialAction: {
     '@type': 'SearchAction',
           target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://memes-teal-eight.vercel.app/search?q={search_term_string}',
+        urlTemplate: 'https://www.koreanmemes.net/search?q={search_term_string}',
       },
     'query-input': 'required name=search_term_string',
   },
@@ -115,7 +115,7 @@ const jsonLd = {
     name: 'Korean Memes Hub',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://memes-teal-eight.vercel.app/logo.png',
+      url: 'https://www.koreanmemes.net/logo.png',
     },
   },
 }
@@ -132,6 +132,27 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        
+        {/* Google Search Console 인증 - 실제 인증 코드로 교체 필요 */}
+        <meta name="google-site-verification" content="your-google-search-console-verification-code" />
+        
+        {/* 추가 메타 태그 */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        
+        {/* 사이트 브랜딩 */}
+        <meta name="application-name" content="Korean Memes Hub" />
+        <meta name="apple-mobile-web-app-title" content="Korean Memes" />
+        <meta name="msapplication-TileColor" content="#3B82F6" />
+        
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://www.koreanmemes.net" />
+        <link rel="dns-prefetch" href="https://www.koreanmemes.net" />
+        
+        {/* Canonical link */}
+        <link rel="canonical" href="https://www.koreanmemes.net" />
+        
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇰🇷</text></svg>" />
         <meta name="theme-color" content="#3B82F6" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -140,6 +161,55 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" 
           rel="stylesheet" 
         />
+        
+        {/* Rich Snippets을 위한 추가 구조화 데이터 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Korean Memes Hub",
+              "url": "https://www.koreanmemes.net",
+              "description": "Platform for sharing Korean culture and humor with global audience",
+              "applicationCategory": "EntertainmentApplication",
+              "operatingSystem": "Web Browser",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "featureList": [
+                "Korean meme sharing",
+                "Cultural content translation", 
+                "K-Drama discussions",
+                "Korean humor community",
+                "Image translation tools"
+              ],
+              "browserRequirements": "Requires JavaScript. Requires HTML5."
+            })
+          }}
+        />
+        
+        {/* Google Analytics - 실제 GA4 추적 ID로 교체 필요 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'GA_MEASUREMENT_ID', {
+                page_title: 'Korean Memes Hub',
+                page_location: 'https://www.koreanmemes.net'
+              });
+            `,
+          }}
+        />
+        
+        {/* 페이지 로딩 성능 최적화 */}
+        <link rel="prefetch" href="/api/posts" />
+        <link rel="preload" href="/fonts/korean-font.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <AuthProvider>

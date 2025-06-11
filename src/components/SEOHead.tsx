@@ -17,8 +17,8 @@ export function SEOHead({
   description,
   canonical,
   keywords = [],
-  ogImage = '/og-default.jpg',
-  twitterImage = '/twitter-default.jpg',
+  ogImage = 'https://www.koreanmemes.net/og-default.jpg',
+  twitterImage = 'https://www.koreanmemes.net/twitter-default.jpg',
   schema
 }: SEOHeadProps) {
   const fullTitle = title.includes('Korean Memes Hub') ? title : `${title} | Korean Memes Hub`

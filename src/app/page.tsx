@@ -8,13 +8,13 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'http://localhost:3000/#organization',
+      '@id': 'https://www.koreanmemes.net/#organization',
       name: 'Korean Memes Hub',
       description: 'Platform for sharing Korean culture and humor with global audience',
-      url: 'http://localhost:3000',
+      url: 'https://www.koreanmemes.net',
       logo: {
         '@type': 'ImageObject',
-        url: 'http://localhost:3000/logo.png',
+        url: 'https://www.koreanmemes.net/logo.png',
         width: 200,
         height: 200
       },
@@ -25,23 +25,23 @@ const jsonLd = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'http://localhost:3000/#website',
-      url: 'http://localhost:3000',
+      '@id': 'https://www.koreanmemes.net/#website',
+      url: 'https://www.koreanmemes.net',
       name: 'Korean Memes Hub',
       description: 'Korean culture and memes sharing platform',
       publisher: {
-        '@id': 'http://localhost:3000/#organization'
+        '@id': 'https://www.koreanmemes.net/#organization'
       },
       inLanguage: 'en-US'
     },
     {
       '@type': 'CollectionPage',
-      '@id': 'http://localhost:3000/#homepage',
-      url: 'http://localhost:3000',
+      '@id': 'https://www.koreanmemes.net/#homepage',
+      url: 'https://www.koreanmemes.net',
       name: 'Korean Memes & Culture Hub - Homepage',
       description: 'Browse Korean memes, culture, and humor content',
       isPartOf: {
-        '@id': 'http://localhost:3000/#website'
+        '@id': 'https://www.koreanmemes.net/#website'
       },
       about: [
         {

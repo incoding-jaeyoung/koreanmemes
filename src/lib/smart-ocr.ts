@@ -98,49 +98,18 @@ function evaluateKoreanText(text: string): {
   return { score, koreanChars, totalChars, hasSlang }
 }
 
-// Tesseract.js를 이용한 한글 OCR (무료)
+// Tesseract.js를 이용한 한글 OCR (무료) - Next.js 환경에서 비활성화
 async function tesseractOCR(buffer: Buffer): Promise<{ text: string; confidence: number } | null> {
-  let worker: Tesseract.Worker | null = null
-  
   try {
-    console.log('🆓 Trying Tesseract OCR (free)...')
-    
-    worker = await createWorker('kor')
-    await worker.setParameters({
-      tessedit_char_whitelist: '가-힣ㄱ-ㅎㅏ-ㅣ0-9abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !@#$%^&*()_+-=[]{}|;:,.<>?~',
-      tessedit_pageseg_mode: PSM.AUTO,
-    })
-    
-    const { data } = await worker.recognize(buffer)
-    const cleanText = data.text.trim().replace(/\n+/g, ' ').replace(/\s+/g, ' ')
-    
-    const evaluation = evaluateKoreanText(cleanText)
-    console.log('Tesseract result:', {
-      text: cleanText.substring(0, 50) + '...',
-      confidence: data.confidence,
-      evaluation
-    })
-    
-    await worker.terminate()
-    
-    // 품질이 좋으면 결과 반환
-    if (evaluation.score >= 40 && data.confidence > 50) {
-      console.log('✅ Tesseract succeeded with good quality')
-      return { text: cleanText, confidence: data.confidence }
-    }
-    
-    console.log('❌ Tesseract quality too low, will try OpenAI')
+    console.log('🆓 Tesseract OCR is disabled in Next.js environment')
+    console.log('💡 Skipping to OpenAI Vision API for better compatibility')
     return null
     
+    // Next.js 환경에서 Tesseract 문제로 인해 비활성화
+    // 프로덕션에서는 별도 서버에서 Tesseract 실행 권장
+    
   } catch (error) {
-    console.warn('⚠️ Tesseract OCR failed:', error)
-    if (worker) {
-      try {
-        await worker.terminate()
-      } catch (e) {
-        // Worker 종료 실패는 무시
-      }
-    }
+    console.warn('⚠️ Tesseract OCR disabled:', error)
     return null
   }
 }
