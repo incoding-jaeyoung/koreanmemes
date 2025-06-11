@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST='{"components/ImageUpload.tsx -> ./ImageTranslator":{"id":6245,"files":["static/chunks/245.691847a71a0f86b5.js"]},"components/MultipleImageUpload.tsx -> ./ImageTranslator":{"id":6245,"files":["static/chunks/245.691847a71a0f86b5.js"]}}';
+self.__REACT_LOADABLE_MANIFEST='{"components/ImageUpload.tsx -> ./ImageTranslator":{"id":6245,"files":["static/chunks/245.c331e32142192793.js"]},"components/MultipleImageUpload.tsx -> ./ImageTranslator":{"id":6245,"files":["static/chunks/245.c331e32142192793.js"]}}';

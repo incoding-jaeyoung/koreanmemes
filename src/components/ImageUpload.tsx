@@ -16,7 +16,8 @@ export function ImageUpload({ onImageUploaded, currentImage, onRemoveImage }: Im
   const [showUrlInput, setShowUrlInput] = useState(false)
   const [urlInput, setUrlInput] = useState('')
   const [translateEnabled, setTranslateEnabled] = useState(false)
-  const [manualTranslateEnabled, setManualTranslateEnabled] = useState(true)
+  const [manualTranslateEnabled, setManualTranslateEnabled] = useState(false)
+  const [noTranslateEnabled, setNoTranslateEnabled] = useState(true)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [showEditor, setShowEditor] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -33,7 +34,7 @@ export function ImageUpload({ onImageUploaded, currentImage, onRemoveImage }: Im
         return
       }
 
-      // 자동 번역 또는 일반 업로드
+      // 자동 번역 또는 일반 업로드 (번역 없이 업로드 포함)
       const formData = new FormData()
       formData.append('image', file)
       formData.append('translateImage', translateEnabled.toString())
@@ -71,11 +72,12 @@ export function ImageUpload({ onImageUploaded, currentImage, onRemoveImage }: Im
     setIsUploading(false)
   }
 
-  // 자동/수동 번역 전환 시 초기화
+  // 자동/수동/번역없이 전환 시 초기화
   const handleTranslateToggle = (enabled: boolean) => {
     setTranslateEnabled(enabled)
     if (enabled) {
       setManualTranslateEnabled(false)
+      setNoTranslateEnabled(false)
     }
   }
 
@@ -83,6 +85,15 @@ export function ImageUpload({ onImageUploaded, currentImage, onRemoveImage }: Im
     setManualTranslateEnabled(enabled)
     if (enabled) {
       setTranslateEnabled(false)
+      setNoTranslateEnabled(false)
+    }
+  }
+
+  const handleNoTranslateToggle = (enabled: boolean) => {
+    setNoTranslateEnabled(enabled)
+    if (enabled) {
+      setTranslateEnabled(false)
+      setManualTranslateEnabled(false)
     }
   }
 
@@ -171,6 +182,32 @@ export function ImageUpload({ onImageUploaded, currentImage, onRemoveImage }: Im
       
       {/* 번역 옵션들 */}
       <div className="space-y-3">
+        {/* 번역 없이 업로드 */}
+        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="flex items-center gap-2">
+            <Upload className="h-5 w-5 text-gray-600" />
+            <span className="text-sm font-medium text-gray-900">No Translation</span>
+          </div>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              checked={noTranslateEnabled}
+              onChange={(e) => handleNoTranslateToggle(e.target.checked)}
+              className="sr-only"
+            />
+            <div className={`relative w-11 h-6 rounded-full transition-colors ${
+              noTranslateEnabled ? 'bg-gray-600' : 'bg-gray-300'
+            }`}>
+              <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
+                noTranslateEnabled ? 'translate-x-5' : 'translate-x-0'
+              }`} />
+            </div>
+          </label>
+          <span className="text-xs text-gray-700">
+            {noTranslateEnabled ? 'Upload original image as-is' : 'Original image upload disabled'}
+          </span>
+        </div>
+
         {/* 자동 번역 */}
         <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
           <div className="flex items-center gap-2">

@@ -677,6 +677,38 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
     setCurrentSelection(null)
   }
 
+  // 번역 없이 원본 이미지 업로드
+  const handleUploadOriginal = async () => {
+    setIsTranslating(true)
+    
+    try {
+      // 원본 이미지 파일을 그대로 업로드
+      const formData = new FormData()
+      formData.append('image', imageFile)
+      formData.append('translateImage', 'false')
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      })
+
+      const result = await response.json()
+      
+      if (result.success) {
+        console.log('✅ 원본 이미지 업로드 성공:', result.imageUrl)
+        onTranslationComplete(result.imageUrl)
+      } else {
+        console.log('❌ 원본 이미지 업로드 실패:', result)
+        throw new Error(result.error || '원본 이미지 업로드에 실패했습니다')
+      }
+    } catch (error) {
+      console.error('❌ 원본 이미지 업로드 에러:', error)
+      alert('원본 이미지 업로드에 실패했습니다.')
+    } finally {
+      setIsTranslating(false)
+    }
+  }
+
   return (
     <div className="space-y-4">
       <div className="bg-white border rounded-lg shadow-sm">
@@ -687,6 +719,9 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
               <p>마우스로 드래그하여 번역할 텍스트 영역을 선택하세요</p>
               <p className="text-xs">
                 💡 <strong>팁:</strong> 선택된 영역을 <span className="text-red-600">클릭</span>하거나 <span className="text-red-600">우클릭</span>하면 개별 삭제됩니다
+              </p>
+              <p className="text-xs text-blue-600">
+                번역을 원하지 않는다면 <strong>&quot;원본 업로드&quot;</strong> 버튼을 클릭하세요
               </p>
             </div>
             
@@ -703,7 +738,7 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
               </div>
             </div>
             
-            <div className="flex justify-center gap-2">
+            <div className="flex justify-center gap-2 flex-wrap">
               <button
                 onClick={handleClearSelections}
                 disabled={selections.length === 0}
@@ -718,6 +753,14 @@ export default function ImageTranslator({ imageFile, onTranslationComplete, onCa
                 className="px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isTranslating ? '처리 중...' : '번역 완료'}
+              </button>
+              <button
+                type="button"
+                onClick={handleUploadOriginal}
+                disabled={isTranslating}
+                className="px-4 py-2 text-white transition-colors bg-green-600 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isTranslating ? '업로드 중...' : '원본 업로드'}
               </button>
               <button
                 type="button"
