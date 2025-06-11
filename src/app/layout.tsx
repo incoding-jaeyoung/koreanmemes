@@ -134,7 +134,7 @@ export default function RootLayout({
         />
         
         {/* Google Search Console 인증 - 실제 인증 코드로 교체 필요 */}
-        <meta name="google-site-verification" content="your-google-search-console-verification-code" />
+        <meta name="google-site-verification" content="hYSxfyjTyopTQGmDREZ1TdEV6RueIoe5_f_qjwZYopM" />
         
         {/* 추가 메타 태그 */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
