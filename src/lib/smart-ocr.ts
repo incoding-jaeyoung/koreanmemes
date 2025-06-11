@@ -218,7 +218,7 @@ async function translateKoreanText(koreanText: string): Promise<string | null> {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
     
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // 번역만이므로 저렴한 모델 사용
+      model: "gpt-4o-mini", // 번역 품질 향상을 위해 업그레이드
       messages: [
         {
           role: "system",
