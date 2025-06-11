@@ -65,6 +65,8 @@ model Comment {
   post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
   author User? @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
+  @@index([postId]) // 댓글 수 계산 최적화
+  @@index([postId, isBlocked]) // 차단되지 않은 댓글 카운트 최적화
   @@map("comments")
 }
 

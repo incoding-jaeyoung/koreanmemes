@@ -37,13 +37,10 @@ export async function POST(request: NextRequest) {
 
     console.log('Korean text detected, starting translation...')
 
-    // GPT로 번역
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: `You are a translator for Korean titles. Focus on literal translation while preserving the meaning and making it suitable for English-speaking audiences.
+    // 텍스트 길이에 따른 타입 감지 (제목 vs 댓글/컨텐츠)
+    const isTitle = text.length <= 100
+    const systemPrompt = isTitle 
+      ? `You are a translator for Korean titles. Focus on literal translation while preserving the meaning and making it suitable for English-speaking audiences.
 
 GUIDELINES:
 • Translate Korean titles to clear, engaging English titles
@@ -63,13 +60,44 @@ English: "Why Kimchi Stew Hits Different"
 
 Korean: "한국 드라마 속 로맨스의 진실"
 English: "The Truth About Romance in K-Dramas"`
+      : `You are a translator for Korean comments and content. Translate Korean text to natural, engaging English while preserving the original meaning, tone, and cultural context.
+
+GUIDELINES:
+• Translate Korean comments/content to natural English
+• Preserve the original tone and emotion (humor, sarcasm, excitement, etc.)
+• Keep Korean slang and expressions when possible, with brief explanations if needed
+• Maintain the casual/formal level of the original text
+• Preserve Korean cultural references and context
+• Use natural English expressions that English speakers would understand
+• Don't cut off or truncate the translation - translate the complete text
+• For internet slang like "ㅋㅋㅋ" use "lol" or "haha"
+• For "ㅠㅠ" or "ㅜㅜ" use appropriate emotional expressions like "sob" or keep as "ㅠㅠ"
+
+EXAMPLES:
+Korean: "이거 진짜 웃기네 ㅋㅋㅋㅋ 한국 사람들만 이해할 듯"
+English: "This is actually hilarious lol Only Koreans would get this"
+
+Korean: "아 진짜 공감되네요 ㅠㅠ 저도 회사에서 이런 경험 있어요"
+English: "Oh I really relate to this ㅠㅠ I've had similar experiences at work too"`
+
+    const userPrompt = isTitle 
+      ? `Translate this Korean title to English: "${text}"`
+      : `Translate this Korean comment/content to English: "${text}"`
+
+    // GPT로 번역
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: systemPrompt
         },
         {
           role: "user",
-          content: `Translate this Korean title to English: "${text}"`
+          content: userPrompt
         }
       ],
-      max_tokens: 100,
+      max_tokens: isTitle ? 100 : 500, // 댓글/컨텐츠는 더 많은 토큰 허용
       temperature: 0.3,
     })
 

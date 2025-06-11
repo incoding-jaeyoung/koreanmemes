@@ -133,10 +133,22 @@
       "namedRegex": "^/login(?:/)?$"
     },
     {
+      "page": "/manifest.webmanifest",
+      "regex": "^/manifest\\.webmanifest(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/manifest\\.webmanifest(?:/)?$"
+    },
+    {
       "page": "/robots.txt",
       "regex": "^/robots\\.txt(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/seo-optimized-sitemap.xml",
+      "regex": "^/seo\\-optimized\\-sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/seo\\-optimized\\-sitemap\\.xml(?:/)?$"
     },
     {
       "page": "/sitemap.xml",

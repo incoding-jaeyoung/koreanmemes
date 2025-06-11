@@ -2,13 +2,13 @@
   "components/ImageUpload.tsx -> ./ImageTranslator": {
     "id": 6245,
     "files": [
-      "static/chunks/245.a57668d7099adea4.js"
+      "static/chunks/245.691847a71a0f86b5.js"
     ]
   },
   "components/MultipleImageUpload.tsx -> ./ImageTranslator": {
     "id": 6245,
     "files": [
-      "static/chunks/245.a57668d7099adea4.js"
+      "static/chunks/245.691847a71a0f86b5.js"
     ]
   }
 }

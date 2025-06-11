@@ -1,1 +1,26 @@
-{}
+{
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/api/posts/[id]/comments/[commentId]/route": "app/api/posts/[id]/comments/[commentId]/route.js",
+  "/api/extract-comments/route": "app/api/extract-comments/route.js",
+  "/api/posts/[id]/comments/route": "app/api/posts/[id]/comments/route.js",
+  "/api/ocr-stats/route": "app/api/ocr-stats/route.js",
+  "/api/posts/[id]/route": "app/api/posts/[id]/route.js",
+  "/api/posts/[id]/view/route": "app/api/posts/[id]/view/route.js",
+  "/api/posts/route": "app/api/posts/route.js",
+  "/api/setup/route": "app/api/setup/route.js",
+  "/api/translate/route": "app/api/translate/route.js",
+  "/api/upload/route": "app/api/upload/route.js",
+  "/seo-optimized-sitemap.xml/route": "app/seo-optimized-sitemap.xml/route.js",
+  "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/edit/[id]/page": "app/edit/[id]/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/post/[id]/page": "app/post/[id]/page.js",
+  "/write/page": "app/write/page.js"
+}
