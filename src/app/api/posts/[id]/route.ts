@@ -36,24 +36,8 @@ export async function GET(
       )
     }
 
-    // 이전 포스트 조회 (현재 포스트보다 이전에 작성된 것 중 가장 최근)
+    // 이전 포스트 조회 (현재 포스트보다 이후에 작성된 것 중 가장 이전 - 더 최근 포스트)
     const prevPost = await prisma.post.findFirst({
-      where: {
-        createdAt: {
-          lt: post.createdAt
-        }
-      },
-      orderBy: {
-        createdAt: 'desc'
-      },
-      select: {
-        id: true,
-        title: true
-      }
-    })
-
-    // 다음 포스트 조회 (현재 포스트보다 이후에 작성된 것 중 가장 이전)
-    const nextPost = await prisma.post.findFirst({
       where: {
         createdAt: {
           gt: post.createdAt
@@ -61,6 +45,22 @@ export async function GET(
       },
       orderBy: {
         createdAt: 'asc'
+      },
+      select: {
+        id: true,
+        title: true
+      }
+    })
+
+    // 다음 포스트 조회 (현재 포스트보다 이전에 작성된 것 중 가장 최근 - 더 오래된 포스트)
+    const nextPost = await prisma.post.findFirst({
+      where: {
+        createdAt: {
+          lt: post.createdAt
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
       },
       select: {
         id: true,
