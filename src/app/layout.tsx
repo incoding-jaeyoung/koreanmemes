@@ -191,15 +191,15 @@ export default function RootLayout({
           }}
         />
         
-        {/* Google Analytics - 실제 GA4 추적 ID로 교체 필요 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID" />
+        {/* Google Analytics - Korean Memes Hub 전용 추적 코드 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EBVKYDG3R" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'GA_MEASUREMENT_ID', {
+              gtag('config', 'G-9EBVKYDG3R', {
                 page_title: 'Korean Memes Hub',
                 page_location: 'https://www.koreanmemes.net'
               });
