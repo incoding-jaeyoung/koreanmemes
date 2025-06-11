@@ -7,11 +7,10 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: postId } = await params
-
-    // 게시글 조회 (조회수 증가 없이)
+    const { id } = await params
+    
     const post = await prisma.post.findUnique({
-      where: { id: postId },
+      where: { id },
       select: {
         id: true,
         title: true,
@@ -26,16 +25,7 @@ export async function GET(
         likes: true,
         views: true,
         createdAt: true,
-        updatedAt: true,
-        _count: {
-          select: {
-            comments: {
-              where: {
-                isBlocked: false // 차단되지 않은 댓글만 카운트
-              }
-            }
-          }
-        }
+        updatedAt: true
       }
     })
 
@@ -46,28 +36,47 @@ export async function GET(
       )
     }
 
-    // additionalImages, extractedComments, translatedComments가 JSON인 경우 배열로 변환
-    const formattedPost = {
-      ...post,
-      commentCount: post._count.comments, // 댓글 개수 추가
-      additionalImages: Array.isArray(post.additionalImages) 
-        ? post.additionalImages as string[]
-        : [],
-      extractedComments: Array.isArray(post.extractedComments) 
-        ? post.extractedComments as string[]
-        : [],
-      translatedComments: Array.isArray(post.translatedComments) 
-        ? post.translatedComments as string[]
-        : [],
-      _count: undefined // _count 제거 (commentCount로 대체)
-    }
-
-    return NextResponse.json({ 
-      post: formattedPost
+    // 이전 포스트 조회 (현재 포스트보다 이전에 작성된 것 중 가장 최근)
+    const prevPost = await prisma.post.findFirst({
+      where: {
+        createdAt: {
+          lt: post.createdAt
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      select: {
+        id: true,
+        title: true
+      }
     })
 
+    // 다음 포스트 조회 (현재 포스트보다 이후에 작성된 것 중 가장 이전)
+    const nextPost = await prisma.post.findFirst({
+      where: {
+        createdAt: {
+          gt: post.createdAt
+        }
+      },
+      orderBy: {
+        createdAt: 'asc'
+      },
+      select: {
+        id: true,
+        title: true
+      }
+    })
+
+    return NextResponse.json({
+      post,
+      navigation: {
+        prev: prevPost,
+        next: nextPost
+      }
+    })
   } catch (error) {
-    console.error('Post fetch error:', error)
+    console.error('Get post error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch post' },
       { status: 500 }

@@ -12,7 +12,10 @@ import {
   Loader2,
   AlertCircle,
   Edit3,
-  Trash2
+  Trash2,
+  ChevronLeft,
+  ChevronRight,
+  List
 } from 'lucide-react'
 import Link from 'next/link'
 import { CommentSection } from '@/components/CommentSection'
@@ -35,12 +38,24 @@ interface Post {
   updatedAt: string
 }
 
+interface PostNavigation {
+  prev?: {
+    id: string
+    title: string
+  }
+  next?: {
+    id: string
+    title: string
+  }
+}
+
 function PostDetailContent() {
   const params = useParams()
   const router = useRouter()
   const searchParams = useSearchParams()
   const { isAuthenticated, isLoading } = useAuth()
   const [post, setPost] = useState<Post | null>(null)
+  const [navigation, setNavigation] = useState<PostNavigation>({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
@@ -63,11 +78,11 @@ function PostDetailContent() {
     const accessKey = searchParams.get('access')
     const secretKey = 'korean-memes-secret-2024'
     
-    if (accessKey === secretKey) {
-      setHasSecretAccess(true)
-    } else {
-      setHasSecretAccess(false)
-    }
+          if (accessKey === secretKey) {
+        setHasSecretAccess(true)
+      } else {
+        setHasSecretAccess(false)
+      }
   }, [searchParams])
 
   // 수정/삭제 권한 확인 - 로딩 중이 아닐 때만 권한 허용
@@ -143,6 +158,7 @@ function PostDetailContent() {
 
         const data = await response.json()
         setPost(data.post)
+        setNavigation(data.navigation || {})
       } catch (err) {
         console.error('Error fetching post:', err)
         setError(err instanceof Error ? err.message : 'Failed to load post')
@@ -441,15 +457,70 @@ function PostDetailContent() {
         {/* Actions */}
         <div className="p-6 border-t border-gray-100 bg-gray-50">
           <div className="flex items-center justify-between">
-            <div className="w-full flex justify-end">
-              <Link 
-                href="/"
-                className="flex items-center gap-2 px-6 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
-              >
-                More Posts
-              </Link>
+            {/* Post List 버튼 (왼쪽) */}
+            <Link 
+              href="/"
+              className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <List className="w-4 h-4" />
+              Post List
+            </Link>
+
+            {/* 이전/다음 네비게이션 (오른쪽) */}
+            <div className="flex items-center gap-2">
+              {navigation.prev ? (
+                <Link
+                  href={`/post/${navigation.prev.id}`}
+                  className="flex items-center gap-2 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors group"
+                  title={navigation.prev.title}
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="hidden sm:inline">Prev</span>
+                </Link>
+              ) : (
+                <div className="flex items-center gap-2 px-4 py-2 text-gray-400 bg-gray-200 rounded-lg cursor-not-allowed">
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="hidden sm:inline">Prev</span>
+                </div>
+              )}
+
+              {navigation.next ? (
+                <Link
+                  href={`/post/${navigation.next.id}`}
+                  className="flex items-center gap-2 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors group"
+                  title={navigation.next.title}
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              ) : (
+                <div className="flex items-center gap-2 px-4 py-2 text-gray-400 bg-gray-200 rounded-lg cursor-not-allowed">
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-4 h-4" />
+                </div>
+              )}
             </div>
           </div>
+
+          {/* 포스트 제목 미리보기 (호버 시 표시) */}
+          {(navigation.prev || navigation.next) && (
+            <div className="mt-3 pt-3 border-t border-gray-200">
+              <div className="flex justify-between text-xs text-gray-500">
+                {navigation.prev && (
+                  <div className="flex-1 mr-4">
+                    <span className="block text-gray-400 mb-1">← Previous</span>
+                    <span className="line-clamp-2">{navigation.prev.title}</span>
+                  </div>
+                )}
+                {navigation.next && (
+                  <div className="flex-1 ml-4 text-right">
+                    <span className="block text-gray-400 mb-1">Next →</span>
+                    <span className="line-clamp-2">{navigation.next.title}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </article>
       
