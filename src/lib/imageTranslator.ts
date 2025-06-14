@@ -53,9 +53,13 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number)
   return lines
 }
 
-// GPT로 번역
-async function translateWithGPT(koreanText: string): Promise<string> {
+// GPT로 번역 (제목 context 추가)
+async function translateWithGPT(koreanText: string, title?: string): Promise<string> {
   try {
+    let contextMsg = ''
+    if (title) {
+      contextMsg = `\n\n[Context: The title of this meme/post is: \"${title}\"]\nUse this title as context to help you translate the image text more naturally and relevantly, but still keep the translation as literal as possible.`
+    }
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
@@ -67,7 +71,7 @@ Do NOT localize or adapt to Western culture. Do NOT replace Korean brands, place
 If you encounter a Korean meme, place name, or brand (e.g. 파리바게트, 홍대, 신촌, 롯데리아, ㅇㅈ, 갑분싸), keep the original word in English letters and add a short explanation in parentheses ONLY if necessary. 
 Do NOT add any extra interpretation or explanation unless it is a Korean-specific term. 
 Keep the translation short, literal, and in the same tone as the original. 
-If the original is ambiguous, keep the ambiguity. 
+If the original is ambiguous, keep the ambiguity.\n${contextMsg}
 
 EXAMPLES:
 Korean: "파리바게트에서 빵 샀다" → English: "Bought bread at Paris Baguette (Korean bakery chain)"
@@ -83,7 +87,7 @@ Keep it literal, short, and in the same tone as the original. Do NOT localize. D
         },
         {
           role: "user",
-          content: `Translate this Korean text as literally as possible, preserving the context: "${koreanText}"`
+          content: `Translate this Korean text as literally as possible, preserving the context: "${koreanText}"${title ? `\n\n[Title context: ${title}]` : ''}`
         }
       ],
       max_tokens: 150, // 토큰 수 줄임
@@ -98,7 +102,7 @@ Keep it literal, short, and in the same tone as the original. Do NOT localize. D
 }
 
 // 메인 번역 함수
-export async function translateImageText(imageBuffer: Buffer): Promise<Buffer> {
+export async function translateImageText(imageBuffer: Buffer, translatedTitle?: string): Promise<Buffer> {
   try {
     console.log('Starting image translation...')
 
@@ -261,7 +265,7 @@ export async function translateImageText(imageBuffer: Buffer): Promise<Buffer> {
 
     // 6. 각 한글 블록을 영어로 번역하여 정확한 위치에 교체
     for (const block of koreanBlocks) {
-      const translatedText = await translateWithGPT(block.text)
+      const translatedText = await translateWithGPT(block.text, translatedTitle)
       console.log(`Translated: "${block.text}" → "${translatedText}"`)
 
       // 한글 텍스트 위치 정보

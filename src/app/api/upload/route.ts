@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
     const file = formData.get('image') as File
     const translateImage = formData.get('translateImage') !== 'false'
     const ocrOnly = formData.get('ocrOnly') === 'true' // OCR 전용 모드
+    const translatedTitle = formData.get('translatedTitle')?.toString() || undefined
 
     if (!file) {
       console.error('No file provided')
@@ -91,7 +92,7 @@ export async function POST(request: NextRequest) {
       console.log('🖼️ Starting image translation...')
       try {
         const { translateImageText } = await import('@/lib/imageTranslator')
-        processedBuffer = await translateImageText(buffer) as Buffer
+        processedBuffer = await translateImageText(buffer, translatedTitle) as Buffer
         console.log('✅ Image translation completed')
       } catch (error) {
         console.error('💥 Image translation failed:', error)

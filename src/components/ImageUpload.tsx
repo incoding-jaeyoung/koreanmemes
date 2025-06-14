@@ -38,6 +38,14 @@ export function ImageUpload({ onImageUploaded, currentImage, onRemoveImage }: Im
       const formData = new FormData()
       formData.append('image', file)
       formData.append('translateImage', translateEnabled.toString())
+      // 번역된 제목(영문)이 있으면 함께 전달
+      if (typeof window !== 'undefined') {
+        // 페이지 내에서 title input 값을 찾아서 전달 (id나 name이 'title'인 input)
+        const titleInput = document.querySelector('input[name="title"],input[id="title"]') as HTMLInputElement | null
+        if (titleInput && titleInput.value) {
+          formData.append('translatedTitle', titleInput.value)
+        }
+      }
 
       const response = await fetch('/api/upload', {
         method: 'POST',
