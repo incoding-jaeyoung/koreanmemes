@@ -196,7 +196,7 @@ export default function RootLayout({
         {/* Google Analytics - Korean Memes Hub 전용 추적 코드 */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EBVKYDG3R" />
         <script
-          dangerouslySetInnerHTML={{
+          dangerouslySetInnerHTML={{ 
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}

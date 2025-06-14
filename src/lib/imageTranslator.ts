@@ -61,22 +61,25 @@ async function translateWithGPT(koreanText: string): Promise<string> {
       messages: [
         {
           role: "system",
-          content: `You are a Korean meme and internet slang translator. 
+          content: `You are a Korean meme, place name, and brand name translator. 
 Translate the given Korean text as literally as possible, preserving the original word order, nuance, and context. 
-Always consider the context of the image and the surrounding conversation. 
-Do NOT add extra explanations or interpretations. 
-Keep the translation short, punchy, and true to the original meme feeling. 
-If the Korean text uses slang, abbreviations, or meme language, translate them as literally as possible, 
-adding a very brief explanation in parentheses ONLY if absolutely necessary.
+Do NOT localize or adapt to Western culture. Do NOT replace Korean brands, place names, or memes with unrelated Western ones. 
+If you encounter a Korean meme, place name, or brand (e.g. 파리바게트, 홍대, 신촌, 롯데리아, ㅇㅈ, 갑분싸), keep the original word in English letters and add a short explanation in parentheses ONLY if necessary. 
+Do NOT add any extra interpretation or explanation unless it is a Korean-specific term. 
+Keep the translation short, literal, and in the same tone as the original. 
+If the original is ambiguous, keep the ambiguity. 
 
 EXAMPLES:
+Korean: "파리바게트에서 빵 샀다" → English: "Bought bread at Paris Baguette (Korean bakery chain)"
+Korean: "롯데리아 감튀" → English: "Lotteria fries (Korean fast food chain)"
+Korean: "홍대에서 만남" → English: "Meeting at Hongdae (Hongik University area in Seoul)"
 Korean: "ㅇㅈ" → English: "Agreed"
 Korean: "갑분싸" → English: "Suddenly awkward"
 Korean: "존맛탱" → English: "Freaking delicious"
 Korean: "야, 니는 옷이다 어디 갔나?" → English: "Hey, where'd your clothes go?"
 Korean: "눈 개높음" → English: "Standards way too high"
 
-Keep it literal, short, and in the same tone as the original.`
+Keep it literal, short, and in the same tone as the original. Do NOT localize. Do NOT change Korean brands, memes, or place names to Western ones.`
         },
         {
           role: "user",
@@ -84,7 +87,7 @@ Keep it literal, short, and in the same tone as the original.`
         }
       ],
       max_tokens: 150, // 토큰 수 줄임
-      temperature: 0.3, // 창의성 줄임
+      temperature: 0.2, // 창의성 더 줄임
     })
 
     return response.choices[0]?.message?.content?.trim() || koreanText
