@@ -1,0 +1,2354 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtua Fighter Ranks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0a0f1c; color: #e2e8f0; }
+    .badge-base {
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      min-width: 64px;
+    }
+    .badge-text {
+      font-size: 11px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    @keyframes spin-center {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .animate-spin-center {
+      animation: spin-center 3s linear infinite;
+    }
+  </style>
+</head>
+<body class="p-6 md:p-12 font-sans selection:bg-blue-500/30 overflow-x-hidden">
+  <div class="max-w-4xl mx-auto relative">
+    <header class="mb-10 text-center space-y-4 relative z-20">
+      <h1 class="text-3xl md:text-4xl font-black tracking-tight text-white drop-shadow-lg uppercase">
+        Virtua Fighter <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Ranks</span>
+      </h1>
+      <p class="text-slate-400 text-sm font-medium">단독 실행형 HTML 내보내기 결과물입니다.</p>
+    </header>
+
+    <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/90 rounded-t-xl border-b border-slate-800 text-xs font-bold text-slate-400 uppercase tracking-widest">
+      <div class="col-span-2 text-center">Level</div>
+      <div class="col-span-3 text-center">Korean</div>
+      <div class="col-span-3 text-center">Japanese</div>
+      <div class="col-span-4 text-center">English</div>
+    </div>
+
+    <div class="bg-slate-900/30 rounded-b-xl border border-t-0 border-slate-800 flex flex-col backdrop-blur-sm">
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.46
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        초황신
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        超煌神
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-yellow-300 to-cyan-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Novalord
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.45
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        환명신
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        幻冥神
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Dreadlord
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.44
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        천상신
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        天翔神
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-300 to-teal-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Skylord
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.43
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        폭염신
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        爆焔神
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Magmalord
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.42
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        굉뢰신
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        轟雷神
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-rose-300 to-pink-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Stormlord
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.41
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        용무제
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        龍武帝
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-300 to-blue-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Dragonfang
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.40
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        귀무제
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        鬼武帝
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Lionheart
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.39
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        수무제
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        獣武帝
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-fuchsia-400 to-purple-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Tigerclaw
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.38
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        강권성
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        剛拳聖
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Doomslayer
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.37
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        격권성
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        撃拳聖
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Grimslayer
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.36
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        공권성
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        空拳聖
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-200 to-yellow-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Darkslayer
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.35
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        천마왕
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        天魔王
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Conqueror
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.34
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        진마왕
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        真魔王
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Vanquisher
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.33
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        대마왕
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        大魔王
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Avenger
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.32
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        투장
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        闘将
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Destroyer
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.31
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        맹장
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        猛将
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Shatterer
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.30
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        지장
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        智将
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-red-600 via-rose-400 to-red-600 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-red-600 via-rose-400 to-red-600 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-rose-400 to-red-600 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Assassin
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.29
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        초인
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        超人
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Berserker
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.28
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        달인
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        達人
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Veteran
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.27
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        명인
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        名人
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-emerald-300 to-teal-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Warrior
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.26
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        왕자
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        王者
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Guardian
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.25
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-slate-400 via-white to-slate-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-400 via-white to-slate-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        맹자
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-slate-400 via-white to-slate-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-400 via-white to-slate-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        猛者
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-slate-400 via-white to-slate-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-400 via-white to-slate-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Sentinel
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.24
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-slate-400 via-white to-slate-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-400 via-white to-slate-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        강자
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-slate-400 via-white to-slate-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-400 via-white to-slate-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        強者
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-400 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-slate-400 via-white to-slate-400 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-400 via-white to-slate-400 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Defender
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.23
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        걸사
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        傑士
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Barbarian
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.22
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        열사
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        烈士
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Raider
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 border-t-2 border-t-blue-500/30 mt-2">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-amber-500/50 text-amber-300 shadow-amber-500/20">
+              Lv.21
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        연사
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        錬士
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="relative flex items-center justify-center group">
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[40px] z-0 overflow-visible pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] rounded-full bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 blur-[10px] opacity-60 animate-spin-center"></div>
+                  </div>
+                  <div class="relative inline-flex p-[1.5px] rounded overflow-hidden shadow-2xl z-10 bg-slate-950">
+                    <div class="absolute top-1/2 left-1/2 w-[100px] h-[100px] animate-spin-center bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 opacity-90"></div>
+                    <div class="badge-base bg-slate-950 relative z-10">
+                      <span class="badge-text font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-300 to-orange-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                        Hunter
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.20
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">10단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">十段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">10th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.19
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">9단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">九段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">9th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.18
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">8단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">八段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">8th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.17
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">7단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">七段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">7th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.16
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">6단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">六段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">6th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.15
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">5단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">五段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">5th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.14
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">4단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">四段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">4th Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.13
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">3단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">三段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">3rd Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.12
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">2단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">二段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">2nd Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.11
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">초단</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">初段</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-yellow-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">1st Dan</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.10
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">1급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">一級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">1th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.9
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">2급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">二級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">2th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.8
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">3급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">三級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">3th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.7
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">4급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">四級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">4th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.6
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">5급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">五級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">5th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.5
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">6급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">六級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">6th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.4
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">7급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">七級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">7th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.3
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">8급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">八級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">8th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.2
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">9급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">九級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">9th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+        <div class="relative grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-800/50 ">
+          <div class="col-span-2 flex justify-center z-10">
+            <div class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-950 border shadow-inner border-slate-800 text-slate-400">
+              Lv.1
+            </div>
+          </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">10급</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-3 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">十級</span>
+                </div>
+              
+            </div>
+          
+            <div class="col-span-4 flex justify-center z-10 relative">
+              
+                <div class="badge-base bg-slate-700 text-white shadow-md border border-white/10 relative z-10">
+                  <span class="badge-text font-semibold tracking-tight text-white drop-shadow-sm">10th Kyu</span>
+                </div>
+              
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+</body>
+</html>

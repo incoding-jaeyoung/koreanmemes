@@ -1,0 +1,360 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Self-hosted: npm run font:pretendard 로 한 번 다운로드 후 사용. font-display: optional 으로 로드 중 폰트 전환(FOUT) 방지 */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: optional;
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
+:root {
+  --background: #141414; /* Urban nocturne 다크 */
+  --foreground: #D6D6D6; /* Urban nocturne 라이트 그레이 */
+  --brand-yellow: #E2E800; /* Urban nocturne 네온 옐로우 */
+  --brand-red: #ff0055;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500; /* 기본 굵기 400 -> 500 상향 */
+  line-height: 1.6;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* 폰트 굵기 명시적 보정 (한글 볼드 해결) */
+strong, b {
+  font-weight: 700 !important;
+}
+
+/* 에디터 내부의 리스트 및 제목 스타일 가독성 강화 */
+.prose h1, .prose h2 {
+  font-weight: 800 !important;
+  color: white !important;
+}
+
+.prose ul > li::before {
+  background-color: var(--brand-yellow) !important;
+}
+
+/* 애니메이션 뱃지: 그라데이션 테두리가 천천히 도는 효과 */
+@keyframes badge-gradient-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.badge-gradient-spin {
+  animation: badge-gradient-spin 6s linear infinite;
+}
+
+@layer components {
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+  }
+
+  /* 격투게임 커맨드 아이콘 스타일 (정제) */
+  .direction-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem; /* 크기 재조정 */
+    height: 1.25rem; /* 크기 재조정 */
+    border-radius: 50%;
+    background-color: transparent;
+    color: white;
+    font-weight: 800;
+    font-size: 0.75rem; /* 화살표 크기 최적화 */
+    margin: 0 0.05rem;
+    vertical-align: text-bottom;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* 연한 흰색 테두리 */
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont;
+    line-height: 1;
+  }
+
+  /* 방향별 특수 스타일 제거 (단일 테마로 통일) */
+  .direction-icon.dir-5 {
+    color: rgba(255, 255, 255, 0.7); /* 투명도 상향 */
+    border-style: dashed;
+    font-size: 0.7rem; /* 크기 상향 */
+  }
+
+  .grid-3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+  }
+}
+
+@theme {
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-red: var(--brand-red);
+}
+
+/* Supabase Auth UI - 로그인 폼 Pretendard 폰트 및 스타일 */
+#auth-sign-in,
+#auth-sign-up,
+#auth-forgot-password {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  font-weight: 700 !important;
+}
+#auth-sign-in label,
+#auth-sign-up label,
+#auth-forgot-password label {
+}
+#auth-sign-in button,
+#auth-sign-up button,
+#auth-forgot-password button {
+  font-weight: 700 !important;
+}
+#auth-sign-in input,
+#auth-sign-up input,
+#auth-forgot-password input {
+  color: var(--brand-yellow) !important;
+  font-weight: 900 !important;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+}
+#auth-sign-up input::placeholder,
+#auth-forgot-password input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E2E80066; /* 40% opacity */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E2E800CC; /* 80% opacity on hover */
+}
+
+/* react-tweet 커스텀 스타일 */
+.tweet-container {
+  width: 100%;
+  max-width: 550px;
+  margin: 1.5rem auto;
+}
+
+/* 트윗 iframe이 제대로 작동하도록 */
+[data-tweet-container] {
+  pointer-events: auto !important;
+}
+
+[data-tweet-container] iframe {
+  pointer-events: auto !important;
+}
+
+/* 다크 테마 강제 */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Twitter 위젯 로딩 개선 */
+.twitter-tweet {
+  margin: 1.5rem auto !important;
+  max-width: 550px !important;
+}
+
+/* 로딩 중 blockquote 숨김 (위젯이 렌더링되면 자동으로 교체됨) */
+.twitter-tweet:not(.twitter-tweet-rendered) {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s;
+}
+
+/* iframe이 로드되면 표시 */
+.twitter-tweet iframe {
+  opacity: 1 !important;
+}
+
+/* SliderSection - 일자형 가로 슬라이더 (gallery 등) */
+.slideshow-section {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-inner {
+  display: flex;
+  will-change: transform;
+}
+
+.slide {
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.slide-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.slideshow-pagination {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  width: auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.slideshow-navigation {
+  display: flex;
+  gap: 5px;
+  z-index: 1001;
+}
+
+
+.slideshow-navigation-button {
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.slideshow-navigation-button:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+  transform: scale(1.1);
+}
+
+.pagination-block {
+  width: auto !important;
+  display: flex !important;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 0px 10px;
+  height: 30px;
+  border-radius: 50px;
+}
+
+.slideshow-pagination-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.slideshow-pagination-item.active .pagination-number {
+  opacity: 1;
+}
+
+.slideshow-pagination-item:not(.active) .pagination-number {
+  opacity: 0.5;
+}
+
+.slideshow-pagination-item.active .pagination-separator {
+  width: 30px;
+}
+
+.pagination-number {
+  font-size: 14px;
+  color: #fff;
+  padding: 0 0.5rem;
+}
+
+.pagination-separator {
+  display: block;
+  position: relative;
+  width: 10px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .pagination-separator {
+    display: none;
+  }
+}
+
+.pagination-separator-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.slideshow-pagination-item.active .pagination-separator-loader {
+  animation: pagination-loader-fill 4s linear forwards;
+}
+
+@keyframes pagination-loader-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* SliderSection - 전체 배경색 + 스큐 배경 2개 겹침 */
+.slider-container {
+  background: #1a1a1a;
+}
+
+.slider-details {
+  overflow: visible;
+}
+
+.slider-details .slider-cta {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.slider-bg-base,
+.slider-bg {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+
+}
+
+.prose img, .prose video {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}

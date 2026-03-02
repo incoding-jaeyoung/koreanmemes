@@ -1,0 +1,61 @@
+# VF Mania — Virtua Fighter Community
+
+> A multilingual fan community for the Virtua Fighter fighting game series, providing character guides, frame data, command lists, combo videos, and community discussion boards. Fully available in Korean, English, and Japanese with real-time AI translation.
+
+## About
+
+VF Mania is a global Virtua Fighter (バーチャファイター / 버추어파이터) community website built for players of all skill levels. The site serves Korean, English, and Japanese speaking audiences with automatic AI-powered translation between all three languages.
+
+## Key Features
+
+- **Character Frame Data & Command Lists**: Detailed move data (startup, recovery, hit/guard advantage, damage) and full command lists for all playable Virtua Fighter characters.
+- **Combo Guides**: Character-specific combo guides contributed by the community, with embedded YouTube video demonstrations.
+- **Match Videos & Media Gallery**: Curated match footage, tournament highlights, and gameplay videos from the Virtua Fighter community worldwide.
+- **Multilingual AI Translation**: All user posts and comments are automatically translated between Korean, English, and Japanese in real-time using AI. Users can read any post in their preferred language.
+- **Community Board (VF Lounge)**: Discussion board for strategies, beginner questions, match reviews, gear/setup topics, and general chat.
+- **News & Updates**: Official Virtua Fighter news, patch notes, events, and community announcements.
+- **User Profiles**: Rank display, main character selection, activity stats, and personalized profiles.
+
+## Content Categories
+
+### Character Guides
+Each character page includes:
+- Character profile and fighting style overview
+- Full command list with frame data (startup frames, active frames, total frames, guard/hit advantage)
+- Combo guide videos
+- Community strategy posts specific to that character
+
+### Community Board Categories
+- Intro / New players
+- Strategy discussion
+- Beginner Q&A
+- Info & tips
+- Gear & controller setup
+- Match requests & reviews
+- General chat
+
+### Media Gallery Categories
+- Epic matches & tournaments
+- Gameplay footage
+- Combo & performance videos
+- Legendary moments
+- Showcase / personal highlights
+
+## Languages Supported
+- Korean (한국어) — primary
+- English — fully supported
+- Japanese (日本語) — fully supported
+
+All content is available in all three languages. User-generated content is AI-translated automatically.
+
+## Target Audience
+- Virtua Fighter players from Korea, Japan, USA, UK, and worldwide
+- Players looking for frame data and technical information
+- Players of all skill levels from beginners to competitive players
+- Fighting game community members interested in Virtua Fighter
+
+## Site URL
+https://vfmania.com
+
+## Sitemap
+https://vfmania.com/sitemap.xml

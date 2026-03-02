@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "title": "Global K-pop Fan Community",
+    "subtitle": "Share your K-pop stories with fans worldwide",
+    "cta": "Get Started"
+  },
+  "kpop": {
+    "artistTag": "Artist / Group",
+    "artistTagPlaceholder": "Enter artist or group name",
+    "filterByArtist": "Filter by artist"
+  },
+  "Navigation": {
+    "board": "Board",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile"
+  },
+  "Board": {
+    "title": "Community Board",
+    "description": "Share your K-pop stories and discuss with fans worldwide.",
+    "cat": {
+      "greeting": "Greeting",
+      "chat": "Chat",
+      "question": "Question",
+      "tips": "Info/Tips",
+      "gear": "Gear",
+      "match": "Match/Review"
+    },
+    "write": {
+      "title": "WRITE",
+      "category": "Category",
+      "placeholder": "Enter title",
+      "content": "Content",
+      "contentPlaceholder": "Paste images, links, or YouTube URLs to automatically insert them.\nAlso, typing ----- will create a horizontal line.",
+      "guide": "Please maintain proper community manners. Offensive posts may be removed.",
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "update": "Update",
+      "titleRequired": "Please enter a title",
+      "contentRequired": "Please enter content",
+      "cancelConfirm": "Your draft will be deleted. Continue?",
+      "draftRestore": "Do you want to restore the saved draft?"
+    },
+    "table": {
+      "title": "Title"
+    }
+  },
+  "Comments": {
+    "title": "Comments",
+    "reply": "Reply",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "post": "Post Comment",
+    "placeholder": "Write a comment...",
+    "replyPlaceholder": "Reply to",
+    "loginRequired": "Please",
+    "loginLink": "login",
+    "loginRequiredSuffix": "to write a comment.",
+    "firstComment": "Be the first to comment!",
+    "loading": "Loading comments...",
+    "deleteConfirm": "Delete this comment?",
+    "deleteFailed": "Failed to delete the comment.",
+    "editFailed": "Failed to update the comment.",
+    "adminDelete": "Admin delete",
+    "translating": "Translating with AI...",
+    "translating_hint": "Translations are saved for faster display on next visit",
+    "translation_failed": "Translation failed.",
+    "retry_translation": "Retry",
+    "view_original": "View Original",
+    "view_translated": "View Translation",
+    "translated": "AI Translated",
+    "addImage": "Attach image",
+    "removeImage": "Remove image",
+    "imageUploading": "Uploading...",
+    "imageSizeError": "File size cannot exceed 5MB.",
+    "imageTypeError": "Unsupported file format. (jpg, png, gif, webp only)",
+    "viewOnYouTube": "View on YouTube",
+    "viewOnX": "View on X",
+    "loadingEmbed": "Loading...",
+    "embedFailed": "Failed to load media.",
+    "postFailed": "Failed to post comment."
+  },
+  "editor": {
+    "imageSizeError": "File size cannot exceed 5MB.",
+    "imageTypeError": "Unsupported file format. (jpg, png, gif, webp only)",
+    "imageUploadFailed": "Image upload failed.",
+    "youtubePrompt": "Enter YouTube URL",
+    "twitterPrompt": "Enter Twitter/X post URL",
+    "imageUpload": "Upload Image",
+    "youtubeInsert": "Insert YouTube Video",
+    "twitterInsert": "Insert Twitter Post",
+    "videoUpload": "Upload Video (max 20MB, mp4/webm/ogg/mov)",
+    "videoSizeError": "File size cannot exceed 20MB.",
+    "videoTypeError": "Unsupported file format. (mp4, webm, ogg, mov only)",
+    "videoUploadFailed": "Video upload failed.",
+    "deleteMediaConfirm": "Are you sure you want to delete this media?"
+  },
+  "widget": {
+    "bestVideo": {
+      "title": "BEST VIDEO"
+    }
+  }
+}

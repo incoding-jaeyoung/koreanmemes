@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "title": "グローバルK-popファンコミュニティ",
+    "subtitle": "世界中のファンとK-popの話を共有しましょう",
+    "cta": "今すぐ始める"
+  },
+  "kpop": {
+    "artistTag": "アーティスト / グループ",
+    "artistTagPlaceholder": "アーティストまたはグループ名を入力",
+    "filterByArtist": "アーティストで絞り込む"
+  },
+  "Navigation": {
+    "board": "掲示板",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "profile": "プロフィール"
+  },
+  "Board": {
+    "title": "コミュニティ掲示板",
+    "description": "世界中のファンとK-popの話を共有し、議論しましょう。",
+    "cat": {
+      "greeting": "挨拶",
+      "chat": "雑談",
+      "question": "質問",
+      "tips": "情報/ヒント",
+      "gear": "周辺機器",
+      "match": "対戦募集/レビュー"
+    },
+    "write": {
+      "title": "WRITE",
+      "category": "カテゴリ",
+      "placeholder": "タイトルを入力してください",
+      "content": "内容",
+      "contentPlaceholder": "画像、リンク、YouTubeのアドレスをコピーして貼り付けると自動的に挿入されます。\nまた、-----を入力すると水平線が生成されます。",
+      "guide": "コミュニティのマナーを守ってください。不快感を与える記事は削除される場合があります。",
+      "cancel": "キャンセル",
+      "submit": "登録する",
+      "update": "更新する",
+      "titleRequired": "タイトルを入力してください",
+      "contentRequired": "内容を入力してください",
+      "cancelConfirm": "作成中の内容が削除されます。続けますか？",
+      "draftRestore": "保存された下書きを復元しますか？"
+    },
+    "table": {
+      "title": "タイトル"
+    }
+  },
+  "Comments": {
+    "title": "コメント",
+    "reply": "返信",
+    "edit": "編集",
+    "delete": "削除",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "post": "コメントを投稿",
+    "placeholder": "コメントを入力してください...",
+    "replyPlaceholder": "さんへ返信...",
+    "loginRequired": "コメントを書くには",
+    "loginLink": "ログイン",
+    "loginRequiredSuffix": "が必要です。",
+    "firstComment": "最初のコメントを残してみましょう！",
+    "loading": "コメントを読み込み中...",
+    "deleteConfirm": "このコメントを削除しますか？",
+    "deleteFailed": "コメントの削除に失敗しました。",
+    "editFailed": "コメントの編集に失敗しました。",
+    "adminDelete": "管理者として削除",
+    "translating": "AI翻訳中...",
+    "translating_hint": "翻訳は保存され、次回の訪問時に素早く表示されます",
+    "translation_failed": "翻訳に失敗しました。",
+    "retry_translation": "再試行",
+    "view_original": "原文を見る",
+    "view_translated": "翻訳を見る",
+    "translated": "AI翻訳済み",
+    "addImage": "画像を添付",
+    "removeImage": "画像を削除",
+    "imageUploading": "アップロード中...",
+    "imageSizeError": "ファイルサイズは5MBを超えることはできません。",
+    "imageTypeError": "サポートされていないファイル形式です。(jpg, png, gif, webpのみ)",
+    "viewOnYouTube": "YouTubeで見る",
+    "viewOnX": "Xで見る",
+    "loadingEmbed": "読み込み中...",
+    "embedFailed": "メディアを読み込めませんでした。",
+    "postFailed": "コメントの投稿に失敗しました。"
+  },
+  "editor": {
+    "imageSizeError": "ファイルサイズは5MBを超えることはできません。",
+    "imageTypeError": "サポートされていないファイル形式です。(jpg, png, gif, webpのみ)",
+    "imageUploadFailed": "画像のアップロードに失敗しました。",
+    "youtubePrompt": "YouTube URLを入力してください",
+    "twitterPrompt": "Twitter/X投稿URLを入力してください",
+    "imageUpload": "画像アップロード",
+    "youtubeInsert": "YouTube動画挿入",
+    "twitterInsert": "Twitter投稿挿入",
+    "videoUpload": "動画アップロード（最大20MB、mp4/webm/ogg/mov）",
+    "videoSizeError": "ファイルサイズは20MBを超えることができません。",
+    "videoTypeError": "サポートされていないファイル形式です。（mp4、webm、ogg、movのみ可能）",
+    "videoUploadFailed": "動画のアップロードに失敗しました。",
+    "deleteMediaConfirm": "このメディアを削除しますか？"
+  },
+  "widget": {
+    "bestVideo": {
+      "title": "BEST VIDEO"
+    }
+  }
+}

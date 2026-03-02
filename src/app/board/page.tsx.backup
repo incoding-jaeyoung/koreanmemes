@@ -1,0 +1,168 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Search, Filter, MessageSquare, ThumbsUp, Eye, PenBox } from "lucide-react";
+
+export default function BoardPage() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [category, setCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    fetchPosts();
+  }, [category]);
+
+  const fetchPosts = async () => {
+    try {
+      setIsLoading(true);
+      const params = new URLSearchParams({
+        page: '1',
+        limit: '50',
+      });
+      
+      if (category !== 'all') {
+        params.append('category', category);
+      }
+      
+      if (searchQuery) {
+        params.append('search', searchQuery);
+      }
+
+      const response = await fetch(`/api/posts?${params.toString()}`);
+      const data = await response.json();
+      
+      if (data.posts) {
+        setPosts(data.posts);
+      }
+    } catch (error: any) {
+      console.error("Error fetching posts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    fetchPosts();
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto px-6 py-10">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+        <div>
+          <h2 className="text-4xl font-black italic tracking-tighter mb-2">
+            COMMUNITY <span className="text-brand-blue">BOARD</span>
+          </h2>
+          <p className="text-neutral-400">전 세계 유저들과 전략을 공유하고 토론하세요.</p>
+        </div>
+        <Link href="/board/write">
+          <button className="px-6 py-3 bg-brand-blue text-black font-bold italic rounded-lg hover:scale-105 transition-transform active:scale-95 shadow-[0_0_15px_rgba(0,242,255,0.3)] flex items-center gap-2">
+            <PenBox className="w-4 h-4" />
+            게시글 작성하기
+          </button>
+        </Link>
+      </div>
+
+      {/* Filter & Search Bar */}
+      <div className="flex flex-wrap items-center gap-4 mb-8">
+        <div className="flex bg-white/5 rounded-lg p-1 border border-white/10">
+          {[
+            { label: '전체', value: 'all' },
+            { label: '공지', value: '공지' },
+            { label: '토론', value: '토론' },
+            { label: '공략', value: '공략' },
+            { label: '질문', value: '질문' }
+          ].map((cat) => (
+            <button 
+              key={cat.value} 
+              onClick={() => setCategory(cat.value)}
+      {/* 검색 영역 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="glass-card p-6 mb-6"
+      >
+        <div className="flex gap-4">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="게시글 검색..."
+            className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:outline-none focus:border-brand-blue/50 transition-colors"
+          />
+          <button 
+            onClick={handleSearch} 
+            className="px-6 py-2 bg-brand-blue text-black font-bold rounded-lg hover:scale-105 transition-transform"
+          >
+            검색
+          </button>
+        </div>
+      </motion.div>
+        {isLoading ? (
+          <div className="py-20 flex justify-center">
+            <div className="w-10 h-10 border-4 border-brand-blue/30 border-t-brand-blue rounded-full animate-spin" />
+          </div>
+        ) : posts.length === 0 ? (
+          <div className="glass-card p-20 text-center text-neutral-500 font-bold italic">
+            등록된 게시글이 없습니다. 첫 번째 주인공이 되어보세요!
+          </div>
+        ) : (
+          posts.map((post, idx) => (
+            <Link key={post.id} href={`/board/${post.id}`}>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                className="glass-card p-5 group hover:border-brand-blue/30 transition-all cursor-pointer flex items-center gap-6 mb-4"
+              >
+                <div className="hidden md:flex flex-col items-center justify-center min-w-[60px] border-r border-white/10 pr-6">
+                  <span className="text-xs font-bold text-neutral-500 uppercase">{post.category}</span>
+                </div>
+                
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold group-hover:text-brand-blue transition-colors truncate mb-1">
+                    {post.title}
+                  </h3>
+                  <div className="flex items-center gap-4 text-xs text-neutral-500">
+                    <span className="font-medium text-neutral-300">{post.author_name}</span>
+                    <span>•</span>
+                    <span>{new Date(post.created_at).toLocaleDateString()}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-6 text-neutral-400">
+                  <div className="flex items-center gap-1.5">
+                    <ThumbsUp className="w-4 h-4" />
+                    <span className="text-sm">{post.likes}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <MessageSquare className="w-4 h-4" />
+                    <span className="text-sm">0</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 min-w-[60px]">
+                    <Eye className="w-4 h-4" />
+                    <span className="text-sm">{post.views}</span>
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
+          ))
+        )}
+      </div>
+
+      {/* Pagination Placeholder */}
+      <div className="mt-12 flex justify-center gap-2">
+        {[1, 2, 3, '...', 10].map((page, idx) => (
+          <button key={idx} className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold border ${page === 1 ? 'bg-brand-blue border-brand-blue text-black' : 'border-white/10 hover:bg-white/5'}`}>
+            {page}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}

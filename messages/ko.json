@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "title": "글로벌 케이팝 팬 커뮤니티",
+    "subtitle": "전 세계 팬들과 K-pop 이야기를 나눠보세요",
+    "cta": "지금 시작하기"
+  },
+  "kpop": {
+    "artistTag": "아티스트 / 그룹",
+    "artistTagPlaceholder": "아티스트 또는 그룹명 입력",
+    "filterByArtist": "아티스트별 보기"
+  },
+  "Navigation": {
+    "board": "게시판",
+    "login": "로그인",
+    "logout": "로그아웃",
+    "profile": "프로필"
+  },
+  "Board": {
+    "title": "커뮤니티 게시판",
+    "description": "전 세계 팬들과 K-pop 이야기를 공유하고 토론하세요.",
+    "cat": {
+      "greeting": "인사",
+      "chat": "잡담",
+      "question": "질문",
+      "tips": "정보/꿀팁",
+      "gear": "장비",
+      "match": "대전신청/후기"
+    },
+    "write": {
+      "title": "WRITE",
+      "category": "카테고리",
+      "placeholder": "제목을 입력하세요",
+      "content": "내용",
+      "contentPlaceholder": "이미지, 링크, 유튜브 주소를 복사해서 붙여넣으면 자동으로 삽입됩니다.\n또한 ----- 입력하면 가로선이 생성됩니다.",
+      "guide": "커뮤니티 매너를 지켜주세요. 불쾌감을 주는 게시글은 삭제될 수 있습니다.",
+      "cancel": "취소",
+      "submit": "등록하기",
+      "update": "수정하기",
+      "titleRequired": "제목을 입력하세요",
+      "contentRequired": "내용을 입력하세요",
+      "cancelConfirm": "작성 중인 내용이 삭제됩니다. 계속하시겠습니까?",
+      "draftRestore": "저장된 임시 글을 불러오시겠습니까?"
+    },
+    "table": {
+      "title": "제목"
+    }
+  },
+  "Comments": {
+    "title": "댓글",
+    "reply": "답글",
+    "edit": "수정",
+    "delete": "삭제",
+    "cancel": "취소",
+    "save": "저장",
+    "post": "댓글등록",
+    "placeholder": "댓글을 입력하세요...",
+    "replyPlaceholder": "님에게 답글 작성...",
+    "loginRequired": "댓글을 작성하려면",
+    "loginLink": "로그인",
+    "loginRequiredSuffix": "이 필요합니다.",
+    "firstComment": "첫 번째 댓글을 남겨보세요!",
+    "loading": "댓글 로딩 중...",
+    "deleteConfirm": "댓글을 삭제하시겠습니까?",
+    "deleteFailed": "댓글 삭제에 실패했습니다.",
+    "editFailed": "댓글 수정에 실패했습니다.",
+    "adminDelete": "관리자 권한으로 삭제",
+    "translating": "AI 번역 중...",
+    "translating_hint": "번역본은 저장되어 다음 방문 시 빠르게 표시됩니다",
+    "translation_failed": "번역에 실패했습니다.",
+    "retry_translation": "다시 시도",
+    "view_original": "원문 보기",
+    "view_translated": "번역 보기",
+    "translated": "AI 번역됨",
+    "addImage": "이미지 첨부",
+    "removeImage": "이미지 제거",
+    "imageUploading": "업로드 중...",
+    "imageSizeError": "파일 크기는 5MB를 초과할 수 없습니다.",
+    "imageTypeError": "지원하지 않는 파일 형식입니다. (jpg, png, gif, webp만 가능)",
+    "viewOnYouTube": "YouTube에서 보기",
+    "viewOnX": "X에서 보기",
+    "loadingEmbed": "로딩 중...",
+    "embedFailed": "미디어를 불러올 수 없습니다.",
+    "postFailed": "댓글 작성에 실패했습니다."
+  },
+  "editor": {
+    "imageSizeError": "파일 크기는 5MB를 초과할 수 없습니다.",
+    "imageTypeError": "지원하지 않는 파일 형식입니다. (jpg, png, gif, webp만 가능)",
+    "imageUploadFailed": "이미지 업로드에 실패했습니다.",
+    "youtubePrompt": "YouTube URL을 입력하세요",
+    "twitterPrompt": "Twitter/X 게시글 URL을 입력하세요",
+    "imageUpload": "이미지 업로드",
+    "youtubeInsert": "YouTube 영상 삽입",
+    "twitterInsert": "Twitter 게시글 삽입",
+    "videoUpload": "동영상 업로드 (최대 20MB, mp4/webm/ogg/mov)",
+    "videoSizeError": "파일 크기는 20MB를 초과할 수 없습니다.",
+    "videoTypeError": "지원하지 않는 파일 형식입니다. (mp4, webm, ogg, mov만 가능)",
+    "videoUploadFailed": "동영상 업로드에 실패했습니다.",
+    "deleteMediaConfirm": "미디어를 삭제하시겠습니까?"
+  },
+  "widget": {
+    "bestVideo": {
+      "title": "BEST VIDEO"
+    }
+  }
+}
